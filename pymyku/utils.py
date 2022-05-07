@@ -1,8 +1,8 @@
 from . import api, constants, attributes
-from .types import Response, Dict
+from .types import Response, Dict, Union
 
 
-def response_to_json(response: Response | dict) -> dict:
+def response_to_json(response: Union[Response, dict]) -> dict:
     '''Convert response to json. Do nothing if response is already dictionary
     
     Parameters
@@ -16,11 +16,10 @@ def response_to_json(response: Response | dict) -> dict:
     
     '''
 
-    return response.json() if isinstance(response,
-                                         Response) else response
+    return response.json() if isinstance(response, Response) else response
 
 
-def extract_user_data(login_response: Response | dict) -> dict:
+def extract_user_data(login_response: Union[Response, dict]) -> dict:
     '''Extract user data from login response
     
     Parameters
@@ -39,7 +38,7 @@ def extract_user_data(login_response: Response | dict) -> dict:
     return login_response.get('user', {})
 
 
-def extract_student_data(login_response: Response | dict) -> dict:
+def extract_student_data(login_response: Union[Response, dict]) -> dict:
     '''Extract student data from login response
     
     Parameters
@@ -58,7 +57,7 @@ def extract_student_data(login_response: Response | dict) -> dict:
     return user_data.get('student', {})
 
 
-def extract_access_token(login_response: Response | dict) -> str:
+def extract_access_token(login_response: Union[Response, dict]) -> str:
     '''Extract student code from login response
     
     Parameters
@@ -75,7 +74,7 @@ def extract_access_token(login_response: Response | dict) -> str:
     return login_response.get('accesstoken', '')
 
 
-def extract_std_code(login_response: Response | dict) -> str:
+def extract_std_code(login_response: Union[Response, dict]) -> str:
     '''Extract student code from login response
     
     Parameters
@@ -94,7 +93,7 @@ def extract_std_code(login_response: Response | dict) -> str:
     return student_data.get('stdCode', '')
 
 
-def extract_std_id(login_response: Response | dict) -> str:
+def extract_std_id(login_response: Union[Response, dict]) -> str:
     '''Extract student id from login response
     
     Parameters
@@ -113,7 +112,9 @@ def extract_std_id(login_response: Response | dict) -> str:
     return student_data.get('stdId', '')
 
 
-def extract_schedule(schedule_response: Response | dict, as_dict:bool=False, full_result:bool=False) -> tuple | dict | list:
+def extract_schedule(schedule_response: Union[Response, dict],
+                     as_dict: bool = False,
+                     full_result: bool = False) -> Union[tuple, dict, list]:
     '''Extract schedule (academic_year, semester) from schedule response
     
     Parameters
@@ -133,16 +134,17 @@ def extract_schedule(schedule_response: Response | dict, as_dict:bool=False, ful
 
     schedule_response = response_to_json(schedule_response)
     result = schedule_response.get('results')
-    
+
     if full_result:
         return result
-    
+
     if isinstance(result, list):
         result = result[0]
-        
+
     if as_dict:
         return result
     return result.get('academicYr'), result.get('semester')
+
 
 def gen_request_headers(access_token: str = '') -> dict:
     """Generate request headers.
@@ -207,7 +209,6 @@ def gen_login_request_params(username: str, password: str) -> dict:
         }
     }
 
-
 def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
     """Generate request parameters requied for the given function.
     
@@ -254,7 +255,7 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
         schedule_response = kwargs.get('schedule_response')
         schedule_response = response_to_json(schedule_response)
 
-        schedule = extract_schedule(schedule_response)
+        schedule = extract_schedule(schedule_response, as_dict=True)
 
         if not kwargs.get('academic_year'):
             kwargs['academic_year'] = schedule['academicYr']

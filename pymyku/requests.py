@@ -1,7 +1,7 @@
 from requests import get, post
 
 from . import utils
-from .types import Response, ClientType
+from .types import ClientType, Response, Union
 
 
 def request_login(username: str, password: str) -> Response:
@@ -30,8 +30,8 @@ def request_login(username: str, password: str) -> Response:
 
 
 def request_logout(access_token: str = '',
-           login_response: Response | dict = {},
-           client: ClientType = None) -> Response:
+                   login_response: Union[Response, dict] = {},
+                   client: ClientType = None) -> Response:
     '''Send POST request to MyKU auth/logout API.
     *I am uncertain that this request method will work properly.*
 
@@ -64,7 +64,7 @@ def get_schedule(access_token: str = '',
                  faculty_code: str = '',
                  major_code: str = '',
                  student_status_code: str = '',
-                 login_response: Response | dict = {},
+                 login_response: Union[Response, dict] = {},
                  client: ClientType = None) -> Response:
     '''Send GET request to MyKU common/getschedule API.
 
@@ -100,8 +100,8 @@ def get_group_course(access_token: str = '',
                      std_id: str = '',
                      academic_year: str = '',
                      semester: str = '',
-                     login_response: Response | dict = {},
-                     schedule_response: Response | dict = {},
+                     login_response: Union[Response, dict] = {},
+                     schedule_response: Union[Response, dict] = {},
                      client: ClientType = None) -> Response:
     '''Send GET request to MyKU std-profile/getGroupCourse API.
 
@@ -133,7 +133,7 @@ def get_group_course(access_token: str = '',
 
 def get_check_grades(access_token: str = '',
                      std_code: str = '',
-                     login_response: dict = {},
+                     login_response: Union[Response, dict] = {},
                      client: ClientType = None) -> Response:
     '''Send GET request to MyKU std-profile/checkGrades API.
 
@@ -164,7 +164,7 @@ def get_check_grades(access_token: str = '',
 
 def get_gpax(access_token: str = '',
              std_id: str = '',
-             login_response: dict = {},
+             login_response: Union[Response, dict] = {},
              client: ClientType = None) -> Response:
     '''Send GET request to MyKU stddashboard/gpax API.
     
@@ -192,12 +192,12 @@ def get_gpax(access_token: str = '',
     return get(**params)
 
 
-def get_announce(access_token='',
-                 std_id='',
-                 academic_year='',
-                 semester='',
-                 login_response={},
-                 schedule_response={},
+def get_announce(access_token: str = '',
+                 std_id: str = '',
+                 academic_year: str = '',
+                 semester: str = '',
+                 login_response: Union[Response, dict] = {},
+                 schedule_response: Union[Response, dict] = {},
                  client=None) -> Response:
     '''Send GET request to MyKU advisor/getAnnounceStd API.
     
@@ -206,7 +206,7 @@ def get_announce(access_token='',
 
     Parameters
     ----------
-    access_token : _type_, optional
+    access_token : str, optional
     std_id : str, optional
     academic_year : str, optional
     semester : str, optional
@@ -232,8 +232,8 @@ def search_enroll(access_token: str = '',
                   std_id: str = '',
                   academic_year: str = '',
                   semester: str = '',
-                  login_response: dict = {},
-                  schedule_response: dict = {},
+                  login_response: Union[Response, dict] = {},
+                  schedule_response: Union[Response, dict] = {},
                   client: ClientType = None) -> Response:
     '''Send GET request to MyKU enroll/searchEnrollResult API.
 
@@ -265,7 +265,7 @@ def search_enroll(access_token: str = '',
 
 def get_student_personal(access_token: str = '',
                          std_id: str = '',
-                         login_response: dict = {},
+                         login_response: Union[Response, dict] = {},
                          client: ClientType = None) -> Response:
     '''Send GET request to MyKU std-profile/getStdPersonal API.
 
@@ -295,7 +295,7 @@ def get_student_personal(access_token: str = '',
 
 def get_student_education(access_token: str = '',
                           std_id: str = '',
-                          login_response: dict = {},
+                          login_response: Union[Response, dict] = {},
                           client: ClientType = None) -> Response:
     '''Send GET request to MyKU std-profile/getStdEducation API.
 
@@ -323,7 +323,7 @@ def get_student_education(access_token: str = '',
 
 def get_student_address(access_token: str = None,
                         std_id: str = '',
-                        login_response: dict = {},
+                        login_response: Union[Response, dict] = {},
                         client: ClientType = None) -> Response:
     '''Send GET request to MyKU std-profile/getStdAddress API.
 
@@ -385,8 +385,8 @@ def search_subject_open(query: str,
                         campus_code: str = '',
                         academic_year: str = '',
                         semester: str = '',
-                        login_response: dict = {},
-                        schedule_response: dict = {},
+                        login_response: Union[Response, dict] = {},
+                        schedule_response: Union[Response, dict] = {},
                         client: ClientType = None) -> Response:
     '''Send GET request to MyKU enroll/openSubjectForEnroll API.
 
@@ -419,7 +419,7 @@ def search_subject_open(query: str,
 
 def search_section_detail(section_id: str,
                           access_token: str = '',
-                          login_response: dict = {},
+                          login_response: Union[Response, dict] = {},
                           client: ClientType = None) -> Response:
     '''Send GET request to MyKU enroll/searchSectionDetail API.
 
