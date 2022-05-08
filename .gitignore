@@ -1,5 +1,5 @@
 *.ipynb
-tester.py
+test*
 log*
 responses/
 *clipboard*
