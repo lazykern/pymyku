@@ -64,6 +64,26 @@ def extract(response: Union[Response, dict], attr: Enum) -> Any:
             return None
         return result[0].get(attr.value, None)
 
+def get_raise(dict_: dict, key: str, dict_name:str = None) -> Any:
+    '''Get value from dict and raise error if key is not found.
+
+    Parameters
+    ----------
+    dict_ : dict
+    key : str
+
+    Returns
+    -------
+        Any
+
+    Raises
+    ------
+        ValueError
+    '''
+    result = dict_.get(key)
+    if result is None:
+        raise ValueError(f'{key} is not found in {dict_name if dict_name else "dictionary"}')
+    return result
 
 def extract_user_data(login_response: Union[Response, dict]) -> dict:
     '''Extract user data from login response
@@ -79,11 +99,8 @@ def extract_user_data(login_response: Union[Response, dict]) -> dict:
     '''
 
     login_response = response_to_json(login_response)
-    
-    result = login_response.get('user')
-    
-    if not result:
-        raise ValueError("user is not found in login response")
+        
+    result = get_raise(login_response, 'user', 'login response')
     
     return result
 
@@ -103,11 +120,8 @@ def extract_student_data(login_response: Union[Response, dict]) -> dict:
 
     user_data = extract_user_data(login_response)
     
-    result = user_data.get('student')
+    result = get_raise(user_data, 'student', 'login response')    
     
-    if not result:
-        raise ValueError("student is not found in login response")
-
     return result
 
 
@@ -126,10 +140,7 @@ def extract_access_token(login_response: Union[Response, dict]) -> str:
 
     login_response = response_to_json(login_response)
     
-    result = login_response.get('accesstoken')
-    
-    if not result:
-        raise ValueError("access token is not found in login response")
+    result = get_raise(login_response, 'accesstoken', 'login response')    
     
     return result
 
@@ -151,10 +162,7 @@ def extract_std_code(login_response: Union[Response, dict]) -> str:
 
     student_data = extract_student_data(login_response)
     
-    result = student_data.get('stdCode')
-    
-    if not result:
-        raise ValueError("student code is not found in login response")
+    result = get_raise(student_data, 'stdCode', 'login response')
 
     return result
 
@@ -176,10 +184,7 @@ def extract_std_id(login_response: Union[Response, dict]) -> str:
     
     student_data = extract_student_data(login_response)
     
-    result = student_data.get('stdId')
-    
-    if not result:
-        raise ValueError("student id is not found in login response")
+    result = get_raise(student_data, 'stdId', 'login response')
     
     return result
 
@@ -204,10 +209,8 @@ def extract_schedule(schedule_response: Union[Response, dict],
     '''
 
     schedule_response = response_to_json(schedule_response)
-    result = schedule_response.get('results')
-
-    if not result:
-        raise ValueError("schedule is not found in schedule response")
+    
+    result = get_raise(schedule_response, 'results', 'schedule response')
     
     if full_result:
         return result
@@ -218,15 +221,11 @@ def extract_schedule(schedule_response: Union[Response, dict],
     if as_dict:
         return result
     
-    academic_year = result.get('academicYr')
+    print(result)
     
-    if not academic_year:
-        raise ValueError("academic year is not found in schedule response")
+    academic_year = get_raise(result, 'academicYr', 'schedule response')
     
-    semester = result.get('semester')
-    
-    if not semester:
-        raise ValueError("semester is not found in schedule response")
+    semester = get_raise(result, 'semester', 'schedule response')
     
     return academic_year, semester
 
