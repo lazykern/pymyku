@@ -59,10 +59,7 @@ You can use this library by importing the `pymyku` module to your script.
 
 ### Methods
 
-Assume that
->`USERNAME` is the username of your Nontri account. (b##########)
->
->`PASSWORD` is the password of your Nontri account.
+Assume that `USERNAME` is the username of your Nontri account and `PASSWORD` is the password of your Nontri account.
 
 #### Client
 
