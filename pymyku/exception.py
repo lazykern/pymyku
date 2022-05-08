@@ -1,4 +1,4 @@
-from requests.exceptions import HTTPError
+from requests import HTTPError
 
 
 class InvalidSubjectID(Exception):

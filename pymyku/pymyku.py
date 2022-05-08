@@ -1,10 +1,10 @@
-from . import attributes, exceptions, requests, utils
-from .types import Any, ClientType, Dict, Enum, List, Response, Union
+from . import attribute, exception, requests, utils
+from .type import Any, ClientType, Dict, Enum, List, Response, Union
 
 
 class Client(ClientType):
     '''    
-    This class acts as a MyKu connector to call common APIs.
+    This class acts as a MyKu API wrapper.
     After created, the client will be logged in automatically.
 
     '''
@@ -40,7 +40,7 @@ class Client(ClientType):
 
             if data.get('code') == 'expired':
                 self.reset()
-                raise exceptions.TokenExpired("The access token has expired.\n\
+                raise exception.TokenExpired("The access token has expired.\n\
                     Please reinitialize the client with `.initialize()`.")
 
         response.raise_for_status()
@@ -50,7 +50,7 @@ class Client(ClientType):
     def initialize(self) -> None:
         '''Initialize the client by logging in and fetch schedule data.
         
-        Affected attributes
+        Affected attribute
         -------------------
         `__login_response`,
         `__logged_in`,
@@ -65,12 +65,13 @@ class Client(ClientType):
 
         self.__schedule_response = self.fetch_schedule()
 
-        self.__academic_year, self.__semester = utils.extract_schedule(self.__schedule_response)
+        self.__academic_year, self.__semester = utils.extract_schedule(
+            self.__schedule_response)
 
     def reset(self) -> None:
-        '''Reset the client attributes to NoneType or Negative Value.
+        '''Reset the client attribute to NoneType or Negative Value.
 
-        Affected attributes
+        Affected attribute
         -------------------
         `__login_response`,
         `__logged_in`,
@@ -112,7 +113,8 @@ class Client(ClientType):
             
         '''
 
-        login_response = requests.request_login(self.__username, self.__password)
+        login_response = requests.request_login(self.__username,
+                                                    self.__password)
 
         login_response.raise_for_status()
 
@@ -122,7 +124,8 @@ class Client(ClientType):
 
         return login_response
 
-    def fetch_schedule(self, as_response: bool = False) -> Union[dict, Response]:
+    def fetch_schedule(self,
+                       as_response: bool = False) -> Union[dict, Response]:
         '''Send GET request to MyKU common/getschedule API.
 
         Parameters
@@ -139,9 +142,9 @@ class Client(ClientType):
         https://myapi.ku.th/common/getschedule
 
         #
-
         '''
-        response = requests.get_schedule(login_response=self.__login_response)
+        response = requests.get_schedule(
+            login_response=self.__login_response)
 
         if as_response:
             return response
@@ -149,7 +152,8 @@ class Client(ClientType):
         return response.json()
 
     def fetch_group_course(self,
-                           as_response: bool = False) -> Union[List[dict], Response]:
+                           as_response: bool = False
+                           ) -> Union[List[dict], Response]:
         '''Send GET request to MyKU std-profile/getGroupCourse API.
 
         Parameters
@@ -166,7 +170,6 @@ class Client(ClientType):
         https://myapi.ku.th/std-profile/getGroupCourse
 
         #
-
         '''
 
         response = requests.get_group_course(
@@ -195,7 +198,6 @@ class Client(ClientType):
         https://myapi.ku.th/std-profile/checkGrades
 
         #
-
         '''
 
         response = requests.get_check_grades(
@@ -223,7 +225,6 @@ class Client(ClientType):
         https://myapi.ku.th/stddashboard/gpax
 
         #
-
         '''
 
         response = requests.get_gpax(login_response=self.__login_response)
@@ -233,10 +234,11 @@ class Client(ClientType):
 
         return response.json()
 
-    def fetch_annouce(self,
-                      academic_year=None,
-                      semester=None,
-                      as_response: bool = False) -> Union[List[dict], Response]:
+    def fetch_annouce(
+            self,
+            academic_year=None,
+            semester=None,
+            as_response: bool = False) -> Union[List[dict], Response]:
         '''Send GET request to MyKU advisor/getAnnounceStd API.
                 
         Parameters
@@ -254,7 +256,6 @@ class Client(ClientType):
         https://myapi.ku.th/advisor/getAnnounceStd
 
         #
-
         '''
         response = requests.get_announce(
             academic_year=academic_year,
@@ -267,10 +268,11 @@ class Client(ClientType):
 
         return response.json()
 
-    def search_enroll(self,
-                      academic_year: Union[str, int] = None,
-                      semester: Union[str, int] = None,
-                      as_response: bool = False) -> Union[List[dict], Response]:
+    def search_enroll(
+            self,
+            academic_year: Union[str, int] = None,
+            semester: Union[str, int] = None,
+            as_response: bool = False) -> Union[List[dict], Response]:
         '''Send GET request to MyKU enroll/searchEnrollResult API.
 
         Parameters
@@ -307,7 +309,8 @@ class Client(ClientType):
         return response.json()
 
     def fetch_student_personal(self,
-                               as_response: bool = False) -> Union[dict, Response]:
+                               as_response: bool = False
+                               ) -> Union[dict, Response]:
         '''Send GET request to MyKU std-profile/getStdPersonal API.
 
         Parameters
@@ -335,7 +338,8 @@ class Client(ClientType):
         return response.json()
 
     def fetch_student_education(self,
-                                as_response: bool = False) -> Union[dict, Response]:
+                                as_response: bool = False
+                                ) -> Union[dict, Response]:
         '''Send GET request to MyKU std-profile/getStdEducation API.
 
         Assigning only `login_response` or `client` is acceptable.
@@ -364,7 +368,8 @@ class Client(ClientType):
         return response.json()
 
     def fetch_student_address(self,
-                              as_response: bool = False) -> Union[dict, Response]:
+                              as_response: bool = False
+                              ) -> Union[dict, Response]:
         '''Send GET request to MyKU std-profile/getStdAddress API.
 
         Assigning only `login_response` or `client` is acceptable.
@@ -413,7 +418,7 @@ class Client(ClientType):
         '''
 
         if len(subject_id) < 3:
-            raise exceptions.InvalidSubjectID(
+            raise exception.InvalidSubjectID(
                 "Subject ID must be at least 3 characters long.")
 
         response = requests.search_subject(
@@ -423,14 +428,14 @@ class Client(ClientType):
 
         return response.get('subjects', [])
 
-    def search_subject_open(self,
-                            subject_id: str) -> List[Dict[str, Union[str, int]]]:
+    def search_subject_open(
+            self, subject_id: str) -> List[Dict[str, Union[str, int]]]:
         '''Query subject enrollment info (All section) of current semester by sending GET request to MyKU enroll/openSubjectForEnroll API.
 
         Parameters
         ----------
         subject_id : str
-            Subject id to query. 
+            Subject id to query.
 
         Returns
         -------
@@ -449,7 +454,7 @@ class Client(ClientType):
 
         response = self.__valid_response(response)
 
-        return response
+        return response.get('results', [])
 
     def get(self, attr: Enum) -> Any:
         '''Get any value from MyKU client.
@@ -459,29 +464,29 @@ class Client(ClientType):
         ----------
         attr : Enum
         
-            Enum from `pymyku.attributes`.
+            Enum from `pymyku.attribute`.
 
         Returns
         -------
             Any
         '''
 
-        if isinstance(attr, attributes.User):
+        if isinstance(attr, attribute.User):
             return self.__login_response.get("user", {})\
                                         .get(attr.value, None)
 
-        if isinstance(attr, attributes.Student):
+        if isinstance(attr, attribute.Student):
             return self.__login_response.get("user", {})\
                                         .get("student", {})\
                                         .get(attr.value, None)
 
-        if isinstance(attr, attributes.FetchedResponses):
+        if isinstance(attr, attribute.FetchedResponses):
             if attr.value == 0:
                 return self.__login_response
             elif attr.value == 1:
                 return self.__schedule_response
 
-        if isinstance(attr, attributes.Token):
+        if isinstance(attr, attribute.Token):
             return self.__login_response.get(attr.value, None)
 
     def get_login_response(self) -> dict:
@@ -541,7 +546,7 @@ class Client(ClientType):
         -------
             str
         '''
-        return self.get(attributes.Student.STD_CODE)
+        return self.get(attribute.Student.STD_CODE)
 
     def get_group_course(self) -> List[dict]:
         '''Send GET request to MyKU std-profile/getGroupCourse API and return the result.

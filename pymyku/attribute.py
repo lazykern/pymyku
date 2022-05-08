@@ -1,4 +1,4 @@
-from .types import Enum 
+from .type import Enum 
 
 class User(Enum):
     '''Enum for user data in login response
