@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pymyku',
-    version='0.1.2',
+    version='0.1.4',
     description='Python MyKU API Wrapper',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -16,7 +16,6 @@ setup(
     classifiers=[
         'Natural Language :: English',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
