@@ -13,7 +13,6 @@ def response_to_json(response: Union[Response, dict]) -> dict:
     Returns
     -------
         dict
-
     '''
 
     return response.json() if isinstance(response, Response) else response
@@ -31,11 +30,10 @@ def extract(response: Union[Response, dict], attr: Enum) -> Any:
 
     Returns
     -------
-        Any
-    '''
+        Any    '''
     
     if isinstance(attr, EnumMeta):
-        raise TypeError("attr must be Enum not EnumMeta.\n Use '.' operator after the EnumMeta object.")
+        raise TypeError("attr must be Enum not EnumMeta. Use '.' operator after the EnumMeta object.")
 
     if not isinstance(attr, Enum):
         raise TypeError("attr must be Enum.")
@@ -72,7 +70,6 @@ def extract_user_data(login_response: Union[Response, dict]) -> dict:
     Returns
     -------
         dict
-
     '''
 
     login_response = response_to_json(login_response)
@@ -91,7 +88,6 @@ def extract_student_data(login_response: Union[Response, dict]) -> dict:
     Returns
     -------
         dict
-
     '''
 
     user_data = extract_user_data(login_response)
@@ -110,7 +106,6 @@ def extract_access_token(login_response: Union[Response, dict]) -> str:
     Returns
     -------
         str
-
     '''
 
     login_response = response_to_json(login_response)
@@ -129,7 +124,6 @@ def extract_std_code(login_response: Union[Response, dict]) -> str:
     Returns
     -------
         str
-
     '''
 
     login_response = response_to_json(login_response)
@@ -150,7 +144,6 @@ def extract_std_id(login_response: Union[Response, dict]) -> str:
     Returns
     -------
         Student id.
-
     '''
 
     login_response = response_to_json(login_response)
@@ -175,7 +168,6 @@ def extract_schedule(schedule_response: Union[Response, dict],
     Returns
     -------
         tuple | dict | list
-
     '''
 
     schedule_response = response_to_json(schedule_response)
@@ -203,7 +195,6 @@ def gen_request_headers(access_token: str = '') -> dict:
     Returns
     -------
         dict
-
     '''
 
     header = {
@@ -241,7 +232,6 @@ def gen_login_request_params(username: str, password: str) -> dict:
         }
     }
     ```
-
     '''
 
     return {
@@ -279,7 +269,6 @@ def gen_request_params_f(function: callable,
     Returns
     -------
         Dict[str, any]
-
     '''
 
     name = function.__name__

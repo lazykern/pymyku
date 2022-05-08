@@ -6,7 +6,6 @@ class Client(ClientType):
     '''    
     This class acts as a MyKu API wrapper.
     After created, the client will be logged in automatically.
-
     '''
 
     def __init__(self, username: str, password: str) -> None:
@@ -40,8 +39,9 @@ class Client(ClientType):
 
             if data.get('code') == 'expired':
                 self.reset()
-                raise exception.TokenExpired("The access token has expired.\n\
-                    Please reinitialize the client with `.initialize()`.")
+                raise exception.TokenExpired(
+                    "The access token has expired. Please reinitialize the client with .initialize()."
+                )
 
         response.raise_for_status()
 
@@ -255,7 +255,7 @@ class Client(ClientType):
 
         if semester is None:
             semester = self.__semester
-            
+
         response = requests.get_announce(academic_year=academic_year,
                                          semester=semester,
                                          login_response=self.__login_response,
@@ -443,7 +443,7 @@ class Client(ClientType):
         return response.get('results', [])
 
     def get(self, attr: Enum) -> Any:
-        '''Get any value from MyKU client. (login respnse and schedule response)
+        '''Get any value from MyKU client. (login response and schedule response)
         Use enums from `pymyku.attribute` as key to get value.
 
         Parameters
@@ -456,7 +456,7 @@ class Client(ClientType):
         -------
             Any
         '''
-        
+
         if isinstance(attr, attribute.FetchedResponses):
             if attr.value == 0:
                 return self.__login_response

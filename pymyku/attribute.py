@@ -2,8 +2,7 @@ from .type import Enum
 
 
 class User(Enum):
-    '''Enum for user data in login response
-    '''
+    '''Enum for user data in login response    '''
     LOGIN_NAME = "loginName"
     USER_TYPE = "userType"
     ID_CODE = "idCode"
@@ -20,8 +19,7 @@ class User(Enum):
 
 
 class Student(Enum):
-    '''Enum for student data in login response
-    '''
+    '''Enum for student data in login response    '''
     STD_ID = "stdId"
     STD_CODE = "stdCode"
     COPEN_ID = "copenId"
@@ -61,20 +59,17 @@ class Student(Enum):
 
 
 class Token(Enum):
-    '''Enum for tokens in login response
-    '''
+    '''Enum for tokens in login response    '''
     ACCESS_TOKEN = "accesstoken"
     RENEW_TOKEN = "renewtoken"
 
 class Schedule(Enum):
-    '''Enum for schedule data in schedule response
-    '''
+    '''Enum for schedule data in schedule response    '''
     ACADEMIC_YEAR = "academicYr"
     SEMESTER = "semester"
 
 class FetchedResponses(Enum):
-    '''Enum for fetched responses in client object
-    '''
+    '''Enum for fetched responses in client object    '''
     LOGIN_RESPONSE = 0
     SCHEDULE_RESPONSE = 1
 
