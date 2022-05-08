@@ -52,7 +52,7 @@ def request_logout(access_token: str = '',
     #
     '''
 
-    params = utils.gen_request_params_f(logout, **locals())
+    params = utils.gen_request_args_f(logout, **locals())
 
     return r_get(**params)
 
@@ -89,7 +89,7 @@ def get_schedule(access_token: str = '',
 
     #
     '''
-    params = utils.gen_request_params_f(get_schedule, **locals())
+    params = utils.gen_request_args_f(get_schedule, **locals())
 
     return r_get(**params)
 
@@ -123,7 +123,7 @@ def get_group_course(access_token: str = '',
     #
     '''
 
-    params = utils.gen_request_params_f(get_group_course, **locals())
+    params = utils.gen_request_args_f(get_group_course, **locals())
 
     return r_get(**params)
 
@@ -153,7 +153,7 @@ def get_check_grades(access_token: str = '',
     #
     '''
 
-    params = utils.gen_request_params_f(get_check_grades, **locals())
+    params = utils.gen_request_args_f(get_check_grades, **locals())
 
     return r_get(**params)
 
@@ -182,7 +182,7 @@ def get_gpax(access_token: str = '',
     #
     '''
 
-    params = utils.gen_request_params_f(get_gpax, **locals())
+    params = utils.gen_request_args_f(get_gpax, **locals())
 
     return r_get(**params)
 
@@ -217,7 +217,7 @@ def get_announce(access_token: str = '',
     #
     '''
 
-    params = utils.gen_request_params_f(get_announce, **locals())
+    params = utils.gen_request_args_f(get_announce, **locals())
 
     return r_get(**params)
 
@@ -252,7 +252,7 @@ def search_enroll(access_token: str = '',
     #    
     '''
 
-    params = utils.gen_request_params_f(search_enroll, **locals())
+    params = utils.gen_request_args_f(search_enroll, **locals())
 
     return r_post(**params)
 
@@ -282,7 +282,7 @@ def get_student_personal(access_token: str = '',
     #    
     '''
 
-    params = utils.gen_request_params_f(get_student_personal, **locals())
+    params = utils.gen_request_args_f(get_student_personal, **locals())
 
     return r_get(**params)
 
@@ -310,7 +310,7 @@ def get_student_education(access_token: str = '',
     
     #    
     '''
-    params = utils.gen_request_params_f(get_student_education, **locals())
+    params = utils.gen_request_args_f(get_student_education, **locals())
 
     return r_get(**params)
 
@@ -339,7 +339,7 @@ def get_student_address(access_token: str = None,
     #    
     '''
 
-    params = utils.gen_request_params_f(get_student_address, **locals())
+    params = utils.gen_request_args_f(get_student_address, **locals())
 
     return r_get(**params)
 
@@ -368,7 +368,7 @@ def search_subject(query: str,
     #    
     '''
 
-    params = utils.gen_request_params_f(search_subject, **locals())
+    params = utils.gen_request_args_f(search_subject, **locals())
 
     return r_get(**params)
 
@@ -406,7 +406,7 @@ def search_subject_open(query: str,
     #    
     '''
 
-    params = utils.gen_request_params_f(search_subject_open, **locals())
+    params = utils.gen_request_args_f(search_subject_open, **locals())
 
     return r_get(**params)
 
@@ -433,6 +433,6 @@ def search_section_detail(section_id: str,
     #    
     '''
 
-    params = utils.gen_request_params_f(search_section_detail, **locals())
+    params = utils.gen_request_args_f(search_section_detail, **locals())
 
     return r_get(**params)

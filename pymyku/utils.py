@@ -14,8 +14,14 @@ def response_to_json(response: Union[Response, dict]) -> dict:
     -------
         dict
     '''
+    
+    if isinstance(response, dict):
+        return response
+    
+    if isinstance(response, Response):
+        return response.json()
 
-    return response.json() if isinstance(response, Response) else response
+    raise TypeError("response must be Response or dict")
 
 
 def extract(response: Union[Response, dict], attr: Enum) -> Any:
@@ -73,8 +79,13 @@ def extract_user_data(login_response: Union[Response, dict]) -> dict:
     '''
 
     login_response = response_to_json(login_response)
-
-    return login_response.get('user', {})
+    
+    result = login_response.get('user')
+    
+    if not result:
+        raise ValueError("user is not found in login response")
+    
+    return result
 
 
 def extract_student_data(login_response: Union[Response, dict]) -> dict:
@@ -91,8 +102,13 @@ def extract_student_data(login_response: Union[Response, dict]) -> dict:
     '''
 
     user_data = extract_user_data(login_response)
+    
+    result = user_data.get('student')
+    
+    if not result:
+        raise ValueError("student is not found in login response")
 
-    return user_data.get('student', {})
+    return result
 
 
 def extract_access_token(login_response: Union[Response, dict]) -> str:
@@ -109,8 +125,13 @@ def extract_access_token(login_response: Union[Response, dict]) -> str:
     '''
 
     login_response = response_to_json(login_response)
-
-    return login_response.get('accesstoken', '')
+    
+    result = login_response.get('accesstoken')
+    
+    if not result:
+        raise ValueError("access token is not found in login response")
+    
+    return result
 
 
 def extract_std_code(login_response: Union[Response, dict]) -> str:
@@ -129,8 +150,13 @@ def extract_std_code(login_response: Union[Response, dict]) -> str:
     login_response = response_to_json(login_response)
 
     student_data = extract_student_data(login_response)
+    
+    result = student_data.get('stdCode')
+    
+    if not result:
+        raise ValueError("student code is not found in login response")
 
-    return student_data.get('stdCode', '')
+    return result
 
 
 def extract_std_id(login_response: Union[Response, dict]) -> str:
@@ -147,8 +173,15 @@ def extract_std_id(login_response: Union[Response, dict]) -> str:
     '''
 
     login_response = response_to_json(login_response)
+    
     student_data = extract_student_data(login_response)
-    return student_data.get('stdId', '')
+    
+    result = student_data.get('stdId')
+    
+    if not result:
+        raise ValueError("student id is not found in login response")
+    
+    return result
 
 
 def extract_schedule(schedule_response: Union[Response, dict],
@@ -173,6 +206,9 @@ def extract_schedule(schedule_response: Union[Response, dict],
     schedule_response = response_to_json(schedule_response)
     result = schedule_response.get('results')
 
+    if not result:
+        raise ValueError("schedule is not found in schedule response")
+    
     if full_result:
         return result
 
@@ -181,15 +217,26 @@ def extract_schedule(schedule_response: Union[Response, dict],
 
     if as_dict:
         return result
-    return result.get('academicYr'), result.get('semester')
+    
+    academic_year = result.get('academicYr')
+    
+    if not academic_year:
+        raise ValueError("academic year is not found in schedule response")
+    
+    semester = result.get('semester')
+    
+    if not semester:
+        raise ValueError("semester is not found in schedule response")
+    
+    return academic_year, semester
 
 
-def gen_request_headers(access_token: str = '') -> dict:
+def gen_request_headers(access_token: Union[str, Response, dict] = '') -> dict:
     '''Generate request headers.
 
     Parameters
     ----------
-    access_token : (str, optional)
+    access_token : (str | Response | dict, optional)
         MyKU acces token, by default None
 
     Returns
@@ -200,8 +247,11 @@ def gen_request_headers(access_token: str = '') -> dict:
     header = {
         'app-key': constant.APP_KEY,
     }
-    if access_token:
+    
+    if isinstance(access_token, (Response, dict)):
+        access_token = extract_access_token(access_token)
         header['x-access-token'] = access_token
+    
     return header
 
 
@@ -254,7 +304,7 @@ def __check_required_kwargs(kwargs: dict, required_kwargs: list) -> bool:
     return True
 
 
-def gen_request_params_f(function: callable,
+def gen_request_args_f(function: callable,
                          raise_exception: bool = True,
                          **kwargs) -> Dict[str, any]:
     '''Generate request parameters requied for the given function.
@@ -270,7 +320,10 @@ def gen_request_params_f(function: callable,
     -------
         Dict[str, any]
     '''
-
+    
+    if not callable(function):
+        raise ValueError('function must be a callable')
+        
     name = function.__name__
 
     if kwargs.get('client'):
