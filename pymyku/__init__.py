@@ -1,9 +1,9 @@
-from .attributes import FetchedResponses as FetchedResponsesAttr
-from .attributes import Student as StudentAttr
-from .attributes import Token as TokenAttr
-from .attributes import User as UserAttr
+from .attribute import FetchedResponses as FetchedResponsesAttr
+from .attribute import Student as StudentAttr
+from .attribute import Token as TokenAttr
+from .attribute import User as UserAttr
 
-from .constants import APP_KEY
-from .exceptions import InvalidSubjectID, TokenExpired
+from .constant import APP_KEY
+from .exception import InvalidSubjectID, TokenExpired
 from .pymyku import Client
-from .types import ClientType, Response
+from .type import ClientType, Response
