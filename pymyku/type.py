@@ -1,4 +1,4 @@
-from aenum import Enum
+from enum import Enum
 from requests import Response
 from typing import Dict, List, Any, Union
 

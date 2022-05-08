@@ -8,6 +8,6 @@ setup(
     author_email='phusitsom@gmail.com',
     packages=['pymyku'],
     url='https://github.com/phusitsom/pymyku',
-    install_requires=['aenum', 'requests'],
+    install_requires=['requests'],
     license='GNU General Public License v3.0'
 )
