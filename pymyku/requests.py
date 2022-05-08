@@ -249,7 +249,8 @@ def search_enroll(access_token: str = '',
     ---
     https://myapi.ku.th/enroll/searchEnrollResult
     
-    #    '''
+    #    
+    '''
 
     params = utils.gen_request_params_f(search_enroll, **locals())
 
@@ -278,7 +279,8 @@ def get_student_personal(access_token: str = '',
     ---
     https://myapi.ku.th/std-profile/getStdPersonal
     
-    #    '''
+    #    
+    '''
 
     params = utils.gen_request_params_f(get_student_personal, **locals())
 
@@ -306,7 +308,8 @@ def get_student_education(access_token: str = '',
     ---
     https://myapi.ku.th/std-profile/getStdEducation
     
-    #    '''
+    #    
+    '''
     params = utils.gen_request_params_f(get_student_education, **locals())
 
     return r_get(**params)
@@ -333,7 +336,8 @@ def get_student_address(access_token: str = None,
     ---
     https://myapi.ku.th/std-profile/getStdAddress
     
-    #    '''
+    #    
+    '''
 
     params = utils.gen_request_params_f(get_student_address, **locals())
 
@@ -361,7 +365,8 @@ def search_subject(query: str,
     ---
     https://myapi.ku.th/enroll/searchSubjectOpenEnr
     
-    #    '''
+    #    
+    '''
 
     params = utils.gen_request_params_f(search_subject, **locals())
 
@@ -398,7 +403,8 @@ def search_subject_open(query: str,
     ---
     https://myapi.ku.th/enroll/openSubjectForEnroll
     
-    #    '''
+    #    
+    '''
 
     params = utils.gen_request_params_f(search_subject_open, **locals())
 
@@ -424,7 +430,8 @@ def search_section_detail(section_id: str,
     ---
     https://myapi.ku.th/enroll/searchSectionDetail
     
-    #    '''
+    #    
+    '''
 
     params = utils.gen_request_params_f(search_section_detail, **locals())
 
