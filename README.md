@@ -8,7 +8,7 @@
 [![Language: Python](https://img.shields.io/badge/python-3.6+-white?style=flat-square&logo=python&logoColor=white&labelColor=376F9E&color=FDD043)](https://www.python.org/)
 [![Request](https://img.shields.io/badge/-requests-376F9E?style=flat-square&logo=)](https://docs.python-requests.org/)
 
-An unofficial [MyKU](https://my.ku.th/) API wrapper for Python.
+An unofficial [MyKU](https://my.ku.th/) API wrapper for python.
 
 ## Table of Contents
 
