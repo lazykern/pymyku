@@ -1,5 +1,5 @@
 <a href="https://www.ku.ac.th/th">
-    <img src="https://raw.githubusercontent.com/phusitsom/pymyku/main/assets/KU_Logo_PNG.png" alt="KU" title="KU" align="right" height="150" />
+    <img src="https://raw.githubusercontent.com/phusitsom/pymyku/main/assets/pymyku_logo.png" alt="KU" title="KU" align="right" height="150" />
 </a>
 
 # PyMyKU
