@@ -2,9 +2,10 @@ from setuptools import setup
 
 setup(
     name='pymyku',
-    version='0.1.0',
+    version='0.1.2',
     description='Python MyKU API Wrapper',
     long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     author='phusitsom',
     author_email='phusitsom@gmail.com',
     packages=['pymyku'],
@@ -14,7 +15,8 @@ setup(
     python_requires='>=3.6',
     classifiers=[
         'Natural Language :: English',
-        'License :: OSI Approved :: GNU General Public License v3.0',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.6',
