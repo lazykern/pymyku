@@ -1,5 +1,5 @@
 <a href="">
-    <img src="https://raw.githubusercontent.com/phusitsom/pymyku/dev/assets/pymyku_logo.png" alt="pymyku" title="pymyku" align="left" height="157" />
+    <img src="https://raw.githubusercontent.com/phusitsom/pymyku/dev/assets/pymyku_logo.png" alt="pymyku" title="pymyku" align="right" height="157" />
 </a>
 
 # PyMyKU
