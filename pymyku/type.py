@@ -4,5 +4,5 @@ from typing import Dict, List, Any, Union
 
 
 class ClientType(object):
-    '''Abstract class for client    '''
+    '''Abstract class for client'''
     pass
