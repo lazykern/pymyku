@@ -209,6 +209,7 @@ def gen_login_request_params(username: str, password: str) -> dict:
         }
     }
 
+
 def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
     """Generate request parameters requied for the given function.
     
@@ -229,10 +230,8 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
 
     if kwargs.get('client'):
         client = kwargs['client']
-        kwargs['login_response'] = client.get(
-            attribute.FetchedResponses.LOGIN_RESPONSE)
-        kwargs['schedule_response'] = client.get(
-            attribute.FetchedResponses.SCHEDULE_RESPONSE)
+        kwargs['login_response'] = client.get(attribute.FetchedResponses.LOGIN_RESPONSE)
+        kwargs['schedule_response'] = client.get(attribute.FetchedResponses.SCHEDULE_RESPONSE)
 
     if kwargs.get('login_response'):
         login_response = kwargs.get('login_response')
@@ -298,22 +297,10 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
             }
         }
     elif name == 'get_check_grades':
-        return {
-            'url': url.CHECK_GRADES,
-            'headers': headers,
-            'params': {
-                'stdCode': kwargs.get('std_code')
-            }
-        }
+        return {'url': url.CHECK_GRADES, 'headers': headers, 'params': {'stdCode': kwargs.get('std_code')}}
 
     elif name == 'get_gpax':
-        return {
-            'url': url.GPAX,
-            'headers': headers,
-            'params': {
-                'stdId': kwargs.get('std_id')
-            }
-        }
+        return {'url': url.GPAX, 'headers': headers, 'params': {'stdId': kwargs.get('std_id')}}
 
     elif name == 'get_announce':
         return {
@@ -336,37 +323,13 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
             }
         }
     elif name == 'get_student_personal':
-        return {
-            'url': url.STUDENT_PERSONAL,
-            'headers': headers,
-            'params': {
-                'stdId': kwargs.get('std_id')
-            }
-        }
+        return {'url': url.STUDENT_PERSONAL, 'headers': headers, 'params': {'stdId': kwargs.get('std_id')}}
     elif name == 'get_student_education':
-        return {
-            'url': url.STUDENT_EDUCATION,
-            'headers': headers,
-            'params': {
-                'stdId': kwargs.get('std_id')
-            }
-        }
+        return {'url': url.STUDENT_EDUCATION, 'headers': headers, 'params': {'stdId': kwargs.get('std_id')}}
     elif name == 'get_student_address':
-        return {
-            'url': url.STUDENT_ADDRESS,
-            'headers': headers,
-            'params': {
-                'stdId': kwargs.get('std_id')
-            }
-        }
+        return {'url': url.STUDENT_ADDRESS, 'headers': headers, 'params': {'stdId': kwargs.get('std_id')}}
     elif name == 'search_subject':
-        return {
-            'url': url.SEARCH_SUBJECT,
-            'headers': headers,
-            'params': {
-                'query': kwargs.get('query'),
-            }
-        }
+        return {'url': url.SEARCH_SUBJECT, 'headers': headers, 'params': {'query': kwargs.get('query'),}}
     elif name == 'search_subject_open':
         return {
             'url': url.SEARCH_SUBJECT_OPEN,
@@ -380,10 +343,4 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
             }
         }
     elif name == 'search_section_detail':
-        return {
-            'url': url.SEARCH_SECTION_DETAIL,
-            'headers': headers,
-            'params': {
-                'sectionId': kwargs.get('section_id')
-            }
-        }
+        return {'url': url.SEARCH_SECTION_DETAIL, 'headers': headers, 'params': {'sectionId': kwargs.get('section_id')}}

@@ -1,4 +1,5 @@
-from .type import Enum 
+from .type import Enum
+
 
 class User(Enum):
     '''Enum for user data in login response
@@ -58,16 +59,16 @@ class Student(Enum):
     EMAIL = "email"
     MOBILE_NO = "mobileNo"
 
+
 class Token(Enum):
     '''Enum for tokens in login response
     '''
     ACCESS_TOKEN = "accesstoken"
     RENEW_TOKEN = "renewtoken"
 
+
 class FetchedResponses(Enum):
     '''Enum for fetched responses in client object
     '''
     LOGIN_RESPONSE = 0
     SCHEDULE_RESPONSE = 1
-
-
