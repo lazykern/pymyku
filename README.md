@@ -18,8 +18,8 @@ An unofficial [MyKU](https://my.ku.th/) API wrapper for python.
   - [Documentation](#documentation)
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
-    - [From source](#from-source)
     - [From PyPI](#from-pypi)
+    - [From source](#from-source)
   - [Usage](#usage)
     - [Methods](#methods)
       - [Client](#client)
@@ -34,12 +34,21 @@ Please **respect** the API when using this project.
 
 ## Documentation
 
-Coming soon. Use `help()` to see the docstrings of any modules in pymyku.
+All the documentation is available on [the repository wiki](https://github.com/phusitsom/pymyku/wiki).
+
+You can also use `help()` to see the docstrings of any modules in pymyku.
 
 ## Installation
 
 ### Prerequisites
+
 - [Python](https://www.python.org/) 3.6+
+
+### From PyPI
+
+```bash
+python -m pip install pymyku
+```
 
 ### From source
 
@@ -49,10 +58,6 @@ cd pymyku
 python -m pip install -r requirements.txt
 python -m pip install -e .
 ```
-
-### From PyPI
-
-Coming soon.
 
 ## Usage
 
