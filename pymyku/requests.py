@@ -1,7 +1,7 @@
 from requests import get, post
 
 from . import utils
-from .types import ClientType, Response, Union
+from .type import ClientType, Response, Union
 
 
 def request_login(username: str, password: str) -> Response:
