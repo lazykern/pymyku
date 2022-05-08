@@ -1,4 +1,5 @@
-from requests import get, post
+from requests import get as r_get
+from requests import post as r_post
 
 from . import utils
 from .type import ClientType, Response, Union
@@ -26,7 +27,7 @@ def request_login(username: str, password: str) -> Response:
 
     '''
 
-    return post(**utils.gen_login_request_params(username, password))
+    return r_post(**utils.gen_login_request_params(username, password))
 
 
 def request_logout(access_token: str = '',
@@ -55,7 +56,7 @@ def request_logout(access_token: str = '',
 
     params = utils.gen_request_params_f(logout, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def get_schedule(access_token: str = '',
@@ -93,7 +94,7 @@ def get_schedule(access_token: str = '',
     '''
     params = utils.gen_request_params_f(get_schedule, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def get_group_course(access_token: str = '',
@@ -128,7 +129,7 @@ def get_group_course(access_token: str = '',
 
     params = utils.gen_request_params_f(get_group_course, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def get_check_grades(access_token: str = '',
@@ -159,7 +160,7 @@ def get_check_grades(access_token: str = '',
 
     params = utils.gen_request_params_f(get_check_grades, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def get_gpax(access_token: str = '',
@@ -189,7 +190,7 @@ def get_gpax(access_token: str = '',
 
     params = utils.gen_request_params_f(get_gpax, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def get_announce(access_token: str = '',
@@ -198,7 +199,7 @@ def get_announce(access_token: str = '',
                  semester: str = '',
                  login_response: Union[Response, dict] = {},
                  schedule_response: Union[Response, dict] = {},
-                 client=None) -> Response:
+                 client: ClientType = None) -> Response:
     '''Send GET request to MyKU advisor/getAnnounceStd API.
     
     Assigning only (`login_response` and `schedule_response`) or `client` is acceptable.
@@ -225,7 +226,7 @@ def get_announce(access_token: str = '',
 
     params = utils.gen_request_params_f(get_announce, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def search_enroll(access_token: str = '',
@@ -260,7 +261,7 @@ def search_enroll(access_token: str = '',
 
     params = utils.gen_request_params_f(search_enroll, **locals())
 
-    return post(**params)
+    return r_post(**params)
 
 
 def get_student_personal(access_token: str = '',
@@ -290,7 +291,7 @@ def get_student_personal(access_token: str = '',
 
     params = utils.gen_request_params_f(get_student_personal, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def get_student_education(access_token: str = '',
@@ -318,7 +319,7 @@ def get_student_education(access_token: str = '',
     '''
     params = utils.gen_request_params_f(get_student_education, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def get_student_address(access_token: str = None,
@@ -347,7 +348,7 @@ def get_student_address(access_token: str = None,
 
     params = utils.gen_request_params_f(get_student_address, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def search_subject(query: str,
@@ -376,7 +377,7 @@ def search_subject(query: str,
 
     params = utils.gen_request_params_f(search_subject, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def search_subject_open(query: str,
@@ -414,7 +415,7 @@ def search_subject_open(query: str,
 
     params = utils.gen_request_params_f(search_subject_open, **locals())
 
-    return get(**params)
+    return r_get(**params)
 
 
 def search_section_detail(section_id: str,
@@ -441,4 +442,4 @@ def search_section_detail(section_id: str,
 
     params = utils.gen_request_params_f(search_section_detail, **locals())
 
-    return get(**params)
+    return r_get(**params)
