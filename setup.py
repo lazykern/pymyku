@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pymyku',
-    version='0.1.2',
+    version='0.1.3',
     description='Python MyKU API Wrapper',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',

@@ -35,7 +35,9 @@ Please **respect** the API when using this project.
 
 ## Documentation
 
-Coming soon. Use `help()` to see the docstrings of any modules in pymyku.
+All the documentation is available on [the repository wiki](https://github.com/phusitsom/pymyku/wiki).
+
+You can also use `help()` to see the docstrings of any modules in pymyku.
 
 ## Installation
 
