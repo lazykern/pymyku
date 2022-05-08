@@ -250,6 +250,8 @@ def gen_request_headers(access_token: Union[str, Response, dict] = '') -> dict:
     
     if isinstance(access_token, (Response, dict)):
         access_token = extract_access_token(access_token)
+        
+    if isinstance(access_token, str):
         header['x-access-token'] = access_token
     
     return header
