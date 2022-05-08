@@ -9,9 +9,9 @@ def request_login(username: str, password: str) -> Response:
 
     Parameters
     ----------
-    username : str
+    username : (str)
         Your Nontri account username (b##########)
-    password : str
+    password : (str)
         Your password (Don't worry, your password is not saved)
 
     Returns
@@ -39,7 +39,7 @@ def request_logout(access_token: str = '',
 
     Parameters
     ----------
-    access_token : str, optional
+    access_token : (str, optional)
 
     Returns
     -------
@@ -73,12 +73,12 @@ def get_schedule(access_token: str = '',
 
     Parameters
     ----------
-    access_token : str, optional
-    user_type : str, optional
-    campus_code : str, optional
-    faculty_code : str, optional
-    major_code : str, optional
-    student_status_code : dict, optional
+    access_token : (str, optional)
+    user_type : (str, optional)
+    campus_code : (str, optional)
+    faculty_code : (str, optional)
+    major_code : (str, optional)
+    student_status_code : (dict, optional)
 
     Returns
     -------
@@ -109,10 +109,10 @@ def get_group_course(access_token: str = '',
     
     Parameters
     ----------
-    access_token : str, optional
-    std_id : str, optional
-    academic_year : str, optional
-    semester : str, optional
+    access_token : (str, optional)
+    std_id : (str, optional)
+    academic_year : (str, optional)
+    semester : (str, optional)
 
     Returns
     -------
@@ -142,8 +142,8 @@ def get_check_grades(access_token: str = '',
     
     Parameters
     ----------
-    access_token : str, optional
-    std_code : str, optional
+    access_token : (str, optional)
+    std_code : (str, optional)
 
     Returns
     -------
@@ -172,8 +172,8 @@ def get_gpax(access_token: str = '',
 
     Parameters
     ----------
-    access_token : _type_, optional
-    std_id : str, optional
+    access_token : (_type_, optional)
+    std_id : (str, optional)
 
     Returns
     -------
@@ -206,10 +206,10 @@ def get_announce(access_token: str = '',
 
     Parameters
     ----------
-    access_token : str, optional
-    std_id : str, optional
-    academic_year : str, optional
-    semester : str, optional
+    access_token : (str, optional)
+    std_id : (str, optional)
+    academic_year : (str, optional)
+    semester : (str, optional)
 
     Returns
     -------
@@ -242,10 +242,10 @@ def search_enroll(access_token: str = '',
 
     Parameters
     ----------
-    access_token : str, optional
-    std_id : str, optional
-    academic_year : str, optional
-    semester : str, optional
+    access_token : (str, optional)
+    std_id : (str, optional)
+    academic_year : (str, optional)
+    semester : (str, optional)
 
     Returns
     -------
@@ -274,8 +274,8 @@ def get_student_personal(access_token: str = '',
 
     Parameters
     ----------
-    access_token : str, optional
-    std_id : str, optional
+    access_token : (str, optional)
+    std_id : (str, optional)
 
     Returns
     -------
@@ -303,8 +303,8 @@ def get_student_education(access_token: str = '',
 
     Parameters
     ----------
-    access_token : str, optional
-    std_id : str, optional
+    access_token : (str, optional)
+    std_id : (str, optional)
 
     Returns
     -------
@@ -331,8 +331,8 @@ def get_student_address(access_token: str = None,
 
     Parameters
     ----------
-    access_token : str, optional
-    std_id : str, optional
+    access_token : (str, optional)
+    std_id : (str, optional)
 
     Returns
     -------
@@ -360,8 +360,8 @@ def search_subject(query: str,
 
     Parameters
     ----------
-    query : std
-    access_token : str, optional
+    query : (std)
+    access_token : (str, optional)
 
     Returns
     -------
@@ -394,12 +394,12 @@ def search_subject_open(query: str,
 
     Parameters
     ----------
-    query : str
-    access_token : str, optional
-    section : str, optional
-    campus_code : str, optional
-    academic_year : str, optional
-    semester : str, optional
+    query : (str)
+    access_token : (str, optional)
+    section : (str, optional)
+    campus_code : (str, optional)
+    academic_year : (str, optional)
+    semester : (str, optional)
 
     Returns
     -------
@@ -425,8 +425,8 @@ def search_section_detail(section_id: str,
 
     Parameters
     ----------
-    section_id : str
-    access_token : str, optional
+    section_id : (str)
+    access_token : (str, optional)
 
     Returns
     -------

@@ -21,9 +21,9 @@ class Client(ClientType):
         
         Parameters
         ----------
-        response : Response
+        response : (Response)
             The response object returned from the request.
-        to_json : bool, optional
+        to_json : (bool, optional)
             If True, the response will be converted to a JSON object.
         
         Returns
@@ -125,7 +125,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        as_response : bool, optional
+        as_response : (bool, optional)
             Return as Response object if True, otherwise dict, by default False
 
         Returns
@@ -150,7 +150,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        as_response : bool, optional
+        as_response : (bool, optional)
             Return as Response object if True, otherwise dict, by default False
 
         Returns
@@ -177,7 +177,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        as_response : bool, optional
+        as_response : (bool, optional)
             Return as Response object if True, otherwise dict, by default False
 
         Returns
@@ -203,7 +203,7 @@ class Client(ClientType):
         
         Parameters
         ----------
-        as_response : bool, optional
+        as_response : (bool, optional)
             Return as Response object if True, otherwise dict, by default False
 
         Returns
@@ -232,7 +232,7 @@ class Client(ClientType):
                 
         Parameters
         ----------
-        as_response : bool, optional
+        as_response : (bool, optional)
             Return as Response object if True, otherwise dict, by default False
 
         Returns
@@ -264,7 +264,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        as_response : bool, optional
+        as_response : (bool, optional)
             Return as Response object if True, otherwise dict, by default False
             
         Returns
@@ -299,7 +299,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        as_response : bool, optional
+        as_response : (bool, optional)
             Return as Response object if True, otherwise dict, by default False
 
         Returns
@@ -327,7 +327,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        as_response : bool, optional
+        as_response : (bool, optional)
             Return as Response object if True, otherwise dict, by default False
 
         Returns
@@ -354,7 +354,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        as_response : bool, optional
+        as_response : (bool, optional)
             Return as Response object if True, otherwise dict, by default False
 
         Returns
@@ -380,7 +380,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        subject_id : str
+        subject_id : (str)
             Subject id to query. (At least 3 characters)
         
         Returns
@@ -408,7 +408,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        subject_id : str
+        subject_id : (str)
             Subject id to query.
 
         Returns
@@ -435,7 +435,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        attr : Enum
+        attr : (Enum)
         
             Enum from `pymyku.attribute`.
 
@@ -567,7 +567,7 @@ class Client(ClientType):
 
         Parameters
         ----------
-        key  : (str, optional)
+        key  : ((str, optional))
             Subject key from the response. 
             Can be `subject_code` or `subject_name_en`.
             Otherwise, `subject_code` will be used.
