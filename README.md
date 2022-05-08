@@ -1,5 +1,5 @@
 <a href="">
-    <img src="https://raw.githubusercontent.com/phusitsom/pymyku/dev/assets/pymyku_logo.png" alt="pymyku" title="pymyku" align="left" height="57" />
+    <img src="https://raw.githubusercontent.com/phusitsom/pymyku/dev/assets/pymyku_logo.png" alt="pymyku" title="pymyku" align="left" height="157" />
 </a>
 
 # PyMyKU
@@ -9,6 +9,7 @@
 [![Request](https://img.shields.io/badge/-requests-376F9E?style=flat-square&logo=)](https://docs.python-requests.org/)
 
 An unofficial [MyKU](https://my.ku.th/) API wrapper for python.
+<br>
 
 ## Table of Contents
 
