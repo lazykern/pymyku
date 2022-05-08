@@ -3,6 +3,9 @@ tester.py
 log*
 responses/
 *clipboard*
+*.txt
+!requirements.txt
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
