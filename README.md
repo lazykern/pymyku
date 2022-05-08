@@ -33,7 +33,8 @@ This project was developed by KU students and is not affiliated with the univers
 Please **respect** the API when using this project.
 
 ## Documentation
-Coming soon.
+
+Coming soon. Use `help()` to see the docstrings of any modules in pymyku.
 
 ## Installation
 
