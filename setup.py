@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='pymyku',
-    version='0.1',
+    version='0.1.0',
     description='Python MyKU API Wrapper',
     author='phusitsom',
     author_email='phusitsom@gmail.com',
