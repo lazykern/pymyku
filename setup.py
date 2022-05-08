@@ -9,5 +9,6 @@ setup(
     packages=['pymyku'],
     url='https://github.com/phusitsom/pymyku',
     install_requires=['requests'],
-    license='GNU General Public License v3.0'
+    license='GNU General Public License v3.0',
+    python_requires='>=3.6',
 )
