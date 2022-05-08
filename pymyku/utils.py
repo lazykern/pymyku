@@ -1,36 +1,78 @@
 from . import attribute, constant, url
-from .type import Dict, Response, Union
+from .type import ClientType, Dict, Enum, EnumMeta, Response, Union, Any
 
 
 def response_to_json(response: Union[Response, dict]) -> dict:
     '''Convert response to json. Do nothing if response is already dictionary
-    
+
     Parameters
     ----------
     response : (Response | dict)
         Response to convert
-    
+
     Returns
     -------
         dict
-    
+
     '''
 
     return response.json() if isinstance(response, Response) else response
 
 
+def extract(response: Union[Response, dict], attr: Enum) -> Any:
+    '''Extract any value from login response or schedule response.
+    Use enums from `pymyku.attribute` as key to get value.
+
+    Parameters
+    ----------
+    attr : (Enum)
+
+        Enum from `pymyku.attribute`.
+
+    Returns
+    -------
+        Any
+    '''
+    
+    if isinstance(attr, EnumMeta):
+        raise TypeError("attr must be Enum not EnumMeta.\n Use '.' operator after the EnumMeta object.")
+
+    if not isinstance(attr, Enum):
+        raise TypeError("attr must be Enum.")
+
+    response = response_to_json(response)
+
+    if isinstance(attr, attribute.User):
+        return response.get("user", {})\
+            .get(attr.value, None)
+
+    if isinstance(attr, attribute.Student):
+        return response.get("user", {})\
+            .get("student", {})\
+            .get(attr.value, None)
+
+    if isinstance(attr, attribute.Token):
+        return response.get(attr.value, None)
+
+    if isinstance(attr, attribute.Schedule):
+        result = response.get("results", [])
+        if not result:
+            return None
+        return result[0].get(attr.value, None)
+
+
 def extract_user_data(login_response: Union[Response, dict]) -> dict:
     '''Extract user data from login response
-    
+
     Parameters
     ----------
     login_response : (Response | dict)
         Response from the login request.
-    
+
     Returns
     -------
         dict
-    
+
     '''
 
     login_response = response_to_json(login_response)
@@ -40,16 +82,16 @@ def extract_user_data(login_response: Union[Response, dict]) -> dict:
 
 def extract_student_data(login_response: Union[Response, dict]) -> dict:
     '''Extract student data from login response
-    
+
     Parameters
     ----------
     login_response : (Response | dict)
         This is the response we get from the login request.
-    
+
     Returns
     -------
         dict
-    
+
     '''
 
     user_data = extract_user_data(login_response)
@@ -59,52 +101,56 @@ def extract_student_data(login_response: Union[Response, dict]) -> dict:
 
 def extract_access_token(login_response: Union[Response, dict]) -> str:
     '''Extract student code from login response
-    
+
     Parameters
     ----------
     login_response : (Response | dict)
         This is the response from the login request.
-    
+
     Returns
     -------
         str
-    
+
     '''
+
+    login_response = response_to_json(login_response)
 
     return login_response.get('accesstoken', '')
 
 
 def extract_std_code(login_response: Union[Response, dict]) -> str:
     '''Extract student code from login response
-    
+
     Parameters
     ----------
     login_response : (Response | dict)
         The response of the login request.
-    
+
     Returns
     -------
         str
-    
+
     '''
 
     login_response = response_to_json(login_response)
+
     student_data = extract_student_data(login_response)
+
     return student_data.get('stdCode', '')
 
 
 def extract_std_id(login_response: Union[Response, dict]) -> str:
     '''Extract student id from login response
-    
+
     Parameters
     ----------
     login_response : (Response | dict)
         The response of the login request.
-    
+
     Returns
     -------
         Student id.
-        
+
     '''
 
     login_response = response_to_json(login_response)
@@ -116,7 +162,7 @@ def extract_schedule(schedule_response: Union[Response, dict],
                      as_dict: bool = False,
                      full_result: bool = False) -> Union[tuple, dict, list]:
     '''Extract schedule (academic_year, semester) from schedule response
-    
+
     Parameters
     ----------
     schedule_response : (Response | dict)
@@ -125,11 +171,11 @@ def extract_schedule(schedule_response: Union[Response, dict],
         Whether to return the result as a dictionary or not. By default False
     full_result : (bool, optional)
         If True, return the full result (List[dict]), otherwise return the first item. By default False
-    
+
     Returns
     -------
         tuple | dict | list
-    
+
     '''
 
     schedule_response = response_to_json(schedule_response)
@@ -147,7 +193,7 @@ def extract_schedule(schedule_response: Union[Response, dict],
 
 
 def gen_request_headers(access_token: str = '') -> dict:
-    """Generate request headers.
+    '''Generate request headers.
 
     Parameters
     ----------
@@ -157,8 +203,8 @@ def gen_request_headers(access_token: str = '') -> dict:
     Returns
     -------
         dict
-    
-    """
+
+    '''
 
     header = {
         'app-key': constant.APP_KEY,
@@ -169,7 +215,7 @@ def gen_request_headers(access_token: str = '') -> dict:
 
 
 def gen_login_request_params(username: str, password: str) -> dict:
-    """Generate request parameters for posting login request.
+    '''Generate request parameters for posting login request.
 
     Parameters
     ----------
@@ -181,7 +227,7 @@ def gen_login_request_params(username: str, password: str) -> dict:
     Returns
     -------
         dict
-        
+
     Format:
     ```python
         {
@@ -195,8 +241,8 @@ def gen_login_request_params(username: str, password: str) -> dict:
         }
     }
     ```
-    
-    """
+
+    '''
 
     return {
         'url': url.LOGIN,
@@ -210,9 +256,19 @@ def gen_login_request_params(username: str, password: str) -> dict:
     }
 
 
-def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
-    """Generate request parameters requied for the given function.
-    
+def __check_required_kwargs(kwargs: dict, required_kwargs: list) -> bool:
+
+    for kwarg in required_kwargs:
+        if not kwargs.get(kwarg) and not str(kwargs.get(kwarg)) == '0':
+            raise ValueError(f'{kwarg} is required')
+    return True
+
+
+def gen_request_params_f(function: callable,
+                         raise_exception: bool = True,
+                         **kwargs) -> Dict[str, any]:
+    '''Generate request parameters requied for the given function.
+
     Passing only `login_response`, `schedule_response` or `client` is also acceptable for some request parameters.
 
     Parameters
@@ -224,14 +280,15 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
     -------
         Dict[str, any]
 
-    """
+    '''
 
     name = function.__name__
 
     if kwargs.get('client'):
         client = kwargs['client']
         kwargs['login_response'] = client.get(attribute.FetchedResponses.LOGIN_RESPONSE)
-        kwargs['schedule_response'] = client.get(attribute.FetchedResponses.SCHEDULE_RESPONSE)
+        kwargs['schedule_response'] = client.get(
+            attribute.FetchedResponses.SCHEDULE_RESPONSE)
 
     if kwargs.get('login_response'):
         login_response = kwargs.get('login_response')
@@ -262,6 +319,9 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
         if not kwargs.get('semester'):
             kwargs['semester'] = schedule['semester']
 
+    if raise_exception and not kwargs.get('access_token'):
+        raise ValueError('access_token is required')
+
     headers = gen_request_headers(kwargs.get('access_token'))
 
     if name == 'logout':
@@ -272,6 +332,12 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
         }
 
     elif name == 'get_schedule':
+
+        if raise_exception:
+            __check_required_kwargs(kwargs, [
+                'student_status_code', 'campus_code', 'faculty_code', 'major_code',
+                'user_type'
+            ])
 
         return {
             'url': url.SCHEDULE,
@@ -287,6 +353,9 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
 
     elif name == 'get_group_course':
 
+        if raise_exception:
+            __check_required_kwargs(kwargs, ['academic_year', 'semester', 'std_id'])
+
         return {
             'url': url.GROUP_COURSE,
             'headers': headers,
@@ -297,12 +366,30 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
             }
         }
     elif name == 'get_check_grades':
-        return {'url': url.CHECK_GRADES, 'headers': headers, 'params': {'stdCode': kwargs.get('std_code')}}
+
+        return {
+            'url': url.CHECK_GRADES,
+            'headers': headers,
+            'params': {
+                'stdCode': kwargs.get('std_code')
+            }
+        }
 
     elif name == 'get_gpax':
-        return {'url': url.GPAX, 'headers': headers, 'params': {'stdId': kwargs.get('std_id')}}
+
+        return {
+            'url': url.GPAX,
+            'headers': headers,
+            'params': {
+                'stdId': kwargs.get('std_id')
+            }
+        }
 
     elif name == 'get_announce':
+
+        if raise_exception:
+            __check_required_kwargs(kwargs, ['std_id', 'academic_year', 'semester'])
+
         return {
             'url': url.ANNOUCE,
             'headers': headers,
@@ -313,6 +400,10 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
             }
         }
     elif name == 'search_enroll':
+
+        if raise_exception:
+            __check_required_kwargs(kwargs, ['std_id', 'academic_year', 'semester'])
+
         return {
             'url': url.SEARCH_ENROLL,
             'headers': headers,
@@ -323,14 +414,59 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
             }
         }
     elif name == 'get_student_personal':
-        return {'url': url.STUDENT_PERSONAL, 'headers': headers, 'params': {'stdId': kwargs.get('std_id')}}
+
+        if raise_exception:
+            __check_required_kwargs(kwargs, ['std_id'])
+
+        return {
+            'url': url.STUDENT_PERSONAL,
+            'headers': headers,
+            'params': {
+                'stdId': kwargs.get('std_id')
+            }
+        }
     elif name == 'get_student_education':
-        return {'url': url.STUDENT_EDUCATION, 'headers': headers, 'params': {'stdId': kwargs.get('std_id')}}
+
+        if raise_exception:
+            __check_required_kwargs(kwargs, ['std_id'])
+
+        return {
+            'url': url.STUDENT_EDUCATION,
+            'headers': headers,
+            'params': {
+                'stdId': kwargs.get('std_id')
+            }
+        }
     elif name == 'get_student_address':
-        return {'url': url.STUDENT_ADDRESS, 'headers': headers, 'params': {'stdId': kwargs.get('std_id')}}
+
+        if raise_exception:
+            __check_required_kwargs(kwargs, ['std_id'])
+
+        return {
+            'url': url.STUDENT_ADDRESS,
+            'headers': headers,
+            'params': {
+                'stdId': kwargs.get('std_id')
+            }
+        }
     elif name == 'search_subject':
-        return {'url': url.SEARCH_SUBJECT, 'headers': headers, 'params': {'query': kwargs.get('query'),}}
+
+        if raise_exception:
+            __check_required_kwargs(kwargs, ['query'])
+
+        return {
+            'url': url.SEARCH_SUBJECT,
+            'headers': headers,
+            'params': {
+                'query': kwargs.get('query'),
+            }
+        }
     elif name == 'search_subject_open':
+
+        if raise_exception:
+            __check_required_kwargs(kwargs,
+                                    ['query', 'campus_code', 'academic_year', 'semester'])
+
         return {
             'url': url.SEARCH_SUBJECT_OPEN,
             'headers': headers,
@@ -343,4 +479,14 @@ def gen_request_params_f(function: callable, **kwargs) -> Dict[str, any]:
             }
         }
     elif name == 'search_section_detail':
-        return {'url': url.SEARCH_SECTION_DETAIL, 'headers': headers, 'params': {'sectionId': kwargs.get('section_id')}}
+
+        if raise_exception:
+            __check_required_kwargs(kwargs, ['section_id'])
+
+        return {
+            'url': url.SEARCH_SECTION_DETAIL,
+            'headers': headers,
+            'params': {
+                'sectionId': kwargs.get('section_id')
+            }
+        }

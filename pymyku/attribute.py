@@ -66,6 +66,11 @@ class Token(Enum):
     ACCESS_TOKEN = "accesstoken"
     RENEW_TOKEN = "renewtoken"
 
+class Schedule(Enum):
+    '''Enum for schedule data in schedule response
+    '''
+    ACADEMIC_YEAR = "academicYr"
+    SEMESTER = "semester"
 
 class FetchedResponses(Enum):
     '''Enum for fetched responses in client object

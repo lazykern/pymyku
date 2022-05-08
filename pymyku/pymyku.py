@@ -1,5 +1,5 @@
 from . import attribute, exception, requests, utils
-from .type import Any, ClientType, Dict, Enum, List, Response, Union
+from .type import Any, ClientType, Dict, Enum, EnumMeta, List, Response, Union
 
 
 class Client(ClientType):
@@ -15,7 +15,9 @@ class Client(ClientType):
 
         self.initialize()
 
-    def __valid_response(self, response: Response, to_json: bool = True) -> Union[dict, Response]:
+    def __valid_response(self,
+                         response: Response,
+                         to_json: bool = True) -> Union[dict, Response]:
         '''If the response is not 200, check if the error is due to an expired token. 
         If so, reset the token and raise an error. Otherwise, raise the error
         
@@ -63,7 +65,8 @@ class Client(ClientType):
 
         self.__schedule_response = self.fetch_schedule()
 
-        self.__academic_year, self.__semester = utils.extract_schedule(self.__schedule_response)
+        self.__academic_year, self.__semester = utils.extract_schedule(
+            self.__schedule_response)
 
     def reset(self) -> None:
         '''Reset the client attribute to NoneType or Negative Value.
@@ -145,7 +148,8 @@ class Client(ClientType):
 
         return response.json()
 
-    def fetch_group_course(self, as_response: bool = False) -> Union[List[dict], Response]:
+    def fetch_group_course(self,
+                           as_response: bool = False) -> Union[List[dict], Response]:
         '''Send GET request to MyKU std-profile/getGroupCourse API.
 
         Parameters
@@ -246,6 +250,12 @@ class Client(ClientType):
 
         #
         '''
+        if academic_year is None:
+            academic_year = self.__academic_year
+
+        if semester is None:
+            semester = self.__semester
+            
         response = requests.get_announce(academic_year=academic_year,
                                          semester=semester,
                                          login_response=self.__login_response,
@@ -395,9 +405,11 @@ class Client(ClientType):
         '''
 
         if len(subject_id) < 3:
-            raise exception.InvalidSubjectID("Subject ID must be at least 3 characters long.")
+            raise exception.InvalidSubjectID(
+                "Subject ID must be at least 3 characters long.")
 
-        response = requests.search_subject(query=subject_id, login_response=self.__login_response)
+        response = requests.search_subject(query=subject_id,
+                                           login_response=self.__login_response)
 
         response = self.__valid_response(response)
 
@@ -421,17 +433,18 @@ class Client(ClientType):
         
         #
         '''
-        response = requests.search_subject_open(query=subject_id,
-                                                login_response=self.__login_response,
-                                                schedule_response=self.__schedule_response)
+        response = requests.search_subject_open(
+            query=subject_id,
+            login_response=self.__login_response,
+            schedule_response=self.__schedule_response)
 
         response = self.__valid_response(response)
 
         return response.get('results', [])
 
     def get(self, attr: Enum) -> Any:
-        '''Get any value from MyKU client.
-        Use enums from `pymyku.request` as key to get value.
+        '''Get any value from MyKU client. (login respnse and schedule response)
+        Use enums from `pymyku.attribute` as key to get value.
 
         Parameters
         ----------
@@ -443,24 +456,17 @@ class Client(ClientType):
         -------
             Any
         '''
-
-        if isinstance(attr, attribute.User):
-            return self.__login_response.get("user", {})\
-                                        .get(attr.value, None)
-
-        if isinstance(attr, attribute.Student):
-            return self.__login_response.get("user", {})\
-                                        .get("student", {})\
-                                        .get(attr.value, None)
-
+        
         if isinstance(attr, attribute.FetchedResponses):
             if attr.value == 0:
                 return self.__login_response
             elif attr.value == 1:
                 return self.__schedule_response
 
-        if isinstance(attr, attribute.Token):
-            return self.__login_response.get(attr.value, None)
+        if isinstance(attr, attribute.Schedule):
+            return utils.extract(self.__schedule_response, attr)
+
+        return utils.extract(self.__login_response, attr)
 
     def get_login_response(self) -> dict:
         '''Get login response from MyKU client.
