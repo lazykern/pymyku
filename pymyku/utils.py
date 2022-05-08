@@ -36,7 +36,8 @@ def extract(response: Union[Response, dict], attr: Enum) -> Any:
 
     Returns
     -------
-        Any    '''
+        Any    
+    '''
     
     if isinstance(attr, EnumMeta):
         raise TypeError("attr must be Enum not EnumMeta. Use '.' operator after the EnumMeta object.")
