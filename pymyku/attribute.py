@@ -77,3 +77,7 @@ class FetchedResponses(Enum):
     '''
     LOGIN_RESPONSE = 0
     SCHEDULE_RESPONSE = 1
+
+for enum in [User, Student, Token, Schedule, FetchedResponses]:
+    for attr in enum:
+        globals()[attr.name] = attr
