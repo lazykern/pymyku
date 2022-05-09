@@ -51,13 +51,11 @@
             <label for="documentation_select">{{ _('View Documentation For') }}</label>
             <select id="documentation_select" onchange="window.location = this.value;">
         {%- if pagename is prefixedwith 'ext/' %}
-        <option value="{{ pathto(master_doc)|e }}">discord</option>
+        <option value="{{ pathto(master_doc)|e }}">pymyku</option>
         {%- else %}
-        <option value="{{ pathto(pagename) }}" selected>discord</option>
+        <option value="{{ pathto(pagename) }}" selected>pymyku</option>
         {%- endif %}
-        {%- for ext, p in discord_extensions %}
-        <option value="{{ pathto(p + '/index')|e }}" {% if pagename is prefixedwith p %}selected{% endif %}>{{ ext }}</option>
-        {%- endfor %}
+
       </select>
             <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
                 <div class="search-wrapper">
@@ -109,7 +107,7 @@
             if (!READTHEDOCS_DATA.features) {
                 READTHEDOCS_DATA.features = {};
             }
-            READTHEDOCS_DATA.features.docsearch_disabled = true;
+            READTHEDOCS_DATA.features.docsearch_disabled = false;
         }
     </script>
     {%- endif %}
