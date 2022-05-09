@@ -12,6 +12,10 @@
 #
 import os
 import sys
+import re
+
+sys.path.insert(0, os.path.abspath('..'))
+sys.path.append(os.path.abspath('extensions'))
 
 # -- Project information -----------------------------------------------------
 
@@ -19,9 +23,13 @@ project = 'pymyku'
 copyright = '2022, Phusit Somboonyingsuk'
 author = 'Phusit Somboonyingsuk'
 
-# The full version, including alpha/beta/rc tags
-release = '0.1.4'
+release = ''
+with open('../pymyku/__init__.py') as f:
+    release = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
 
+version = release
+
+# The full version, including alpha/beta/rc tags
 
 # -- General configuration ---------------------------------------------------
 
@@ -29,7 +37,26 @@ release = '0.1.4'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.extlinks',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.autosummary',
+    'nitpick_file_ignorer',
+    'builder',
+    'details',
+    'exception_hierarchy',
+    'attributetable',
+    'resourcelinks',
 ]
+
+autodoc_member_order = 'bysource'
+autodoc_typehints = 'none'
+
+intersphinx_mapping = {
+  'py': ('https://docs.python.org/3', None),
+  'req': ('https://docs.python-requests.org/en/latest/', None)
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -40,7 +67,7 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 
-source_suffix = '.rst'
+source_suffix = ['.rst', '.md']
 
 # -- Options for HTML output -------------------------------------------------
 
