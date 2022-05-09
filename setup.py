@@ -14,7 +14,7 @@ with open('./pymyku.__init__.py') as f:
 
 setup(
     name='pymyku',
-    version=version
+    version=version,
     description='Python MyKU API Wrapper',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
