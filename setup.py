@@ -1,5 +1,4 @@
 from setuptools import setup
-from .pymyku import __version__
 
 extra_requires = {
     'docs': [
@@ -9,10 +8,13 @@ extra_requires = {
         'typing-extensions',
     ],
 }
+version = ''
+with open('./pymyku.__init__.py') as f:
+    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
 
 setup(
     name='pymyku',
-    version=__version__,
+    version=
     description='Python MyKU API Wrapper',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
