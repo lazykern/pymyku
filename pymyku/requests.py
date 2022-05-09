@@ -17,7 +17,7 @@ def request_login(username: str, password: str) -> Response:
 
     Returns
     -------
-    Response
+        Response
 
     API
     ---
@@ -85,7 +85,7 @@ def get_schedule(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
 
     Raises
     ------
@@ -122,7 +122,7 @@ def get_group_course(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
 
     Raises
     ------
@@ -156,7 +156,7 @@ def get_check_grades(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
 
     API
     ---
@@ -185,7 +185,7 @@ def get_gpax(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
 
     Raises
     ------
@@ -224,7 +224,7 @@ def get_announce(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
 
     Raises
     ------
@@ -263,7 +263,7 @@ def search_enroll(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
     
     Raises
     ------
@@ -297,7 +297,7 @@ def get_student_personal(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
     
     Raises
     ------
@@ -330,7 +330,7 @@ def get_student_education(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
     
     Raises
     ------
@@ -362,7 +362,7 @@ def get_student_address(access_token: str = None,
 
     Returns
     -------
-    Response
+        Response
     
     Raises
     ------
@@ -395,7 +395,7 @@ def search_subject(query: str,
 
     Returns
     -------
-    Response
+        Response
     
     Raises
     ------
@@ -437,7 +437,7 @@ def search_subject_open(query: str,
 
     Returns
     -------
-    Response
+        Response
     
     Raises
     ------
@@ -468,7 +468,11 @@ def search_section_detail(section_id: str,
 
     Returns
     -------
-    Response
+        Response
+    
+    Raises
+    ------
+        ValueError
     
     API
     ---
