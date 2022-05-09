@@ -1,8 +1,9 @@
 from setuptools import setup
+from .pymyku import __version__
 
 setup(
     name='pymyku',
-    version='0.1.4',
+    version=__version__,
     description='Python MyKU API Wrapper',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
