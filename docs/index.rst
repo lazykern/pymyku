@@ -7,7 +7,7 @@
    :width: 250px
    :align: center
 
-pymyku is a modern(somehow), versatile and easy to use API wrapper for MyKU.
+pymyku is a modern(somehow), versatile and easy to use API wrapper and utilities for MyKU.
 
 **Features**
 
