@@ -5,7 +5,7 @@
 Welcome to pymyku
 ===========================
 
-.. image:: ../assets/pymyku_logo.svg
+.. image:: ../assets/pymyku_logo.png
    :alt: pymyku
    :width: 180px
 
