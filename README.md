@@ -34,7 +34,7 @@ Please **respect** the API when using this project.
 
 ## Documentation
 
-All the documentation is available on [the repository wiki](https://github.com/phusitsom/pymyku/wiki).
+WIP.
 
 You can also use `help()` to see the docstrings of any modules in pymyku.
 
