@@ -55,8 +55,6 @@
         {%- else %}
         <option value="{{ pathto(pagename) }}" selected>pymyku</option>
         {%- endif %}
-        <option value="{{ pathto(p + '/index')|e }}" {% if pagename is prefixedwith p %}selected{% endif %}>{{ ext }}</option>
-        {%- endfor %}
       </select>
             <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
                 <div class="search-wrapper">
