@@ -19,6 +19,9 @@ setup(
     description='Python MyKU API Wrapper',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
+    project_urls={
+    "Documentation": "https://pymyku.readthedocs.io",
+    },
     author='phusitsom',
     author_email='phusitsom@gmail.com',
     packages=['pymyku'],
