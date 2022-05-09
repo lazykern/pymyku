@@ -1276,7 +1276,7 @@ main img.align-right {
 
 /* hide the welcome text */
 
-section#welcome-to-discord-py>h1 {
+section#welcome-to-pymyku>h1 {
     display: none;
 }
 
