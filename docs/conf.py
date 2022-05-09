@@ -41,7 +41,6 @@ extensions = [
     'sphinx.ext.extlinks',
     'sphinx.ext.intersphinx',
     'sphinx.ext.napoleon',
-    'sphinx.ext.autosummary',
     'nitpick_file_ignorer',
     'builder',
     'details',
@@ -69,6 +68,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 source_suffix = ['.rst', '.md']
 
+pygments_style = 'friendly'
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for

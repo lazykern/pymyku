@@ -3,9 +3,8 @@ from .type import Any, ClientType, Dict, Enum, EnumMeta, List, Response, Union
 
 
 class Client(ClientType):
-    '''    
-    This class acts as a MyKu API wrapper.
-    After created, the client will be logged in automatically.
+    '''Represents a client connection that connects to MyKU. This class is used to interact with the MyKU API.
+    The client is initialized with a username and password and will login to MyKU automatically.
     '''
 
     def __init__(self, username: str, password: str) -> None:
@@ -53,17 +52,9 @@ class Client(ClientType):
         return data if to_json else response
 
     def initialize(self) -> None:
-        '''Initialize the client by logging in and fetch schedule data.
-        
-        Affected attribute
-        -------------------
-        `__login_response`,
-        `__logged_in`,
-        `__access_token`,
-        `__schedule_response`,
-        `__academic_year`,
-        `__semester`
-
+        '''Initialize the client by logging in and fetch user data.
+        :meth:`login` will be called to fetch login data.
+        After that, :meth:`fetch_schedule` will be called to fetch schedule data.
         '''
 
         self.login()
@@ -74,17 +65,9 @@ class Client(ClientType):
             self.__schedule_response)
 
     def reset(self) -> None:
-        '''Reset the client attribute to NoneType or Negative Value.
-
-        Affected attribute
-        -------------------
-        `__login_response`,
-        `__logged_in`,
-        `__access_token`,
-        `__schedule_response`,
-        `__academic_year`,
-        `__semester`
-            
+        '''Reset the client attributes.
+        
+        Affected attributes: :attr:`__logged_in`, :attr:`__access_token`, :attr:`__schedule_response`
         '''
         self.__login_response = {}
         self.__logged_in = False
@@ -98,24 +81,19 @@ class Client(ClientType):
 
         Returns
         -------
-            utils.gen_request_headers(self.__access_token)
-            
-        '''
+        dict
+            The headers for the requests containing :attr:`APP_KEY` and :attr:`__access_token`.
+        '''        
         return utils.gen_request_headers(self.__access_token)
 
     def login(self) -> Response:
-        '''Login to MyKu and fetch the access token.
+        '''Login to MyKu and fetch user data.
 
+        API: https://myapi.ku.th/auth/login
+        
         Returns
         -------
             Response
-            
-        API
-        ---
-        https://myapi.ku.th/auth/login
-
-        #
-            
         '''
 
         login_response = requests.request_login(self.__username, self.__password)
