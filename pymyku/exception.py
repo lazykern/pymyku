@@ -2,9 +2,10 @@ from requests import HTTPError
 
 
 class InvalidSubjectID(Exception):
+    '''The subject ID is not valid.'''
     pass
 
 
 class TokenExpired(HTTPError):
-    '''Raised when the access token has expired.'''
+    '''The access token has expired.'''
     pass

@@ -2,54 +2,60 @@ from requests import get as r_get
 from requests import post as r_post
 
 from . import utils
-from .type import ClientType, Response, Union
+from .type import ClientType, Optional, Response, Union
 
 
 def request_login(username: str, password: str) -> Response:
     '''Send POST request to MyKU auth/login API.
 
+    API: https://myapi.ku.th/auth/login
+    
     Parameters
     ----------
-    username : (str)
+    username : str
         Your Nontri account username (b##########)
-    password : (str)
+    password : str
         Your password (Don't worry, your password is not saved)
-
+    
     Returns
     -------
     Response
-
-    API
-    ---
-    https://myapi.ku.th/auth/login
-
-    #
+        Response object from auth/login API.
     '''
 
     return r_post(**utils.gen_login_request_params(username, password))
 
 
-def request_logout(access_token: str = '',
-                   login_response: Union[Response, dict] = {},
-                   client: ClientType = None) -> Response:
+def request_logout(access_token: Optional[str] = '',
+                   login_response: Optional[Union[Response, dict]] = {},
+                   client: Optional[ClientType] = None) -> Response:
     '''Send POST request to MyKU auth/logout API.
+    
     *I am uncertain that this request method will work properly.*
 
     Assigning only `login_response` or `client` is acceptable.
-
+    
+    API: https://myapi.ku.th/auth/logout
+    
     Parameters
     ----------
-    access_token : (str, optional)
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
-        Response
+    Response
+        Response object from auth/logout API.
 
-    API
-    ---
-    https://myapi.ku.th/auth/logout
-
-    #
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
 
     params = utils.gen_request_args_f(logout, **locals())
@@ -57,70 +63,100 @@ def request_logout(access_token: str = '',
     return r_get(**params)
 
 
-def get_schedule(access_token: str = '',
-                 user_type: str = '',
-                 campus_code: str = '',
-                 faculty_code: str = '',
-                 major_code: str = '',
-                 student_status_code: str = '',
-                 login_response: Union[Response, dict] = {},
-                 client: ClientType = None) -> Response:
+def get_schedule(access_token: Optional[str] = '',
+                 user_type: Optional[str] = '',
+                 campus_code: Optional[str] = '',
+                 faculty_code: Optional[str] = '',
+                 major_code: Optional[str] = '',
+                 student_status_code: Optional[str] = '',
+                 login_response: Optional[Union[Response, dict]] = {},
+                 client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU common/getschedule API.
 
     Assigning only `login_response` or `client` is acceptable.
     
+    API: https://myapi.ku.th/common/getschedule
 
     Parameters
     ----------
-    access_token : (str, optional)
-    user_type : (str, optional)
-    campus_code : (str, optional)
-    faculty_code : (str, optional)
-    major_code : (str, optional)
-    student_status_code : (dict, optional)
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    user_type : Optional[str]
+        'userType' attribute from login response, identical to :class:`pymyku.attribute.User.USER_TYPE`
+    campus_code : Optional[str]
+        'campusCode' attribute from login response, identical to :class:`pymyku.attribute.Student.CAMPUS_CODE`, e.g. 'B'
+        , e.g. 'B'
+    faculty_code : Optional[str]
+        'facultyCode' attribute from login response, identical to :class:`pymyku.attribute.Student.FACULTY_CODE`
+    major_code : Optional[str]
+        'majorCode' attribute from login response, identical to :class:`pymyku.attribute.Student.MAJOR_CODE`
+    student_status_code : Optional[str]
+        'studentStatusCode' attribute from login response, identical to :class:`pymyku.attribute.Student.STUDENT_STATUS_CODE`
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from common/getschedule API.
 
-    API
-    ---
-    https://myapi.ku.th/common/getschedule
-
-    #
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
     params = utils.gen_request_args_f(get_schedule, **locals())
 
     return r_get(**params)
 
 
-def get_group_course(access_token: str = '',
-                     std_id: str = '',
-                     academic_year: str = '',
-                     semester: str = '',
-                     login_response: Union[Response, dict] = {},
-                     schedule_response: Union[Response, dict] = {},
-                     client: ClientType = None) -> Response:
+def get_group_course(access_token: Optional[str] = '',
+                     std_id: Optional[str] = '',
+                     academic_year: Optional[str] = '',
+                     semester: Optional[str] = '',
+                     login_response: Optional[Union[Response, dict]] = {},
+                     schedule_response: Optional[Union[Response, dict]] = {},
+                     client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU std-profile/getGroupCourse API.
 
     Assigning only (`login_response` and `schedule_response`) or `client` is acceptable.
+
+    API: https://myapi.ku.th/std-profile/getGroupCourse
     
     Parameters
     ----------
-    access_token : (str, optional)
-    std_id : (str, optional)
-    academic_year : (str, optional)
-    semester : (str, optional)
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    std_id : Optional[str]
+        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        , e.g. '20xxxx'
+    academic_year : Optional[str]
+        'academicYr' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        , e.g. '2565'
+    semester : Optional[str]
+        'semester' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+        , e.g. '0' for summer, '1' for first semester and '2' for second semester.
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    schedule_response : Optional[Union[Response, dict]]
+        Schedule response from :meth:`get_schedule`, 
+        identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from std-profile/getGroupCourse API.
 
-    API
-    ---
-    https://myapi.ku.th/std-profile/getGroupCourse
-
-    #
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
 
     params = utils.gen_request_args_f(get_group_course, **locals())
@@ -128,29 +164,39 @@ def get_group_course(access_token: str = '',
     return r_get(**params)
 
 
-def get_check_grades(access_token: str = '',
-                     std_code: str = '',
-                     login_response: Union[Response, dict] = {},
-                     client: ClientType = None) -> Response:
+def get_check_grades(access_token: Optional[str] = '',
+                     std_code: Optional[str] = '',
+                     login_response: Optional[Union[Response, dict]] = {},
+                     client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU std-profile/checkGrades API.
 
     Assigning only `login_response` or `client` is acceptable.
     
     
+    API: https://myapi.ku.th/std-profile/checkGrades
+    
     Parameters
     ----------
-    access_token : (str, optional)
-    std_code : (str, optional)
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    std_code : Optional[str]
+        'stdCode' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_CODE`
+        , e.g. '64xxxxxxxx'
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
-
-    API
-    ---
-    https://myapi.ku.th/std-profile/checkGrades
-
-    #
+        Response object from std-profile/checkGrades API.
+        
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
 
     params = utils.gen_request_args_f(get_check_grades, **locals())
@@ -158,28 +204,38 @@ def get_check_grades(access_token: str = '',
     return r_get(**params)
 
 
-def get_gpax(access_token: str = '',
-             std_id: str = '',
-             login_response: Union[Response, dict] = {},
-             client: ClientType = None) -> Response:
+def get_gpax(access_token: Optional[str] = '',
+             std_id: Optional[str] = '',
+             login_response: Optional[Union[Response, dict]] = {},
+             client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU stddashboard/gpax API.
     
     Assigning only `login_response` or `client` is acceptable.
 
+    API: https://myapi.ku.th/stddashboard/gpax
+    
     Parameters
     ----------
-    access_token : (_type_, optional)
-    std_id : (str, optional)
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    std_id : Optional[str]
+        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        , e.g. '20xxxx'
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from stddashboard/gpax API.
 
-    API
-    ---
-    https://myapi.ku.th/stddashboard/gpax
-
-    #
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
 
     params = utils.gen_request_args_f(get_gpax, **locals())
@@ -187,34 +243,50 @@ def get_gpax(access_token: str = '',
     return r_get(**params)
 
 
-def get_announce(access_token: str = '',
-                 std_id: str = '',
-                 academic_year: str = '',
-                 semester: str = '',
-                 login_response: Union[Response, dict] = {},
-                 schedule_response: Union[Response, dict] = {},
-                 client: ClientType = None) -> Response:
+def get_announce(access_token: Optional[str] = '',
+                 std_id: Optional[str] = '',
+                 academic_year: Optional[str] = '',
+                 semester: Optional[str] = '',
+                 login_response: Optional[Union[Response, dict]] = {},
+                 schedule_response: Optional[Union[Response, dict]] = {},
+                 client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU advisor/getAnnounceStd API.
     
     Assigning only (`login_response` and `schedule_response`) or `client` is acceptable.
     
+    API: https://myapi.ku.th/advisor/getAnnounceStd
 
     Parameters
     ----------
-    access_token : (str, optional)
-    std_id : (str, optional)
-    academic_year : (str, optional)
-    semester : (str, optional)
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    std_id : Optional[str]
+        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        , e.g. '20xxxx'
+    academic_year : Optional[str]
+        'academicYr' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        , e.g. '2565'
+    semester : Optional[str]
+        'semester' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+        , e.g. '0' for summer, '1' for first semester and '2' for second semester.
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    schedule_response : Optional[Union[Response, dict]]
+        Schedule response from :meth:`get_schedule`, 
+        identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from advisor/getAnnounceStd API.
 
-    API
-    ---
-    https://myapi.ku.th/advisor/getAnnounceStd
-
-    #
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
 
     params = utils.gen_request_args_f(get_announce, **locals())
@@ -222,34 +294,50 @@ def get_announce(access_token: str = '',
     return r_get(**params)
 
 
-def search_enroll(access_token: str = '',
-                  std_id: str = '',
-                  academic_year: str = '',
-                  semester: str = '',
-                  login_response: Union[Response, dict] = {},
-                  schedule_response: Union[Response, dict] = {},
-                  client: ClientType = None) -> Response:
+def search_enroll(access_token: Optional[str] = '',
+                  std_id: Optional[str] = '',
+                  academic_year: Optional[str] = '',
+                  semester: Optional[str] = '',
+                  login_response: Optional[Union[Response, dict]] = {},
+                  schedule_response: Optional[Union[Response, dict]] = {},
+                  client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU enroll/searchEnrollResult API.
 
     Assigning only (`login_response` and `schedule_response`) or `client` is acceptable.
 
-
+    API: https://myapi.ku.th/enroll/searchEnrollResult
+    
     Parameters
     ----------
-    access_token : (str, optional)
-    std_id : (str, optional)
-    academic_year : (str, optional)
-    semester : (str, optional)
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    std_id : Optional[str]
+        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        , e.g. '20xxxx'
+    academic_year : Optional[str]
+        'academicYr' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        , e.g. '2565'
+    semester : Optional[str]
+        'semester' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+        , e.g. '0' for summer, '1' for first semester and '2' for second semester.
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    schedule_response : Optional[Union[Response, dict]]
+        Schedule response from :meth:`get_schedule`, 
+        identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from enroll/searchEnrollResult API.
     
-    API
-    ---
-    https://myapi.ku.th/enroll/searchEnrollResult
-    
-    #    
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.   
     '''
 
     params = utils.gen_request_args_f(search_enroll, **locals())
@@ -257,29 +345,38 @@ def search_enroll(access_token: str = '',
     return r_post(**params)
 
 
-def get_student_personal(access_token: str = '',
-                         std_id: str = '',
-                         login_response: Union[Response, dict] = {},
-                         client: ClientType = None) -> Response:
+def get_student_personal(access_token: Optional[str] = '',
+                         std_id: Optional[str] = '',
+                         login_response: Optional[Union[Response, dict]] = {},
+                         client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU std-profile/getStdPersonal API.
 
     Assigning only `login_response` or `client` is acceptable.
 
+    API: https://myapi.ku.th/std-profile/getStdPersonal  
 
     Parameters
     ----------
-    access_token : (str, optional)
-    std_id : (str, optional)
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    std_id : Optional[str]
+        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        , e.g. '20xxxx'
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from std-profile/getStdPersonal API.
     
-    API
-    ---
-    https://myapi.ku.th/std-profile/getStdPersonal
-    
-    #    
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
 
     params = utils.gen_request_args_f(get_student_personal, **locals())
@@ -287,56 +384,76 @@ def get_student_personal(access_token: str = '',
     return r_get(**params)
 
 
-def get_student_education(access_token: str = '',
-                          std_id: str = '',
-                          login_response: Union[Response, dict] = {},
-                          client: ClientType = None) -> Response:
+def get_student_education(access_token: Optional[str] = '',
+                          std_id: Optional[str] = '',
+                          login_response: Optional[Union[Response, dict]] = {},
+                          client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU std-profile/getStdEducation API.
 
     Assigning only `login_response` or `client` is acceptable.
 
+    API: https://myapi.ku.th/std-profile/getStdEducation
+    
     Parameters
     ----------
-    access_token : (str, optional)
-    std_id : (str, optional)
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    std_id : Optional[str]
+        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        , e.g. '20xxxx'
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from std-profile/getStdEducation API.
     
-    API
-    ---
-    https://myapi.ku.th/std-profile/getStdEducation
-    
-    #    
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
     params = utils.gen_request_args_f(get_student_education, **locals())
 
     return r_get(**params)
 
 
-def get_student_address(access_token: str = None,
-                        std_id: str = '',
-                        login_response: Union[Response, dict] = {},
-                        client: ClientType = None) -> Response:
+def get_student_address(access_token: Optional[str] = '',
+                        std_id: Optional[str] = '',
+                        login_response: Optional[Union[Response, dict]] = {},
+                        client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU std-profile/getStdAddress API.
 
     Assigning only `login_response` or `client` is acceptable.
 
+    API: https://myapi.ku.th/std-profile/getStdAddress  
+    
     Parameters
     ----------
-    access_token : (str, optional)
-    std_id : (str, optional)
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    std_id : Optional[str]
+        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        , e.g. '20xxxx'
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from std-profile/getStdAddress API.
     
-    API
-    ---
-    https://myapi.ku.th/std-profile/getStdAddress
-    
-    #    
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
 
     params = utils.gen_request_args_f(get_student_address, **locals())
@@ -345,27 +462,36 @@ def get_student_address(access_token: str = None,
 
 
 def search_subject(query: str,
-                   access_token: str = '',
-                   login_response: dict = {},
-                   client: ClientType = None) -> Response:
+                   access_token: Optional[str] = '',
+                   login_response: Optional[Union[Response, dict]] = {},
+                   client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU enroll/searchSubjectOpenEnr API.
 
     Assigning only `login_response` or `client` is acceptable.
 
+    API: https://myapi.ku.th/enroll/searchSubjectOpenEnr  
+    
     Parameters
     ----------
-    query : (std)
-    access_token : (str, optional)
+    query : str
+        Subject id, e.g. '013' or '01355119'
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from enroll/searchSubjectOpenEnr API.
     
-    API
-    ---
-    https://myapi.ku.th/enroll/searchSubjectOpenEnr
-    
-    #    
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
 
     params = utils.gen_request_args_f(search_subject, **locals())
@@ -374,36 +500,55 @@ def search_subject(query: str,
 
 
 def search_subject_open(query: str,
-                        access_token: str = '',
-                        section: str = '',
-                        campus_code: str = '',
-                        academic_year: str = '',
-                        semester: str = '',
-                        login_response: Union[Response, dict] = {},
-                        schedule_response: Union[Response, dict] = {},
-                        client: ClientType = None) -> Response:
+                        section: Optional[str] = '',
+                        access_token: Optional[str] = '',
+                        campus_code: Optional[str] = '',
+                        academic_year: Optional[str] = '',
+                        semester: Optional[str] = '',
+                        login_response: Optional[Union[Response, dict]] = {},
+                        schedule_response: Optional[Union[Response, dict]] = {},
+                        client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU enroll/openSubjectForEnroll API.
 
     Assigning only (`login_response` and `schedule_response`) or `client` is acceptable.
 
+    API: https://myapi.ku.th/enroll/openSubjectForEnroll  
+    
     Parameters
     ----------
-    query : (str)
-    access_token : (str, optional)
-    section : (str, optional)
-    campus_code : (str, optional)
-    academic_year : (str, optional)
-    semester : (str, optional)
+    query : str
+        Full subject id, e.g. '01355119' or '01355119-64'
+    section : Optional[str]
+        Section of the subject, e.g. '1'
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    campus_code : Optional[str]
+        'campusCode' attribute from login response, identical to :class:`pymyku.attribute.Student.CAMPUS_CODE`, e.g. 'B'
+        , e.g. 'B'
+    academic_year : Optional[str]
+        'academicYr' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        , e.g. '2565'
+    semester : Optional[str]
+        'semester' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+        , e.g. '0' for summer, '1' for first semester and '2' for second semester.
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    schedule_response : Optional[Union[Response, dict]]
+        Schedule response from :meth:`get_schedule`, 
+        identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from enroll/openSubjectForEnroll API.
     
-    API
-    ---
-    https://myapi.ku.th/enroll/openSubjectForEnroll
-    
-    #    
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
 
     params = utils.gen_request_args_f(search_subject_open, **locals())
@@ -412,25 +557,34 @@ def search_subject_open(query: str,
 
 
 def search_section_detail(section_id: str,
-                          access_token: str = '',
-                          login_response: Union[Response, dict] = {},
-                          client: ClientType = None) -> Response:
+                          access_token: Optional[str] = '',
+                          login_response: Optional[Union[Response, dict]] = {},
+                          client: Optional[ClientType] = None) -> Response:
     '''Send GET request to MyKU enroll/searchSectionDetail API.
 
+    API: https://myapi.ku.th/enroll/searchSectionDetail
+    
     Parameters
     ----------
-    section_id : (str)
-    access_token : (str, optional)
+    section_id : str
+        Section id. e.g. '186426'
+    access_token : Optional[str]
+        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+    login_response : Optional[Union[Response, dict]]
+        Login response from login request, can be obtained from :meth:`request_login`
+        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+    client : Optional[ClientType]
+        Initialized :class:`pymyku.Client` object
 
     Returns
     -------
     Response
+        Response object from enroll/searchSectionDetail API.
     
-    API
-    ---
-    https://myapi.ku.th/enroll/searchSectionDetail
-    
-    #    
+    Raises
+    ------
+    ValueError
+        Required parameters are missing.
     '''
 
     params = utils.gen_request_args_f(search_section_detail, **locals())

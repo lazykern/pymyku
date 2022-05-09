@@ -1,5 +1,5 @@
 from . import attribute, constant, url
-from .type import ClientType, Dict, Enum, EnumMeta, Response, Union, Any
+from .type import (Any, ClientType, Dict, Enum, EnumMeta, Optional, Response, Union)
 
 
 def response_to_json(response: Union[Response, dict]) -> dict:
@@ -7,17 +7,23 @@ def response_to_json(response: Union[Response, dict]) -> dict:
 
     Parameters
     ----------
-    response : (Response | dict)
-        Response to convert
+    response : Union[Response, dict]
+        The response to convert.
 
     Returns
     -------
-        dict
+    dict
+        Dictionary representation of the response.
+
+    Raises
+    ------
+    TypeError
+        Invalid response type.
     '''
-    
+
     if isinstance(response, dict):
         return response
-    
+
     if isinstance(response, Response):
         return response.json()
 
@@ -26,21 +32,29 @@ def response_to_json(response: Union[Response, dict]) -> dict:
 
 def extract(response: Union[Response, dict], attr: Enum) -> Any:
     '''Extract any value from login response or schedule response.
-    Use enums from `pymyku.attribute` as key to get value.
+    Use enums from pymyku.attribute as key to get value.
 
     Parameters
     ----------
-    attr : (Enum)
-
-        Enum from `pymyku.attribute`.
+    response : Union[Response, dict]
+        The response to extract from. (Can be login response or schedule response)
+    attr : Enum
+        The attribute to extract.
 
     Returns
     -------
-        Any    
+    Any
+        Value of the attribute.
+
+    Raises
+    ------
+    TypeError
+        Invalid attr type.
     '''
-    
+
     if isinstance(attr, EnumMeta):
-        raise TypeError("attr must be Enum not EnumMeta. Use '.' operator after the EnumMeta object.")
+        raise TypeError(
+            "attr must be Enum not EnumMeta. Use '.' operator after the EnumMeta object.")
 
     if not isinstance(attr, Enum):
         raise TypeError("attr must be Enum.")
@@ -65,64 +79,86 @@ def extract(response: Union[Response, dict], attr: Enum) -> Any:
             return None
         return result[0].get(attr.value, None)
 
-def get_raise(dict_: dict, key: str, dict_name:str = None) -> Any:
-    '''Get value from dict and raise error if key is not found.
+
+def get_raise(dict_: dict, key: str, dict_name: Optional[str] = None) -> Any:
+    '''Raise VakueError if key is not found in dict_.
 
     Parameters
     ----------
     dict_ : dict
+        _description_
     key : str
+        _description_
+    dict_name : Optional[str]
+        _description_, by default None
 
     Returns
     -------
-        Any
+    Any
+        Value of the key.
 
     Raises
     ------
-        ValueError
+    ValueError
+        If key is not found in dict_.
     '''
+
     result = dict_.get(key)
     if result is None:
-        raise ValueError(f'{key} is not found in {dict_name if dict_name else "dictionary"}')
+        raise ValueError(
+            f'{key} is not found in {dict_name if dict_name else "dictionary"}')
     return result
 
+
 def extract_user_data(login_response: Union[Response, dict]) -> dict:
-    '''Extract user data from login response
+    '''Extract user data from login response.
 
     Parameters
     ----------
-    login_response : (Response | dict)
-        Response from the login request.
+    login_response : Union[Response, dict]
+        The response of the login request.
 
     Returns
     -------
-        dict
+    dict
+        User data.
+        
+    Raises
+    ------
+    ValueError
+        If user data is not found.
     '''
 
     login_response = response_to_json(login_response)
-        
+
     result = get_raise(login_response, 'user', 'login response')
-    
+
     return result
 
 
 def extract_student_data(login_response: Union[Response, dict]) -> dict:
-    '''Extract student data from login response
+    '''Extract student data from login response.
 
     Parameters
     ----------
-    login_response : (Response | dict)
-        This is the response we get from the login request.
+    login_response : Union[Response, dict]
+        The response of the login request.
 
     Returns
     -------
-        dict
+    dict
+        Student data.
+        
+    Raises
+    ------
+    ValueError
+        If student data is not found.
     '''
 
     user_data = extract_user_data(login_response)
-    
-    result = get_raise(user_data, 'student', 'login response')    
-    
+
+    result = get_raise(user_data, 'student', 'login response')
+
     return result
 
 
@@ -131,18 +167,24 @@ def extract_access_token(login_response: Union[Response, dict]) -> str:
 
     Parameters
     ----------
-    login_response : (Response | dict)
+    login_response : Union[Response, dict]
         This is the response from the login request.
 
     Returns
     -------
-        str
+    str
+        Access token. Identical to pymyku.attribute.Token.ACCESS_TOKEN.
+        
+    Raises
+    ------
+    ValueError
+        If access token is not found.
     '''
 
     login_response = response_to_json(login_response)
-    
-    result = get_raise(login_response, 'accesstoken', 'login response')    
-    
+
+    result = get_raise(login_response, 'accesstoken', 'login response')
+
     return result
 
 
@@ -151,18 +193,19 @@ def extract_std_code(login_response: Union[Response, dict]) -> str:
 
     Parameters
     ----------
-    login_response : (Response | dict)
+    login_response : Union[Response, dict]
         The response of the login request.
 
     Returns
     -------
-        str
+    str 
+        Student code.
     '''
 
     login_response = response_to_json(login_response)
 
     student_data = extract_student_data(login_response)
-    
+
     result = get_raise(student_data, 'stdCode', 'login response')
 
     return result
@@ -173,46 +216,48 @@ def extract_std_id(login_response: Union[Response, dict]) -> str:
 
     Parameters
     ----------
-    login_response : (Response | dict)
+    login_response : Union[Response, dict]
         The response of the login request.
 
     Returns
     -------
+    str
         Student id.
     '''
 
     login_response = response_to_json(login_response)
-    
+
     student_data = extract_student_data(login_response)
-    
+
     result = get_raise(student_data, 'stdId', 'login response')
-    
+
     return result
 
 
 def extract_schedule(schedule_response: Union[Response, dict],
-                     as_dict: bool = False,
-                     full_result: bool = False) -> Union[tuple, dict, list]:
+                     as_dict: Optional[bool] = False,
+                     full_result: Optional[bool] = False) -> Union[tuple, dict, list]:
     '''Extract schedule (academic_year, semester) from schedule response
 
     Parameters
     ----------
-    schedule_response : (Response | dict)
+    schedule_response : Union[Response, dict]
         The response from the schedule request.
-    as_dict : (bool, optional)
+    as_dict : Optional[bool]
         Whether to return the result as a dictionary or not. By default False
-    full_result : (bool, optional)
+    full_result : Optional[bool]
         If True, return the full result (List[dict]), otherwise return the first item. By default False
 
     Returns
     -------
-        tuple | dict | list
+    Union[tuple, dict, list]
+        Dictionary containing schedule data.
     '''
 
     schedule_response = response_to_json(schedule_response)
-    
+
     result = get_raise(schedule_response, 'results', 'schedule response')
-    
+
     if full_result:
         return result
 
@@ -221,39 +266,42 @@ def extract_schedule(schedule_response: Union[Response, dict],
 
     if as_dict:
         return result
-    
+
     print(result)
-    
+
     academic_year = get_raise(result, 'academicYr', 'schedule response')
-    
+
     semester = get_raise(result, 'semester', 'schedule response')
-    
+
     return academic_year, semester
 
 
-def gen_request_headers(access_token: Union[str, Response, dict] = '') -> dict:
+def gen_request_headers(access_token: Optional[Union[str, Response, dict]] = '') -> dict:
     '''Generate request headers.
+    
+    Sets the access token as `x-access-token` if provided.
 
     Parameters
     ----------
-    access_token : (str | Response | dict, optional)
-        MyKU acces token, by default None
+    access_token : Optional[Union[str, Response, dict]]
+        Access token, if the parameter is type Response or dict, the access token will be extracted, by default '
 
     Returns
     -------
-        dict
+    dict
+        Request headers for MyKU API.
     '''
 
     header = {
         'app-key': constant.APP_KEY,
     }
-    
+
     if isinstance(access_token, (Response, dict)):
         access_token = extract_access_token(access_token)
-        
-    if isinstance(access_token, str):
+
+    if isinstance(access_token, str) and access_token:
         header['x-access-token'] = access_token
-    
+
     return header
 
 
@@ -262,28 +310,16 @@ def gen_login_request_params(username: str, password: str) -> dict:
 
     Parameters
     ----------
-    username : (str)
+    username : str
         Nontri account username (b##########)
-    password : (str)
+    password : str
         Nontri account password (Don't worry, your password is not saved)
 
     Returns
     -------
-        dict
+    dict
+        Request parameters.
 
-    Format:
-    ```python
-        {
-            'url': https://myapi.ku.th/auth/login,
-            'data': {
-                'username': username,
-                'password': password,
-            },
-            'headers': {
-                'app-key': constant.APP_KEY
-        }
-    }
-    ```
     '''
 
     return {
@@ -298,7 +334,26 @@ def gen_login_request_params(username: str, password: str) -> dict:
     }
 
 
-def __check_required_kwargs(kwargs: dict, required_kwargs: list) -> bool:
+def __check_required_kwargs(kwargs: dict, required_kwargs: Union[list, tuple]) -> bool:
+    '''Check if all required kwargs are present.
+
+    Parameters
+    ----------
+    kwargs : dict
+        Dictionary of keyword arguments to check.
+    required_kwargs : Union[list, tuple]
+        Required keyword arguments.
+
+    Returns
+    -------
+    bool
+        True if all required kwargs are present, False otherwise.
+
+    Raises
+    ------
+    ValueError
+        If required kwargs are not present.
+    '''
 
     for kwarg in required_kwargs:
         if not kwargs.get(kwarg) and not str(kwargs.get(kwarg)) == '0':
@@ -307,25 +362,33 @@ def __check_required_kwargs(kwargs: dict, required_kwargs: list) -> bool:
 
 
 def gen_request_args_f(function: callable,
-                         raise_exception: bool = True,
-                         **kwargs) -> Dict[str, any]:
+                       raise_exception: Optional[bool] = True,
+                       **kwargs) -> Dict[str, any]:
     '''Generate request parameters requied for the given function.
 
     Passing only `login_response`, `schedule_response` or `client` is also acceptable for some request parameters.
 
     Parameters
     ----------
-    function : (callable)
-        Request function from pymyku.request module.
+    function : callable
+        Any request function from pymyku.request module.
+    raise_exception : Optional[bool]
+        Whether to raise exception or not, by default True
 
     Returns
     -------
-        Dict[str, any]
+    Dict[str, any]
+        Request parameters.
+        
+    Raises
+    ------
+    ValueError
+        If required kwargs are not present.
     '''
-    
+
     if not callable(function):
         raise ValueError('function must be a callable')
-        
+
     name = function.__name__
 
     if kwargs.get('client'):

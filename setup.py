@@ -1,17 +1,31 @@
 from setuptools import setup
+import re
+
+extra_requires = {
+    'docs': [
+        'sphinx==4.4.0',
+        'sphinxcontrib_trio==1.1.2',
+        'sphinxcontrib-websupport',
+        'typing-extensions',
+    ],
+}
+version = ''
+with open('./pymyku/__init__.py') as f:
+    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
 
 setup(
     name='pymyku',
-    version='0.1.4',
+    version=version,
     description='Python MyKU API Wrapper',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     author='phusitsom',
     author_email='phusitsom@gmail.com',
     packages=['pymyku'],
+    license_file='LICENSE.md',
+    extras_require=extra_requires,
     url='https://github.com/phusitsom/pymyku',
     install_requires=['requests'],
-    license='GNU General Public License v3.0',
     python_requires='>=3.6',
     classifiers=[
         'Natural Language :: English',

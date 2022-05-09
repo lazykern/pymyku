@@ -7,3 +7,5 @@ from .constant import APP_KEY
 from .exception import InvalidSubjectID, TokenExpired
 from .pymyku import Client
 from .type import ClientType, Response
+
+__version__ = "0.1.5"
