@@ -47,27 +47,6 @@
                 </form>
             </nav>
         </header>
-        {#- The sub-header with search and extension related selection #}
-        <div class="sub-header grid-item">
-            <label for="documentation_select">{{ _('View Documentation For') }}</label>
-            <select id="documentation_select" onchange="window.location = this.value;">
-        {%- if pagename is prefixedwith 'ext/' %}
-        <option value="{{ pathto(master_doc)|e }}">pymyku</option>
-        {%- else %}
-        <option value="{{ pathto(pagename) }}" selected>pymyku</option>
-        {%- endif %}
-
-      </select>
-            <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
-                <div class="search-wrapper">
-                    <input type="search" name="q" placeholder="{{ _('Search documentation') }}" />
-                    <button type="submit" onmousedown="searchBarClick(event, document.getElementById('search-form'));">
-            <span class="material-icons">search</span>
-          </button>
-                </div>
-            </form>
-            <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
-        </div>
         {#- The sidebar component #}
         <aside class="grid-item">
             {%- if display_toc %}
