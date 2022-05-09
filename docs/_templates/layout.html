@@ -27,6 +27,21 @@
 <body>
     {%- block header %}{% endblock %}
     <div class="main-grid">
+        {#- The sidebar component #}
+        <aside class="grid-item">
+            <div id="sidebar">
+                <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
+                    <div class="search-wrapper">
+                        <input type="search" name="q" placeholder="{{ _('Search documentation') }}" />
+                        <button type="submit" onmousedown="searchBarClick(event, document.getElementById('search-form'));">
+                            <span class="material-icons">search</span>
+                        </button>
+                    </div>
+                </form>
+
+                {%- include "localtoc.html" %}
+            </div>
+        </aside>
         {#- The main navigation header #}
         <header class="grid-item">
             <nav>
@@ -52,21 +67,6 @@
                 </form>
             </nav>
         </header>
-        {#- The sidebar component #}
-        <aside class="grid-item">
-            <div id="sidebar">
-                <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
-                    <div class="search-wrapper">
-                        <input type="search" name="q" placeholder="{{ _('Search documentation') }}" />
-                        <button type="submit" onmousedown="searchBarClick(event, document.getElementById('search-form'));">
-                <span class="material-icons">search</span>
-              </button>
-                    </div>
-                </form>
-
-                {%- include "localtoc.html" %}
-            </div>
-        </aside>
         {#- The actual body of the contents #}
         <main class="grid-item" role="main">
             {% block body %} {% endblock %}
