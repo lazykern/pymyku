@@ -1,7 +1,7 @@
 from enum import Enum, EnumMeta
-from requests import Response
-from typing import Dict, List, Any, Union
+from typing import Any, Dict, List, Optional, Union
 
+from requests import Response
 
 class ClientType(object):
     '''Abstract class for client'''

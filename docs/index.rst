@@ -19,6 +19,6 @@ pymyku is a modern(somehow), versatile and easy to use API wrapper for MyKU.
 **Manuals**
 
 .. toctree::
-   :maxdepth: 1 
+   :maxdepth: 2
 
    api
