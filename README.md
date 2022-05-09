@@ -16,6 +16,7 @@ An unofficial [MyKU](https://my.ku.th/) API wrapper for python.
   - [Table of Contents](#table-of-contents)
   - [Notices](#notices)
   - [Documentation](#documentation)
+  - [Examples](#examples)
   - [Installation](#installation)
     - [Prerequisites](#prerequisites)
     - [From PyPI](#from-pypi)
@@ -26,6 +27,7 @@ An unofficial [MyKU](https://my.ku.th/) API wrapper for python.
       - [Requests](#requests)
     - [Output](#output)
   - [Notes](#notes)
+  - [References](#references)
 
 ## Notices
 
@@ -34,9 +36,13 @@ Please **respect** the API when using this project.
 
 ## Documentation
 
-WIP.
+All documentation is available [here](https://pymyku.readthedocs.io/).
 
 You can also use `help()` to see the docstrings of any modules in pymyku.
+
+## Examples
+
+You can find some examples in the [examples](./examples/).
 
 ## Installation
 
@@ -114,3 +120,9 @@ print(response)
 
 The only goal of this project is to make it simpler to send API requests to MyKU.
 There's no need to be concerned about the user's personal data being saved or shared.
+
+## References
+
+- [MyKU](https://my.ku.th/)
+- [requests](https://github.com/psf/requests)
+- [discord.py](https://github.com/Rapptz/discord.py) for documentaion style and template.
