@@ -1,4 +1,5 @@
 from setuptools import setup
+import re
 
 extra_requires = {
     'docs': [
