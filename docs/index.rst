@@ -2,15 +2,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pymyku
-=================
-
 .. container:: main-img
 
    .. image:: ./assets/pymyku_logo.png
       :alt: pymyku
       :width: 250px
-      :align: left
+      :align: center
 
 .. container:: description
 

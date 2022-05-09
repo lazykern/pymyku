@@ -105,7 +105,7 @@ def get_raise(dictionary: dict, key: str, dict_name: Optional[str] = None) -> An
         If key is not found in dictionary.
     '''
 
-    result = dict_.get(key)
+    result = dictionary.get(key)
     if result is None:
         raise ValueError(
             f'{key} is not found in {dict_name if dict_name else "dictionary"}')
