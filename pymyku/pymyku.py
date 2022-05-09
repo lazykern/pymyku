@@ -93,9 +93,10 @@ class Client(ClientType):
         
         Returns
         -------
-            :class:`Response`
-        '''
-
+        Response
+            Response object from the login request.
+        '''        
+        
         login_response = requests.request_login(self.__username, self.__password)
 
         login_response.raise_for_status()
