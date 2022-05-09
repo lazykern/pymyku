@@ -26,7 +26,7 @@ Historically however, thanks to:
     /* palette goes here */
     --white: #ffffff;
     --grey-1: #f9f9fa;
-    --grey-1-8: rgba(249, 249, 250, 0.8);
+    --grey-1-8: #f9f9facc;
     --grey-2: #ededf0;
     --grey-3: #d7d7db;
     --grey-4: #b1b1b3;
