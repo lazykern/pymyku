@@ -33,8 +33,8 @@ Historically however, thanks to:
     --grey-5: #737373;
     --grey-6: #323842;
     --grey-7: #23272e;
-    --grey-8: #242828;
-    --black: #1e2227;
+    --grey-8: #1e2227;
+    --black: #1a1e22;
     --blue-1: #3399ff;
     --blue-2: #0a84ff;
     --blue-3: #0060df;
@@ -1276,7 +1276,7 @@ main img.align-right {
 
 /* hide the welcome text */
 
-section#welcome-to-discord-py>h1 {
+section#welcome-to-pymyku>h1 {
     display: none;
 }
 

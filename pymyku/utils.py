@@ -1,5 +1,7 @@
-from . import attribute, constant, url
-from .type import (Any, ClientType, Dict, Enum, EnumMeta, Optional, Response, Union)
+from . import constant, url
+from .attribute import Schedule, Student, Token, User
+from .type import (Any, ClientType, Dict, Enum, EnumMeta, Optional, Response,
+                   Union)
 
 
 def response_to_json(response: Union[Response, dict]) -> dict:
@@ -61,19 +63,19 @@ def extract(response: Union[Response, dict], attr: Enum) -> Any:
 
     response = response_to_json(response)
 
-    if isinstance(attr, attribute.User):
+    if isinstance(attr, User):
         return response.get("user", {})\
             .get(attr.value, None)
 
-    if isinstance(attr, attribute.Student):
+    if isinstance(attr, Student):
         return response.get("user", {})\
             .get("student", {})\
             .get(attr.value, None)
 
-    if isinstance(attr, attribute.Token):
+    if isinstance(attr, Token):
         return response.get(attr.value, None)
 
-    if isinstance(attr, attribute.Schedule):
+    if isinstance(attr, Schedule):
         result = response.get("results", [])
         if not result:
             return None
@@ -103,7 +105,7 @@ def get_raise(dictionary: dict, key: str, dict_name: Optional[str] = None) -> An
         If key is not found in dictionary.
     '''
 
-    result = dict_.get(key)
+    result = dictionary.get(key)
     if result is None:
         raise ValueError(
             f'{key} is not found in {dict_name if dict_name else "dictionary"}')
