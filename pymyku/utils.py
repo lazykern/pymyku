@@ -36,7 +36,11 @@ def extract(response: Union[Response, dict], attr: Enum) -> Any:
 
     Returns
     -------
-        Any    
+        Any   
+        
+    Raises
+    ------
+        TypeError 
     '''
     
     if isinstance(attr, EnumMeta):
@@ -298,7 +302,22 @@ def gen_login_request_params(username: str, password: str) -> dict:
     }
 
 
-def __check_required_kwargs(kwargs: dict, required_kwargs: list) -> bool:
+def __check_required_kwargs(kwargs: dict, required_kwargs: Union[list, tuple]) -> bool:
+    '''Check if all required kwargs are present.
+
+    Parameters
+    ----------
+    kwargs : (dict)
+    required_kwargs : (list | tuple)
+
+    Returns
+    -------
+        bool
+
+    Raises
+    ------
+        ValueError
+    '''
 
     for kwarg in required_kwargs:
         if not kwargs.get(kwarg) and not str(kwargs.get(kwarg)) == '0':
@@ -317,10 +336,16 @@ def gen_request_args_f(function: callable,
     ----------
     function : (callable)
         Request function from pymyku.request module.
+    raise_exception : (bool, optional)
+        Whether to raise exception or not, by default True
 
     Returns
     -------
         Dict[str, any]
+        
+    Raises
+    ------
+        ValueError
     '''
     
     if not callable(function):
