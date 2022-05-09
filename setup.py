@@ -22,10 +22,10 @@ setup(
     author='phusitsom',
     author_email='phusitsom@gmail.com',
     packages=['pymyku'],
+    license_file='LICENSE.md',
     extras_require=extra_requires,
     url='https://github.com/phusitsom/pymyku',
     install_requires=['requests'],
-    license='GNU General Public License v3.0',
     python_requires='>=3.6',
     classifiers=[
         'Natural Language :: English',

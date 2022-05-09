@@ -2,12 +2,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pymyku
-===========================
-
 .. image:: ../assets/pymyku_logo.png
    :alt: pymyku
-   :width: 180px
+   :width: 250px
+   :align: center
 
 pymyku is a modern(somehow), versatile and easy to use API wrapper for MyKU.
 
@@ -16,9 +14,18 @@ pymyku is a modern(somehow), versatile and easy to use API wrapper for MyKU.
 - Easy to use with object oriented design.
 - Flexible utility for API usage.
 
-**Manuals**
+Getting started
+---------------
+
+- :doc:`/introduction`
+- `Examples <https://github.com/phusitsom/pymyku/tree/main/exam>`_
+
+
+Manuals
+-------
 
 .. toctree::
    :maxdepth: 2
 
    api
+
