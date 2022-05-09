@@ -19,6 +19,7 @@ setup(
     author='phusitsom',
     author_email='phusitsom@gmail.com',
     packages=['pymyku'],
+    extras_require=extra_requires,
     url='https://github.com/phusitsom/pymyku',
     install_requires=['requests'],
     license='GNU General Public License v3.0',
