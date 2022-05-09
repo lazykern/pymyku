@@ -44,53 +44,43 @@
             </button>
                     </div>
                 </form>
+                <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
             </nav>
         </header>
-        <div class="sub-header grid-item">
-
-            <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
-                <div class="search-wrapper">
+    </div>
+    {#- The sidebar component #}
+    <aside class="grid-item">
+        {%- if display_toc %}
+        <span id="hamburger-toggle">
+        <span class="material-icons">menu</span>
+        </span>
+        {%- endif %}
+        <span id="settings-toggle" class="settings" onclick="settingsModal.open();">
+        <span class="material-icons">settings</span>
+        </span>
+        <div id="sidebar">
+            <form id="sidebar-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
+                <div class="search-wrapper search-sidebar">
                     <input type="search" name="q" placeholder="{{ _('Search documentation') }}" />
-                    <button type="submit" onmousedown="searchBarClick(event, document.getElementById('search-form'));">
+                    <button type="submit" onmousedown="searchBarClick(event, document.getElementById('sidebar-form'));">
             <span class="material-icons">search</span>
           </button>
                 </div>
             </form>
-            <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
+            {%- include "localtoc.html" %}
         </div>
-        {#- The sidebar component #}
-        <aside class="grid-item">
-            {%- if display_toc %}
-            <span id="hamburger-toggle">
-        <span class="material-icons">menu</span>
-            </span>
-            {%- endif %}
-            <span id="settings-toggle" class="settings" onclick="settingsModal.open();">
-        <span class="material-icons">settings</span>
-            </span>
-            <div id="sidebar">
-                <form id="sidebar-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
-                    <div class="search-wrapper search-sidebar">
-                        <input type="search" name="q" placeholder="{{ _('Search documentation') }}" />
-                        <button type="submit" onmousedown="searchBarClick(event, document.getElementById('sidebar-form'));">
-            <span class="material-icons">search</span>
-          </button>
-                    </div>
-                </form>
-                {%- include "localtoc.html" %}
-            </div>
-        </aside>
-        {#- The actual body of the contents #}
-        <main class="grid-item" role="main">
-            {% block body %} {% endblock %}
-        </main>
-        {%- block footer %}
-        <footer class="grid-item">
-            {%- if show_copyright %} {%- if hasdoc('copyright') %} {% trans path=pathto('copyright'), copyright=copyright|e %}&#169; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %} {%- else %} {% trans copyright=copyright|e %}&#169;
-            Copyright {{ copyright }}.{% endtrans %} {%- endif %} {%- endif %} {%- if last_updated %} {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %} {%- endif %} {%- if show_sphinx %} {% trans sphinx_version=sphinx_version|e
-            %}Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %} {%- endif %}
-        </footer>
-        {%- endblock %}
+    </aside>
+    {#- The actual body of the contents #}
+    <main class="grid-item" role="main">
+        {% block body %} {% endblock %}
+    </main>
+    {%- block footer %}
+    <footer class="grid-item">
+        {%- if show_copyright %} {%- if hasdoc('copyright') %} {% trans path=pathto('copyright'), copyright=copyright|e %}&#169; <a href="{{ path }}">Copyright</a> {{ copyright }}.{% endtrans %} {%- else %} {% trans copyright=copyright|e %}&#169; Copyright
+        {{ copyright }}.{% endtrans %} {%- endif %} {%- endif %} {%- if last_updated %} {% trans last_updated=last_updated|e %}Last updated on {{ last_updated }}.{% endtrans %} {%- endif %} {%- if show_sphinx %} {% trans sphinx_version=sphinx_version|e
+        %}Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> {{ sphinx_version }}.{% endtrans %} {%- endif %}
+    </footer>
+    {%- endblock %}
     </div>
     {%- if READTHEDOCS %}
     <script>
