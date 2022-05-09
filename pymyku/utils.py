@@ -80,17 +80,17 @@ def extract(response: Union[Response, dict], attr: Enum) -> Any:
         return result[0].get(attr.value, None)
 
 
-def get_raise(dict_: dict, key: str, dict_name: Optional[str] = None) -> Any:
-    '''Raise VakueError if key is not found in dict_.
+def get_raise(dictionary: dict, key: str, dict_name: Optional[str] = None) -> Any:
+    '''Raise ValueError if key is not found in dictionary.
 
     Parameters
     ----------
-    dict_ : dict
-        _description_
+    dictionary : dict
+        The dictionary to search in.
     key : str
-        _description_
+        The key to search for.
     dict_name : Optional[str]
-        _description_, by default None
+        Name of the dictionary.
 
     Returns
     -------
@@ -100,7 +100,7 @@ def get_raise(dict_: dict, key: str, dict_name: Optional[str] = None) -> Any:
     Raises
     ------
     ValueError
-        If key is not found in dict_.
+        If key is not found in dictionary.
     '''
 
     result = dict_.get(key)
@@ -121,7 +121,7 @@ def extract_user_data(login_response: Union[Response, dict]) -> dict:
     Returns
     -------
     dict
-        User data.
+        User data. Identical to :class:`pymyku.attribute.User`
         
     Raises
     ------
@@ -147,7 +147,7 @@ def extract_student_data(login_response: Union[Response, dict]) -> dict:
     Returns
     -------
     dict
-        Student data.
+        Student data. Identical to :class:`pymyku.attribute.Student`
         
     Raises
     ------
@@ -173,7 +173,7 @@ def extract_access_token(login_response: Union[Response, dict]) -> str:
     Returns
     -------
     str
-        Access token. Identical to pymyku.attribute.Token.ACCESS_TOKEN.
+        Access token. Identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
         
     Raises
     ------
@@ -199,7 +199,7 @@ def extract_std_code(login_response: Union[Response, dict]) -> str:
     Returns
     -------
     str 
-        Student code.
+        Student code. Identical to :class:`pymyku.attribute.Student.STD_CODE`
     '''
 
     login_response = response_to_json(login_response)
@@ -212,7 +212,7 @@ def extract_std_code(login_response: Union[Response, dict]) -> str:
 
 
 def extract_std_id(login_response: Union[Response, dict]) -> str:
-    '''Extract student id from login response
+    '''Extract student id from login response.
 
     Parameters
     ----------
@@ -222,7 +222,7 @@ def extract_std_id(login_response: Union[Response, dict]) -> str:
     Returns
     -------
     str
-        Student id.
+        Student id. Identical to :class:`pymyku.attribute.Student.STD_ID`
     '''
 
     login_response = response_to_json(login_response)
@@ -237,7 +237,7 @@ def extract_std_id(login_response: Union[Response, dict]) -> str:
 def extract_schedule(schedule_response: Union[Response, dict],
                      as_dict: Optional[bool] = False,
                      full_result: Optional[bool] = False) -> Union[tuple, dict, list]:
-    '''Extract schedule (academic_year, semester) from schedule response
+    '''Extract academic_year and semester from schedule response.
 
     Parameters
     ----------
@@ -251,7 +251,7 @@ def extract_schedule(schedule_response: Union[Response, dict],
     Returns
     -------
     Union[tuple, dict, list]
-        Dictionary containing schedule data.
+        Academic year and semester. Identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR` and :class:`pymyku.attribute.Schedule.SEMESTER`
     '''
 
     schedule_response = response_to_json(schedule_response)
@@ -284,8 +284,8 @@ def gen_request_headers(access_token: Optional[Union[str, Response, dict]] = '')
     Parameters
     ----------
     access_token : Optional[Union[str, Response, dict]]
-        Access token, if the parameter is type Response or dict, the access token will be extracted, by default '
-
+        If the parameter is type Response or dict, the access token will be extracted.
+        Identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     Returns
     -------
     dict
@@ -318,8 +318,7 @@ def gen_login_request_params(username: str, password: str) -> dict:
     Returns
     -------
     dict
-        Request parameters.
-
+        Parameters for login request.
     '''
 
     return {

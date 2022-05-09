@@ -44,6 +44,12 @@ Types
     :imported-members:
     :members:
 
+URLs
+----
+
+.. automodule:: pymyku.url
+    :members:
+
 Exceptions
 ----------
 

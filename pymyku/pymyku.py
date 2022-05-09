@@ -25,7 +25,7 @@ class Client(ClientType):
         Returns
         -------
         dict
-            Response from the login request.
+            Response from the login request. Identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
         '''
         return self.__login_response
 
@@ -36,7 +36,7 @@ class Client(ClientType):
         Returns
         -------
         str
-            Access token.
+            Access token. Identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
         '''
         return self.__access_token
 
@@ -47,7 +47,7 @@ class Client(ClientType):
         Returns
         -------
         Response
-            Response from the schedule request.
+            Response from the schedule request. Identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
         '''
         return self.__schedule_response
 
@@ -58,7 +58,7 @@ class Client(ClientType):
         Returns
         -------
         Optional[str]
-            Current academic year.
+            Current academic year. Identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
         '''
         return self.__academic_year
 
@@ -69,7 +69,7 @@ class Client(ClientType):
         Returns
         -------
         Optional[str]
-            Current semester.
+            Current semester. Identical to :class:`pymyku.attribute.Schedule.SEMESTER`
         '''
         return self.__semester
 
@@ -80,7 +80,7 @@ class Client(ClientType):
         Returns
         -------
         dict
-            User data.
+            User data. Identical to :class:`pymyku.attribute.User`
         '''
         return self.login_response.get('user', {})
 
@@ -91,7 +91,7 @@ class Client(ClientType):
         Returns
         -------
         dict
-            Student data.
+            Student data. Identical to :class:`pymyku.attribute.Student`
         '''
         return self.user_data.get('student', {})
 
@@ -102,7 +102,7 @@ class Client(ClientType):
         Returns
         -------
         str
-            Student code. (##########)
+            Student code. Identical to :class:`pymyku.attribute.Student.STD_CODE`
         '''
         return self.student_data.get('stdCode')
 
@@ -122,6 +122,7 @@ class Client(ClientType):
         Returns
         -------
         Union[dict, Response]
+            Return the response if the response is 200. Otherwise, raise the error.
 
         Raises
         ------
@@ -189,7 +190,7 @@ class Client(ClientType):
         Returns
         -------
         Response
-            Response object from the login request.
+            Response object from the login request. Identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
         '''
 
         login_response = requests.request_login(self.__username, self.__password)
@@ -215,7 +216,7 @@ class Client(ClientType):
         Returns
         -------
         Union[dict, Response]
-            Response from the request.
+            Response from the request. Identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
         '''
 
         response = requests.get_schedule(login_response=self.__login_response)
