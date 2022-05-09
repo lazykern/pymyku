@@ -17,7 +17,7 @@ def request_login(username: str, password: str) -> Response:
 
     Returns
     -------
-    Response
+        Response
 
     API
     ---
@@ -45,10 +45,14 @@ def request_logout(access_token: str = '',
     -------
         Response
 
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/auth/logout
-
+    
     #
     '''
 
@@ -81,12 +85,16 @@ def get_schedule(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
 
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/common/getschedule
-
+    
     #
     '''
     params = utils.gen_request_args_f(get_schedule, **locals())
@@ -114,12 +122,16 @@ def get_group_course(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
 
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/std-profile/getGroupCourse
-
+    
     #
     '''
 
@@ -144,7 +156,7 @@ def get_check_grades(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
 
     API
     ---
@@ -173,12 +185,16 @@ def get_gpax(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
 
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/stddashboard/gpax
-
+    
     #
     '''
 
@@ -208,12 +224,16 @@ def get_announce(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
 
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/advisor/getAnnounceStd
-
+    
     #
     '''
 
@@ -243,12 +263,16 @@ def search_enroll(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
     
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/enroll/searchEnrollResult
-    
+        
     #    
     '''
 
@@ -273,12 +297,16 @@ def get_student_personal(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
     
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/std-profile/getStdPersonal
-    
+        
     #    
     '''
 
@@ -302,12 +330,16 @@ def get_student_education(access_token: str = '',
 
     Returns
     -------
-    Response
+        Response
     
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/std-profile/getStdEducation
-    
+        
     #    
     '''
     params = utils.gen_request_args_f(get_student_education, **locals())
@@ -330,12 +362,16 @@ def get_student_address(access_token: str = None,
 
     Returns
     -------
-    Response
+        Response
     
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/std-profile/getStdAddress
-    
+        
     #    
     '''
 
@@ -359,12 +395,16 @@ def search_subject(query: str,
 
     Returns
     -------
-    Response
+        Response
     
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/enroll/searchSubjectOpenEnr
-    
+        
     #    
     '''
 
@@ -397,12 +437,16 @@ def search_subject_open(query: str,
 
     Returns
     -------
-    Response
+        Response
     
+    Raises
+    ------
+        ValueError
+        
     API
     ---
     https://myapi.ku.th/enroll/openSubjectForEnroll
-    
+        
     #    
     '''
 
@@ -424,7 +468,11 @@ def search_section_detail(section_id: str,
 
     Returns
     -------
-    Response
+        Response
+    
+    Raises
+    ------
+        ValueError
     
     API
     ---
