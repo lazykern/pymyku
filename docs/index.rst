@@ -17,7 +17,7 @@ pymyku is a modern(somehow), versatile and easy to use API wrapper for MyKU.
 Getting started
 ---------------
 
-- :doc:`introduction`
+- :doc:`intro`
 - `Examples <https://github.com/phusitsom/pymyku/tree/main/examples>`_
 
 
