@@ -31,6 +31,11 @@ class Client(ClientType):
         -------
             dict | Response 
         
+        Raises
+        -------
+            ExpiredTokenError
+            
+            HTTPError
         '''
 
         data = response.json()
@@ -397,6 +402,12 @@ class Client(ClientType):
         -------
             List[Dict[str, str]]
         
+        Raises
+        -------
+            ExpiredTokenError
+            
+            HTTPError
+        
         API
         ---
         https://myapi.ku.th/enroll/searchSubjectOpenEnr
@@ -426,6 +437,12 @@ class Client(ClientType):
         Returns
         -------
             List[Dict[str, Union[str, int]]]
+            
+        Raises
+        -------
+            ExpiredTokenError
+            
+            HTTPError
         
         API
         ---
@@ -455,6 +472,10 @@ class Client(ClientType):
         Returns
         -------
             Any
+            
+        Raises
+        -------
+            TypeError
         '''
 
         if isinstance(attr, attribute.FetchedResponses):
@@ -518,21 +539,18 @@ class Client(ClientType):
 
         return self.__access_token
 
-    def get_std_code(self) -> str:
-        '''Get student code from MyKU client.
-
-        Returns
-        -------
-            str
-        '''
-        return self.get(attribute.Student.STD_CODE)
-
     def get_group_course(self) -> List[dict]:
         '''Send GET request to MyKU std-profile/getGroupCourse API and return the result.
 
         Returns
         -------
             List[dict]
+            
+        Raises
+        -------
+            ExpiredTokenError
+            
+            HTTPError
         '''
         response = self.fetch_group_course(as_response=True)
 
@@ -546,13 +564,19 @@ class Client(ClientType):
         Returns
         -------
             float
+            
+        Raises
+        -------
+            ExpiredTokenError
+            
+            HTTPError
         '''
 
         response = self.fetch_gpax(as_response=True)
 
         response = self.__valid_response(response)
 
-        return response.get('results', {})[0].get('gpax', {})
+        return response.get('results', {})[0].get('gpax')
 
     def get_total_credit(self) -> int:
         '''Send GET request to MyKU std-profile/getTotalCredit API and return the total credit.
@@ -560,6 +584,12 @@ class Client(ClientType):
         Returns
         -------
             int
+            
+        Raises
+        ------
+            ExpiredTokenError
+            
+            HTTPError
         '''
 
         response = self.fetch_gpax(as_response=True)
@@ -590,6 +620,12 @@ class Client(ClientType):
                         }
                 }
             }
+            
+        Raises
+        -------
+            ExpiredTokenError
+            
+            HTTPError
         '''
         grades = {}
 
