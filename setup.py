@@ -1,6 +1,15 @@
 from setuptools import setup
 from .pymyku import __version__
 
+extra_requires = {
+    'docs': [
+        'sphinx==4.4.0',
+        'sphinxcontrib_trio==1.1.2',
+        'sphinxcontrib-websupport',
+        'typing-extensions',
+    ],
+}
+
 setup(
     name='pymyku',
     version=__version__,
