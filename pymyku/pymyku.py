@@ -93,7 +93,7 @@ class Client(ClientType):
         
         Returns
         -------
-            Response
+            :class:`Response`
         '''
 
         login_response = requests.request_login(self.__username, self.__password)
