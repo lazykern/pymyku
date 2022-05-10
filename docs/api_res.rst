@@ -7,9 +7,13 @@ API Responses
 
 This page lists the responses that are returned by the API.
 
+Instead of the actual response, the following representations are used:
+
 :code:`String` : "x"
 
-:code:`Numeric` : -1 
+:code:`Numeric` : -1, -1.0
+
+:code:`others` : *Actual*
 
 POST
 ^^^^
