@@ -107,7 +107,7 @@ will return a :class:`list` of subjects that you enrolled in the summer term of 
 Search
 ^^^^^^
 
-Just like get, method that starts with :code:`search` will return the result from the API that is related to searching.
+Just like get. Methods that starts with :code:`search` will return the result from the API that is related to searching.
 
 For example:
 
@@ -116,3 +116,8 @@ For example:
     client.search_subject_id("013")
 
 will return a :class:`list` of subjects that start with the code "013".
+
+Using requests
+--------------
+
+WIP
