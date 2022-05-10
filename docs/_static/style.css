@@ -314,10 +314,10 @@ header>nav>a:hover {
     background-color: transparent;
     /* padding: 0.4em 0; */
     font-size: 1em;
-    width: 0%;
+    width: 0.1%;
     color: transparent;
     border: none;
-    border-bottom: 0px solid var(--search-border);
+    border-bottom: 0px solid transparent;
     appearance: none;
 }
 
