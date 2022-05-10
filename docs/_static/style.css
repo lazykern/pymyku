@@ -309,14 +309,29 @@ header>nav>a:hover {
     margin-right: 1em;
 }
 
+.sub-header>div {
+    display: none;
+    margin-right: 1em;
+}
+
+.sub-header>a {
+    display: none;
+    margin-right: 1em;
+}
+
 .sub-header>select {
     display: none;
     background-color: transparent;
-    width: 0em;
-    height: 0em;
-    border: hidden;
-    visibility: hidden;
-    width: 0;
+    padding: 0.4em 0;
+    font-size: 0em;
+    width: 0%;
+    color: transparent;
+    border: none;
+    border-bottom: 0px solid transparent;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position-x: 100%;
+    background-position-y: 50%;
 }
 
 .sub-header option {
@@ -1324,6 +1339,12 @@ div.code-block-caption {
         align-items: center;
     }
     .sub-header>label {
+        display: initial;
+    }
+    .sub-header>div {
+        display: initial;
+    }
+    .sub-header>a {
         display: initial;
     }
     .sub-header>select {
