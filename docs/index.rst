@@ -32,5 +32,6 @@ Manuals
 -------
 
 - :doc:`api`
+- :doc:`api_res`
 - If you're looking for something specific, try the :ref:`index <genindex>` or :ref:`searching <search>`.
 
