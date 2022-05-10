@@ -30,9 +30,10 @@
         {#- The main navigation header #}
         <header class="grid-item">
             <nav>
-                <a href="https://github.com/phusitsom/pymyku" title="GitHub"><span class="material-icons custom-icons">github</span></a>
                 <a href="{{ pathto(master_doc)|e }}" class="main-heading">pymyku</a>
 
+                <a href="https://github.com/phusitsom/pymyku" title="GitHub"><span class="material-icons custom-icons">github</span></a>
+                <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
             </nav>
             <nav class="mobile-only">
                 <form role="search" class="search" action="{{ pathto('search') }}" method="get">
@@ -50,11 +51,10 @@
             {%- if display_toc %}
             <span id="hamburger-toggle">
                 <span class="material-icons">menu</span>
-            </span>
-            {%- endif %}
-            <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
             <a onclick="mobileSearch.open();" title="{{ _('Search') }}" id="open-search" class="mobile-only"><span class="material-icons">search</span></a>
             <a onclick="mobileSearch.close();" title="{{ _('Close') }}" id="close-search" class="mobile-only" hidden><span class="material-icons">close</span></a>
+            </span>
+            {%- endif %}
             <div id="sidebar">
                 <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
                     <div class="search-wrapper">
