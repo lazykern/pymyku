@@ -25,7 +25,7 @@ class Client(ClientType):
         Returns
         -------
         dict
-            Response from the login request. Identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+            Response from the login request. Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
         '''
         return self.__login_response
 
@@ -36,7 +36,7 @@ class Client(ClientType):
         Returns
         -------
         str
-            Access token. Identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+            Access token. Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
         '''
         return self.__access_token
 
@@ -47,7 +47,7 @@ class Client(ClientType):
         Returns
         -------
         Response
-            Response from the schedule request. Identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
+            Response from the schedule request. Represented by :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
         '''
         return self.__schedule_response
 
@@ -58,7 +58,7 @@ class Client(ClientType):
         Returns
         -------
         Optional[str]
-            Current academic year. Identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+            Current academic year. Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
         '''
         return self.__academic_year
 
@@ -69,7 +69,7 @@ class Client(ClientType):
         Returns
         -------
         Optional[str]
-            Current semester. Identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+            Current semester. Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
         '''
         return self.__semester
 
@@ -80,7 +80,7 @@ class Client(ClientType):
         Returns
         -------
         dict
-            User data. Identical to :class:`pymyku.attribute.User`
+            User data. Represented by :class:`pymyku.attribute.User`
         '''
         return self.login_response.get('user', {})
 
@@ -91,7 +91,7 @@ class Client(ClientType):
         Returns
         -------
         dict
-            Student data. Identical to :class:`pymyku.attribute.Student`
+            Student data. Represented by :class:`pymyku.attribute.Student`
         '''
         return self.user_data.get('student', {})
 
@@ -102,7 +102,7 @@ class Client(ClientType):
         Returns
         -------
         str
-            Student code. Identical to :class:`pymyku.attribute.Student.STD_CODE`
+            Student code. Represented by :class:`pymyku.attribute.Student.STD_CODE`
         '''
         return self.student_data.get('stdCode')
 
@@ -190,7 +190,7 @@ class Client(ClientType):
         Returns
         -------
         Response
-            Response object from the login request. Identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+            Response object from the login request. Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
         '''
 
         login_response = requests.request_login(self.__username, self.__password)
@@ -216,7 +216,7 @@ class Client(ClientType):
         Returns
         -------
         Union[dict, Response]
-            Response from the request. Identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
+            Response from the request. Represented by :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
         '''
 
         response = requests.get_schedule(login_response=self.__login_response)
@@ -345,10 +345,10 @@ class Client(ClientType):
         ----------
         academic_year : Optional[Union[str, int]], optional
             Academic year, if not provided, will use the current academic year.
-            Identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+            Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
         semester : Optional[Union[str, int]], optional
             Semester, if not provided, will use the current semester.
-            Identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+            Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
         as_response : Optional[bool]
             Return as Response object if True, otherwise dict, by default False
             
@@ -383,10 +383,10 @@ class Client(ClientType):
         ----------
         academic_year : Optional[Union[str, int]], optional
             Academic year, if not provided, will use the current academic year.
-            Identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+            Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
         semester : Optional[Union[str, int]], optional
             Semester, if not provided, will use the current semester.
-            Identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+            Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
 
         Returns
         -------

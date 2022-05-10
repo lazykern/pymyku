@@ -2,7 +2,10 @@ from .type import Enum
 
 
 class User(Enum):
-    '''Enum representation for user data in login response'''
+    '''Enum representation for user data in login response.
+    Login response can be obtained by calling :meth:`pymyku.requests.request_login` 
+    or getting from client property :attr:`pymyku.Client.login_response`
+    '''
     #: A representation for loginName from user data in login response.
     LOGIN_NAME = "loginName"
     #: A representation for userType from user data in login response.
@@ -32,7 +35,10 @@ class User(Enum):
 
 
 class Student(Enum):
-    '''Enum representation for student data in login response'''
+    '''Enum representation for student data in login response.
+    Login response can be obtained by calling :meth:`pymyku.requests.request_login` 
+    or getting from client property :attr:`pymyku.Client.login_response`
+    '''
     #: A representation for stdId from student data in login response.
     STD_ID = "stdId"
     #: A representation for stdCode from student data in login response.
@@ -108,14 +114,20 @@ class Student(Enum):
 
 
 class Token(Enum):
-    '''Enum representation for tokens in login response'''
+    '''Enum representation for tokens in login response.
+    Login response can be obtained by calling :meth:`pymyku.requests.request_login`
+    or getting from client property :attr:`pymyku.Client.login_response`
+    '''
     #: A representation for accessToken from login response.
     ACCESS_TOKEN = "accesstoken"
     #: A representation for refreshToken from login response.
     RENEW_TOKEN = "renewtoken"
 
 class Schedule(Enum):
-    '''Enum representation for schedule data in schedule response'''
+    '''Enum representation for schedule data in schedule response
+    Schedule response can be obtained by calling :meth:`pymyku.requests.get_schedule`
+    or getting from client property :attr:`pymyku.Client.schedule_response`
+    '''
     #: A representation for scheduleId from schedule response.
     ACADEMIC_YEAR = "academicYr"
     #: A representation for semester from schedule response.
@@ -123,9 +135,11 @@ class Schedule(Enum):
 
 class FetchedResponses(Enum):
     '''Enum representation for fetched responses in client object'''
-    #: A representation for login response in pymyku.Client.
+    #: A representation for login response in :class:`pymyku.Client`.
+    #: Login response can be obtained by getting from client property :attr:`pymyku.Client.login_response`
     LOGIN_RESPONSE = 0
-    #: A representation for schedule response in pymyku.Client.
+    #: A representation for schedule response in :class:`pymyku.Client`.
+    #: Schedule response can be obtained by getting from client property :attr:`pymyku.Client.schedule_response`
     SCHEDULE_RESPONSE = 1
 
 for enum in [User, Student, Token, Schedule, FetchedResponses]:

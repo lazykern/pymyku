@@ -40,10 +40,10 @@ def request_logout(access_token: Optional[str] = '',
     Parameters
     ----------
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -80,21 +80,21 @@ def get_schedule(access_token: Optional[str] = '',
     Parameters
     ----------
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     user_type : Optional[str]
-        'userType' attribute from login response, identical to :class:`pymyku.attribute.User.USER_TYPE`
+        'userType' attribute from login response, Represented by :class:`pymyku.attribute.User.USER_TYPE`
     campus_code : Optional[str]
-        'campusCode' attribute from login response, identical to :class:`pymyku.attribute.Student.CAMPUS_CODE`, e.g. 'B'
+        'campusCode' attribute from login response, Represented by :class:`pymyku.attribute.Student.CAMPUS_CODE`, e.g. 'B'
         , e.g. 'B'
     faculty_code : Optional[str]
-        'facultyCode' attribute from login response, identical to :class:`pymyku.attribute.Student.FACULTY_CODE`
+        'facultyCode' attribute from login response, Represented by :class:`pymyku.attribute.Student.FACULTY_CODE`
     major_code : Optional[str]
-        'majorCode' attribute from login response, identical to :class:`pymyku.attribute.Student.MAJOR_CODE`
+        'majorCode' attribute from login response, Represented by :class:`pymyku.attribute.Student.MAJOR_CODE`
     student_status_code : Optional[str]
-        'studentStatusCode' attribute from login response, identical to :class:`pymyku.attribute.Student.STUDENT_STATUS_CODE`
+        'studentStatusCode' attribute from login response, Represented by :class:`pymyku.attribute.Student.STUDENT_STATUS_CODE`
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -129,22 +129,22 @@ def get_group_course(access_token: Optional[str] = '',
     Parameters
     ----------
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     std_id : Optional[str]
-        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        'stdId' attribute from login response, Represented by :class:`pymyku.attribute.Student.STD_ID` 
         , e.g. '20xxxx'
     academic_year : Optional[str]
-        'academicYr' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        'academicYr' attribute from schedule response, Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
         , e.g. '2565'
     semester : Optional[str]
-        'semester' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+        'semester' attribute from schedule response, Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
         , e.g. '0' for summer, '1' for first semester and '2' for second semester.
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     schedule_response : Optional[Union[Response, dict]]
         Schedule response from :meth:`get_schedule`, 
-        identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -178,13 +178,13 @@ def get_check_grades(access_token: Optional[str] = '',
     Parameters
     ----------
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     std_code : Optional[str]
-        'stdCode' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_CODE`
+        'stdCode' attribute from login response, Represented by :class:`pymyku.attribute.Student.STD_CODE`
         , e.g. '64xxxxxxxx'
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -217,13 +217,13 @@ def get_gpax(access_token: Optional[str] = '',
     Parameters
     ----------
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     std_id : Optional[str]
-        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        'stdId' attribute from login response, Represented by :class:`pymyku.attribute.Student.STD_ID` 
         , e.g. '20xxxx'
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -259,22 +259,22 @@ def get_announce(access_token: Optional[str] = '',
     Parameters
     ----------
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     std_id : Optional[str]
-        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        'stdId' attribute from login response, Represented by :class:`pymyku.attribute.Student.STD_ID` 
         , e.g. '20xxxx'
     academic_year : Optional[str]
-        'academicYr' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        'academicYr' attribute from schedule response, Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
         , e.g. '2565'
     semester : Optional[str]
-        'semester' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+        'semester' attribute from schedule response, Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
         , e.g. '0' for summer, '1' for first semester and '2' for second semester.
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     schedule_response : Optional[Union[Response, dict]]
         Schedule response from :meth:`get_schedule`, 
-        identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -310,22 +310,22 @@ def search_enroll(access_token: Optional[str] = '',
     Parameters
     ----------
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     std_id : Optional[str]
-        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        'stdId' attribute from login response, Represented by :class:`pymyku.attribute.Student.STD_ID` 
         , e.g. '20xxxx'
     academic_year : Optional[str]
-        'academicYr' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        'academicYr' attribute from schedule response, Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
         , e.g. '2565'
     semester : Optional[str]
-        'semester' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+        'semester' attribute from schedule response, Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
         , e.g. '0' for summer, '1' for first semester and '2' for second semester.
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     schedule_response : Optional[Union[Response, dict]]
         Schedule response from :meth:`get_schedule`, 
-        identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -358,13 +358,13 @@ def get_student_personal(access_token: Optional[str] = '',
     Parameters
     ----------
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     std_id : Optional[str]
-        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        'stdId' attribute from login response, Represented by :class:`pymyku.attribute.Student.STD_ID` 
         , e.g. '20xxxx'
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -397,13 +397,13 @@ def get_student_education(access_token: Optional[str] = '',
     Parameters
     ----------
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     std_id : Optional[str]
-        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        'stdId' attribute from login response, Represented by :class:`pymyku.attribute.Student.STD_ID` 
         , e.g. '20xxxx'
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -435,13 +435,13 @@ def get_student_address(access_token: Optional[str] = '',
     Parameters
     ----------
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     std_id : Optional[str]
-        'stdId' attribute from login response, identical to :class:`pymyku.attribute.Student.STD_ID` 
+        'stdId' attribute from login response, Represented by :class:`pymyku.attribute.Student.STD_ID` 
         , e.g. '20xxxx'
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -476,10 +476,10 @@ def search_subject(query: str,
     query : str
         Subject id, e.g. '013' or '01355119'
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -521,22 +521,22 @@ def search_subject_open(query: str,
     section : Optional[str]
         Section of the subject, e.g. '1'
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     campus_code : Optional[str]
-        'campusCode' attribute from login response, identical to :class:`pymyku.attribute.Student.CAMPUS_CODE`, e.g. 'B'
+        'campusCode' attribute from login response, Represented by :class:`pymyku.attribute.Student.CAMPUS_CODE`, e.g. 'B'
         , e.g. 'B'
     academic_year : Optional[str]
-        'academicYr' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        'academicYr' attribute from schedule response, Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
         , e.g. '2565'
     semester : Optional[str]
-        'semester' attribute from schedule response, identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+        'semester' attribute from schedule response, Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
         , e.g. '0' for summer, '1' for first semester and '2' for second semester.
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     schedule_response : Optional[Union[Response, dict]]
         Schedule response from :meth:`get_schedule`, 
-        identical to :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.SCHEDULE_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 
@@ -569,10 +569,10 @@ def search_section_detail(section_id: str,
     section_id : str
         Section id. e.g. '186426'
     access_token : Optional[str]
-        'accesstoken' from login response, identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     login_response : Optional[Union[Response, dict]]
         Login response from login request, can be obtained from :meth:`request_login`
-        identical to :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
+        Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
     client : Optional[ClientType]
         Initialized :class:`pymyku.Client` object
 

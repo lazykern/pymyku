@@ -123,7 +123,7 @@ def extract_user_data(login_response: Union[Response, dict]) -> dict:
     Returns
     -------
     dict
-        User data. Identical to :class:`pymyku.attribute.User`
+        User data. Represented by :class:`pymyku.attribute.User`
         
     Raises
     ------
@@ -149,7 +149,7 @@ def extract_student_data(login_response: Union[Response, dict]) -> dict:
     Returns
     -------
     dict
-        Student data. Identical to :class:`pymyku.attribute.Student`
+        Student data. Represented by :class:`pymyku.attribute.Student`
         
     Raises
     ------
@@ -175,7 +175,7 @@ def extract_access_token(login_response: Union[Response, dict]) -> str:
     Returns
     -------
     str
-        Access token. Identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        Access token. Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
         
     Raises
     ------
@@ -201,7 +201,7 @@ def extract_std_code(login_response: Union[Response, dict]) -> str:
     Returns
     -------
     str 
-        Student code. Identical to :class:`pymyku.attribute.Student.STD_CODE`
+        Student code. Represented by :class:`pymyku.attribute.Student.STD_CODE`
     '''
 
     login_response = response_to_json(login_response)
@@ -224,7 +224,7 @@ def extract_std_id(login_response: Union[Response, dict]) -> str:
     Returns
     -------
     str
-        Student id. Identical to :class:`pymyku.attribute.Student.STD_ID`
+        Student id. Represented by :class:`pymyku.attribute.Student.STD_ID`
     '''
 
     login_response = response_to_json(login_response)
@@ -253,7 +253,7 @@ def extract_schedule(schedule_response: Union[Response, dict],
     Returns
     -------
     Union[tuple, dict, list]
-        Academic year and semester. Identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR` and :class:`pymyku.attribute.Schedule.SEMESTER`
+        Academic year and semester. Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR` and :class:`pymyku.attribute.Schedule.SEMESTER`
     '''
 
     schedule_response = response_to_json(schedule_response)
@@ -285,7 +285,7 @@ def gen_request_headers(access_token: Optional[Union[str, Response, dict]] = '')
     ----------
     access_token : Optional[Union[str, Response, dict]]
         If the parameter is type Response or dict, the access token will be extracted.
-        Identical to :class:`pymyku.attribute.Token.ACCESS_TOKEN`
+        Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     Returns
     -------
     dict
