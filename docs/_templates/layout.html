@@ -51,10 +51,9 @@
             {%- if display_toc %}
             <span id="hamburger-toggle">
                 <span class="material-icons">menu</span>
-            <a onclick="mobileSearch.open();" title="{{ _('Search') }}" id="open-search" class="mobile-only"><span class="material-icons">search</span></a>
-            <a onclick="mobileSearch.close();" title="{{ _('Close') }}" id="close-search" class="mobile-only" hidden><span class="material-icons">close</span></a>
             </span>
-            {%- endif %}
+            <a onclick="mobileSearch.open();" title="{{ _('Search') }}" id="open-search" class="mobile-only"><span class="material-icons">search</span></a>
+            <a onclick="mobileSearch.close();" title="{{ _('Close') }}" id="close-search" class="mobile-only" hidden><span class="material-icons">close</span></a> {%- endif %}
             <div id="sidebar">
                 <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
                     <div class="search-wrapper">
