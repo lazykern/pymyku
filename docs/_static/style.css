@@ -313,6 +313,7 @@ header>nav>a:hover {
     display: none;
     background-color: transparent;
     visibility: hidden;
+    width: 0;
 }
 
 .sub-header option {
