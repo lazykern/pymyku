@@ -707,6 +707,8 @@ class Client(ClientType):
             List of enrolled subjects.
         '''
         response = self.fetch_enroll(academic_year, semester)
+        
+        response = self.valid_response(response)
 
         subjects = [subj for subj in response["enrollSubjects"]]
 
