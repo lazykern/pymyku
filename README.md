@@ -42,7 +42,7 @@ You can also use `help()` to see the docstrings of any modules in pymyku.
 
 ## Examples
 
-You can find some examples in the [examples](./examples/).
+You can find some examples in the [examples](https://pymyku.readthedocs.io/en/latest/example.html).
 
 ## Installation
 
