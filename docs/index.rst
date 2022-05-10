@@ -22,7 +22,7 @@ Getting started
 ---------------
 
 - :doc:`intro`
-- `Examples <https://github.com/phusitsom/pymyku/tree/main/examples>`_
+- :doc:`example`
 
 
 Manuals
