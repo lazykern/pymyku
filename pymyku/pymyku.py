@@ -524,7 +524,7 @@ class Client(ClientType):
         return response.get('results', [])
 
     def search_section_detail(
-            self, subject_id: str) -> Dict[str, Union[Dict[str, List[str, Union[str, int]]], list, str]]:
+            self, subject_id: str) -> Dict[str, Union[Dict[str, List[Union[str, int]]], list, str]]:
         '''Send GET request to MyKU enroll/searchSectionDetail API.
 
         API: https://myapi.ku.th/enroll/searchSectionDetail
