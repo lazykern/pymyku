@@ -54,8 +54,6 @@ extensions = [
 autodoc_member_order = 'bysource'
 autodoc_typehints = 'none'
 
-add_module_names = False
-
 intersphinx_mapping = {
   'py': ('https://docs.python.org/3', None),
   'req': ('https://docs.python-requests.org/en/latest/', None)
