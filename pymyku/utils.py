@@ -497,7 +497,7 @@ def gen_request_args_f(function: callable,
             __check_required_kwargs(kwargs, ['std_id', 'academic_year', 'semester'])
 
         return {
-            'url': url.ANNOUCE,
+            'url': url.ANNOUNCE,
             'headers': headers,
             'params': {
                 'stdId': kwargs.get('std_id'),

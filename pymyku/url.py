@@ -8,7 +8,7 @@ LOGOUT: str = 'https://myapi.ku.th/auth/logout'
 SCHEDULE: str = 'https://myapi.ku.th/common/getschedule'
 
 #: API for getting announcement data
-ANNOUCE: str = 'https://myapi.ku.th/advisor/getAnnounceStd'
+ANNOUNCE: str = 'https://myapi.ku.th/advisor/getAnnounceStd'
 
 #: API for getting grades for each semester
 CHECK_GRADES: str = 'https://myapi.ku.th/std-profile/checkGrades'

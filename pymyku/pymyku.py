@@ -225,6 +225,42 @@ class Client(ClientType):
             return response
 
         return response.json()
+    
+    def fetch_announce(self,
+                      academic_year=None,
+                      semester=None,
+                      as_response: Optional[bool] = False) -> Union[List[dict], Response]:
+        '''Send GET request to MyKU advisor/getAnnounceStd API.
+                
+        API: https://myapi.ku.th/advisor/getAnnounceStd
+        
+        Parameters
+        ----------
+        as_response : Optional[bool]
+            Return as Response object if True, otherwise dict, by default False
+
+        Returns
+        -------
+            Union[List[dict], Response]
+
+        '''
+        
+        if academic_year is None:
+            academic_year = self.__academic_year
+
+        if semester is None:
+            semester = self.__semester
+
+        response = requests.get_announce(academic_year=academic_year,
+                                         semester=semester,
+                                         login_response=self.__login_response,
+                                         schedule_response=self.__schedule_response)
+
+        if as_response:
+            return response
+
+        return response.json()
+
 
     def fetch_group_course(self,
                            as_response: Optional[bool] = False) -> Union[dict, Response]:
@@ -292,41 +328,6 @@ class Client(ClientType):
         '''
 
         response = requests.get_gpax(login_response=self.__login_response)
-
-        if as_response:
-            return response
-
-        return response.json()
-
-    def fetch_annouce(self,
-                      academic_year=None,
-                      semester=None,
-                      as_response: Optional[bool] = False) -> Union[List[dict], Response]:
-        '''Send GET request to MyKU advisor/getAnnounceStd API.
-                
-        API: https://myapi.ku.th/advisor/getAnnounceStd
-        
-        Parameters
-        ----------
-        as_response : Optional[bool]
-            Return as Response object if True, otherwise dict, by default False
-
-        Returns
-        -------
-            Union[List[dict], Response]
-
-        '''
-        
-        if academic_year is None:
-            academic_year = self.__academic_year
-
-        if semester is None:
-            semester = self.__semester
-
-        response = requests.get_announce(academic_year=academic_year,
-                                         semester=semester,
-                                         login_response=self.__login_response,
-                                         schedule_response=self.__schedule_response)
 
         if as_response:
             return response
