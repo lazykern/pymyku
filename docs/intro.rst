@@ -16,10 +16,8 @@ Prerequisites
 pymyku works with Python 3.6 or higher. Support for earlier versions of Python
 is not provided.
 
-.. _installing:
-
 Installing
------------
+----------
 
 You can get the library directly from PyPI:
 

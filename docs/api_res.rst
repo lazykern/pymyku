@@ -95,7 +95,7 @@ URL -- :code:`https://myapi.ku.th/auth/login`
     }
 
 :attr:`url.LOGOUT`
-"""""""""""""""""
+""""""""""""""""""
 
 URL -- :code:`https://myapi.ku.th/auth/logout`
 
