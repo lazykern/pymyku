@@ -32,57 +32,40 @@
             <nav>
                 <a href="{{ pathto(master_doc)|e }}" class="main-heading">pymyku</a>
                 <a href="https://github.com/phusitsom/pymyku" title="GitHub"><span class="material-icons custom-icons">github</span></a>
-                <a onclick="mobileSearch.open();" title="{{ _('Search') }}" id="open-search" class="mobile-only"><span class="material-icons">search</span></a>
-                <a onclick="mobileSearch.close();" title="{{ _('Close') }}" id="close-search" class="mobile-only" hidden><span class="material-icons">close</span></a>
+                <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
             </nav>
             <nav class="mobile-only">
                 <form role="search" class="search" action="{{ pathto('search') }}" method="get">
                     <div class="search-wrapper">
                         <input type="search" name="q" placeholder="{{ _('Search documentation') }}" />
                         <button type="submit">
-                <span class="material-icons">search</span>
-              </button>
+                            <span class="material-icons">search</span>
+                        </button>
                     </div>
                 </form>
             </nav>
         </header>
-        {#- The sub-header with search and extension related selection #}
-
-        <div class="sub-header grid-item">
-            <select>
-            </select>
-            <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get" style="align-items: right;">
-                <div class="search-wrapper">
-                    <input type="search" name="q" placeholder="{{ _('Search documentation') }}" />
-                    <button type="submit" onmousedown="searchBarClick(event, document.getElementById('search-form'));">
-              <span class="material-icons">search</span>
-            </button>
-                </div>
-            </form>
-            <a accesskey="S" class="settings" onclick="settingsModal.open();"><span class="material-icons">settings</span></a>
-        </div>
         {#- The sidebar component #}
         <aside class="grid-item">
             {%- if display_toc %}
             <span id="hamburger-toggle">
-          <span class="material-icons">menu</span>
+                <span class="material-icons">menu</span>
             </span>
             {%- endif %}
-            <span id="settings-toggle" class="settings" onclick="settingsModal.open();">
-          <span class="material-icons">settings</span>
-            </span>
             <div id="sidebar">
-                <form id="sidebar-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
-                    <div class="search-wrapper search-sidebar">
+                <form id="search-form" role="search" class="search" action="{{ pathto('search') }}" method="get">
+                    <div class="search-wrapper">
                         <input type="search" name="q" placeholder="{{ _('Search documentation') }}" />
-                        <button type="submit" onmousedown="searchBarClick(event, document.getElementById('sidebar-form'));">
-              <span class="material-icons">search</span>
-            </button>
+                        <button type="submit" onmousedown="searchBarClick(event, document.getElementById('search-form'));">
+                            <span class="material-icons">search</span>
+                        </button>
                     </div>
                 </form>
+
                 {%- include "localtoc.html" %}
             </div>
         </aside>
+
         {#- The actual body of the contents #}
         <main class="grid-item" role="main">
 
