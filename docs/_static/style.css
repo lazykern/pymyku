@@ -312,13 +312,7 @@ header>nav>a:hover {
 .sub-header>select {
     display: none;
     background-color: transparent;
-    /* padding: 0.4em 0; */
-    font-size: 1em;
-    width: 0.1%;
-    color: transparent;
-    border: none;
-    border-bottom: 0px solid transparent;
-    appearance: none;
+    visibility: hidden;
 }
 
 .sub-header option {
