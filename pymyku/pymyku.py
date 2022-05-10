@@ -333,7 +333,7 @@ class Client(ClientType):
 
         return response.json()
 
-    def search_enroll(self,
+    def fetch_enroll(self,
                       academic_year: Optional[Union[str, int]] = None,
                       semester: Optional[Union[str, int]] = None,
                       as_response: Optional[bool] = False) -> Union[dict, Response]:
@@ -343,10 +343,12 @@ class Client(ClientType):
         
         Parameters
         ----------
-        academic_year : Optional[Union[str, int]]
-            Academic year, by default None
-        semester : Optional[Union[str, int]]
-            Semester, by default None
+        academic_year : Optional[Union[str, int]], optional
+            Academic year, if not provided, will use the current academic year.
+            Identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        semester : Optional[Union[str, int]], optional
+            Semester, if not provided, will use the current semester.
+            Identical to :class:`pymyku.attribute.Schedule.SEMESTER`
         as_response : Optional[bool]
             Return as Response object if True, otherwise dict, by default False
             
@@ -372,6 +374,31 @@ class Client(ClientType):
 
         return response.json()
 
+    def get_enrolled_subjects(self,
+                     academic_year: Optional[Union[str, int]] = None,
+                     semester: Optional[Union[str, int]] = None) -> List[dict]:
+        '''Get enrolled subjects in a specific semester.
+
+        Parameters
+        ----------
+        academic_year : Optional[Union[str, int]], optional
+            Academic year, if not provided, will use the current academic year.
+            Identical to :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        semester : Optional[Union[str, int]], optional
+            Semester, if not provided, will use the current semester.
+            Identical to :class:`pymyku.attribute.Schedule.SEMESTER`
+
+        Returns
+        -------
+        List[dict]
+            List of enrolled subjects.
+        '''
+        response = self.fetch_enroll(academic_year, semester)
+
+        subjects = [subj for subj in response["enrollSubjects"]]
+
+        return subjects
+                
     def fetch_student_personal(self,
                                as_response: Optional[bool] = False
                               ) -> Union[dict, Response]:

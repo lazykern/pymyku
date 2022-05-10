@@ -18,7 +18,7 @@ Requests
 
 .. automodule:: pymyku.requests
     :imported-members:
-    :exclude-members: ClientType, Response
+    :exclude-members: Response, ClientType
     :members:
 
 Utilities
@@ -27,8 +27,6 @@ Utilities
 .. automodule:: pymyku.utils
     :members:
 
-    .. autoclass:: User
-        :members:
 
 Response attributes
 -------------------
