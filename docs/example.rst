@@ -33,4 +33,17 @@ The following examples show all methods of pymyku that fetch data from the APIs.
 
     print(client.fetch_schedule())
 
-Output the response from :ref:`:attr:`url.schedule``.
+Output: (the response from :ref:`:attr:`url.schedule``.)
+
+.. code-block:: python
+
+    {
+        "code": "success",
+        "results": [{
+            "std_id": -1,
+            "std_code": "x",
+            "gpax": -1.0,
+            "total_credit": -1
+        }]
+    }
+

@@ -74,7 +74,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 source_suffix = ['.rst', '.md']
 
-pygments_style = 'fruity'
+pygments_style = 'vim'
 
 # Ignore warnings about inconsistent order and/or count of references in translated messages.
 # This makes no sense, different languages can have different word order...
