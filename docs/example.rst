@@ -40,11 +40,16 @@ The following examples show all methods of pymyku that fetch data from the APIs.
 API Responses
 -------------
 
+Example responses for API used in MyKU.
+:code:`String` : "x"
+:code:`Numeric` : -1 
+
 POST
 ^^^^
 
 :attr:`url.LOGIN`
 """""""""""""""""
+
 .. code-block:: json
 
     {
@@ -116,3 +121,82 @@ POST
     "cache": false
     }
 
+:attr:`url.LOGOUT`
+"""""""""""""""""
+
+.. code-block:: json
+
+    { "code": "success", "message": "Logout" }
+
+:attr:`url.SEARCH_ENROLL`
+"""""""""""""""""""""""""
+
+.. code-block:: json
+
+    {
+    "code": "success",
+    "yearTh": "x",
+    "yearEn": "x",
+    "semester": "x",
+    "semesterTh": "x",
+    "semesterEn": "x",
+    "enrollCredit": -1,
+    "enrollSubjects": [{
+            "enrollId": -1,
+            "sectionId": -1,
+            "subjectCode": "x",
+            "subjectShow": "x",
+            "subjectNameTh": "x",
+            "subjectNameEn": "x",
+            "credit": -1,
+            "creditShow": "x",
+            "sectionCode": "x",
+            "sectionType": "x",
+            "sectionTypeTh": "x",
+            "sectionTypeEn": "x",
+            "enrollStatus": "x",
+            "approveStatus": "x",
+            "approveBy": null,
+            "approveDt": null,
+            "enrollType": "x",
+            "enrollTypeTh": "x",
+            "enrollTypeEn": "x",
+            "subjectType": "x",
+            "isPreRegister": null,
+            "campusCode": "x",
+            "campusNameTh": "x",
+            "campusNameEn": "x",
+            "inchangeprocess": "x"
+        },
+        {
+            "...": "..."
+        }
+
+    ],
+    "waitApproveCredit": -1,
+    "waitApproveSubjects": [],
+    "rejectCredit": -1,
+    "rejectSubjects": [],
+    "patternCredit": -1,
+    "patternSubjects": [],
+    "patternFlag": "x"
+    }
+
+GET
+^^^
+
+:attr:`url.SCHEDULE`
+^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: json
+
+    {
+    "code": "x",
+    "cache": true,
+    "results": [{
+        "academicYr": -1,
+        "semester": -1
+        }]
+    }
+
+:attr:
