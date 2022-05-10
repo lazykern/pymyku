@@ -269,8 +269,6 @@ def extract_schedule(schedule_response: Union[Response, dict],
     if as_dict:
         return result
 
-    print(result)
-
     academic_year = get_raise(result, 'academicYr', 'schedule response')
 
     semester = get_raise(result, 'semester', 'schedule response')
