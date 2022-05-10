@@ -1,5 +1,5 @@
 from . import constant, url
-from .attribute import Schedule, Student, Token, User
+from .attribute import FetchedResponses, Schedule, Student, Token, User
 from .type import (Any, ClientType, Dict, Enum, EnumMeta, Optional, Response,
                    Union)
 
@@ -392,9 +392,9 @@ def gen_request_args_f(function: callable,
 
     if kwargs.get('client'):
         client = kwargs['client']
-        kwargs['login_response'] = client.get(attribute.FetchedResponses.LOGIN_RESPONSE)
+        kwargs['login_response'] = client.get(FetchedResponses.LOGIN_RESPONSE)
         kwargs['schedule_response'] = client.get(
-            attribute.FetchedResponses.SCHEDULE_RESPONSE)
+            FetchedResponses.SCHEDULE_RESPONSE)
 
     if kwargs.get('login_response'):
         login_response = kwargs.get('login_response')
@@ -430,7 +430,7 @@ def gen_request_args_f(function: callable,
 
     headers = gen_request_headers(kwargs.get('access_token'))
 
-    if name == 'logout':
+    if name == 'request_logout':
 
         return {
             'url': url.LOGOUT,

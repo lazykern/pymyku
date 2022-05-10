@@ -31,8 +31,6 @@ Getting started
 Manuals
 -------
 
-.. toctree::
-   :maxdepth: 2
-
-   api
+- :doc:`api`
+- If you're looking for something specific, try the :ref:`index <genindex>` or :ref:`searching <search>`.
 

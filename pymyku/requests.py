@@ -58,9 +58,9 @@ def request_logout(access_token: Optional[str] = '',
         Required parameters are missing.
     '''
 
-    params = utils.gen_request_args_f(logout, **locals())
+    params = utils.gen_request_args_f(request_logout, **locals())
 
-    return r_get(**params)
+    return r_post(**params)
 
 
 def get_schedule(access_token: Optional[str] = '',
