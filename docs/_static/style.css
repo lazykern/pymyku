@@ -312,6 +312,9 @@ header>nav>a:hover {
 .sub-header>select {
     display: none;
     background-color: transparent;
+    width: 0em;
+    height: 0em;
+    border: hidden;
     visibility: hidden;
     width: 0;
 }
@@ -471,7 +474,7 @@ aside .material-icons,
 
 .search-wrapper>input[type=search],
 .search-wrapper>button[type=submit] {
-    background-color: var(--sub-header-background);
+    background-color: transparent;
     border: none;
     color: var(--search-text);
     padding: 0.5em;
@@ -528,7 +531,7 @@ input[type=search]:focus ~ button[type=submit] {
 
 .search-sidebar>input[type=search],
 .search-sidebar>button[type=submit] {
-    background-color: var(--sub-header-background);
+    background-color: transparent;
     color: var(--search-sidebar-text);
     border: none;
 }
