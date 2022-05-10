@@ -225,11 +225,12 @@ class Client(ClientType):
             return response
 
         return response.json()
-    
-    def fetch_announce(self,
-                      academic_year=None,
-                      semester=None,
-                      as_response: Optional[bool] = False) -> Union[List[dict], Response]:
+
+    def fetch_announce(
+            self,
+            academic_year=None,
+            semester=None,
+            as_response: Optional[bool] = False) -> Union[List[dict], Response]:
         '''Send GET request to MyKU advisor/getAnnounceStd API.
                 
         API: https://myapi.ku.th/advisor/getAnnounceStd
@@ -244,7 +245,7 @@ class Client(ClientType):
             Union[List[dict], Response]
 
         '''
-        
+
         if academic_year is None:
             academic_year = self.__academic_year
 
@@ -255,32 +256,6 @@ class Client(ClientType):
                                          semester=semester,
                                          login_response=self.__login_response,
                                          schedule_response=self.__schedule_response)
-
-        if as_response:
-            return response
-
-        return response.json()
-
-
-    def fetch_group_course(self,
-                           as_response: Optional[bool] = False) -> Union[dict, Response]:
-        '''Send GET request to MyKU std-profile/getGroupCourse API.
-
-        API: https://myapi.ku.th/std-profile/getGroupCourse
-        
-        Parameters
-        ----------
-        as_response : Optional[bool]
-            Return as Response object if True, otherwise dict, by default False
-
-        Returns
-        -------
-        Union[dict, Response]
-            Response from the request.
-        '''
-
-        response = requests.get_group_course(login_response=self.__login_response,
-                                             schedule_response=self.__schedule_response)
 
         if as_response:
             return response
@@ -310,10 +285,11 @@ class Client(ClientType):
 
         return response.json()
 
-    def fetch_gpax(self, as_response: Optional[bool] = False) -> Union[dict, Response]:
-        '''Send GET request to MyKU stddashboard/gpax API.
-        
-        API: https://myapi.ku.th/stddashboard/gpax
+    def fetch_group_course(self,
+                           as_response: Optional[bool] = False) -> Union[dict, Response]:
+        '''Send GET request to MyKU std-profile/getGroupCourse API.
+
+        API: https://myapi.ku.th/std-profile/getGroupCourse
         
         Parameters
         ----------
@@ -324,82 +300,41 @@ class Client(ClientType):
         -------
         Union[dict, Response]
             Response from the request.
-
         '''
 
-        response = requests.get_gpax(login_response=self.__login_response)
+        response = requests.get_group_course(login_response=self.__login_response,
+                                             schedule_response=self.__schedule_response)
 
         if as_response:
             return response
 
         return response.json()
 
-    def fetch_enroll(self,
-                      academic_year: Optional[Union[str, int]] = None,
-                      semester: Optional[Union[str, int]] = None,
-                      as_response: Optional[bool] = False) -> Union[dict, Response]:
-        '''Send GET request to MyKU enroll/searchEnrollResult API.
+    def fetch_student_address(self,
+                              as_response: Optional[bool] = False
+                             ) -> Union[dict, Response]:
+        '''Send GET request to MyKU std-profile/getStdAddress API.
 
-        API: https://myapi.ku.th/enroll/searchEnrollResult
-        
+        API: https://myapi.ku.th/std-profile/getStdAddress
+
         Parameters
         ----------
-        academic_year : Optional[Union[str, int]], optional
-            Academic year, if not provided, will use the current academic year.
-            Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
-        semester : Optional[Union[str, int]], optional
-            Semester, if not provided, will use the current semester.
-            Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
         as_response : Optional[bool]
             Return as Response object if True, otherwise dict, by default False
-            
+
         Returns
         -------
         Union[dict, Response]
             Response from the request.
         '''
 
-        if isinstance(semester, int):
-            semester = str(semester)
-
-        if isinstance(academic_year, int):
-            academic_year = str(academic_year)
-
-        response = requests.search_enroll(academic_year=academic_year,
-                                          semester=semester,
-                                          login_response=self.__login_response,
-                                          schedule_response=self.__schedule_response)
+        response = requests.get_student_address(login_response=self.__login_response)
 
         if as_response:
             return response
 
         return response.json()
 
-    def get_enrolled_subjects(self,
-                     academic_year: Optional[Union[str, int]] = None,
-                     semester: Optional[Union[str, int]] = None) -> List[dict]:
-        '''Get enrolled subjects in a specific semester.
-
-        Parameters
-        ----------
-        academic_year : Optional[Union[str, int]], optional
-            Academic year, if not provided, will use the current academic year.
-            Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
-        semester : Optional[Union[str, int]], optional
-            Semester, if not provided, will use the current semester.
-            Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
-
-        Returns
-        -------
-        List[dict]
-            List of enrolled subjects.
-        '''
-        response = self.fetch_enroll(academic_year, semester)
-
-        subjects = [subj for subj in response["enrollSubjects"]]
-
-        return subjects
-                
     def fetch_student_personal(self,
                                as_response: Optional[bool] = False
                               ) -> Union[dict, Response]:
@@ -450,13 +385,11 @@ class Client(ClientType):
 
         return response.json()
 
-    def fetch_student_address(self,
-                              as_response: Optional[bool] = False
-                             ) -> Union[dict, Response]:
-        '''Send GET request to MyKU std-profile/getStdAddress API.
-
-        API: https://myapi.ku.th/std-profile/getStdAddress
-
+    def fetch_gpax(self, as_response: Optional[bool] = False) -> Union[dict, Response]:
+        '''Send GET request to MyKU stddashboard/gpax API.
+        
+        API: https://myapi.ku.th/stddashboard/gpax
+        
         Parameters
         ----------
         as_response : Optional[bool]
@@ -466,9 +399,51 @@ class Client(ClientType):
         -------
         Union[dict, Response]
             Response from the request.
+
         '''
 
-        response = requests.get_student_address(login_response=self.__login_response)
+        response = requests.get_gpax(login_response=self.__login_response)
+
+        if as_response:
+            return response
+
+        return response.json()
+
+    def fetch_enroll(self,
+                     academic_year: Optional[Union[str, int]] = None,
+                     semester: Optional[Union[str, int]] = None,
+                     as_response: Optional[bool] = False) -> Union[dict, Response]:
+        '''Send GET request to MyKU enroll/searchEnrollResult API.
+
+        API: https://myapi.ku.th/enroll/searchEnrollResult
+        
+        Parameters
+        ----------
+        academic_year : Optional[Union[str, int]], optional
+            Academic year, if not provided, will use the current academic year.
+            Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        semester : Optional[Union[str, int]], optional
+            Semester, if not provided, will use the current semester.
+            Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
+        as_response : Optional[bool]
+            Return as Response object if True, otherwise dict, by default False
+            
+        Returns
+        -------
+        Union[dict, Response]
+            Response from the request.
+        '''
+
+        if isinstance(semester, int):
+            semester = str(semester)
+
+        if isinstance(academic_year, int):
+            academic_year = str(academic_year)
+
+        response = requests.search_enroll(academic_year=academic_year,
+                                          semester=semester,
+                                          login_response=self.__login_response,
+                                          schedule_response=self.__schedule_response)
 
         if as_response:
             return response
@@ -510,7 +485,10 @@ class Client(ClientType):
 
         return response.get('subjects', [])
 
-    def search_subject_open(self, subject_id: str, section: Optional[str] = '') -> List[Dict[str, Union[str, int]]]:
+    def search_subject_open(
+            self,
+            subject_id: str,
+            section: Optional[str] = '') -> List[Dict[str, Union[str, int]]]:
         '''Query subject enrollment info (All section) of current semester by sending GET request to MyKU enroll/openSubjectForEnroll API.
 
         API: https://myapi.ku.th/enroll/openSubjectForEnroll
@@ -544,6 +522,30 @@ class Client(ClientType):
         response = self.valid_response(response)
 
         return response.get('results', [])
+
+    def search_section_detail(
+            self, subject_id: str) -> Dict[str, Union[Dict[str, List[str, Union[str, int]]], list, str]]:
+        '''Send GET request to MyKU enroll/searchSectionDetail API.
+
+        API: https://myapi.ku.th/enroll/searchSectionDetail
+
+        Parameters
+        ----------
+        section_id : str
+            Section id. e.g. '186426'
+
+        Returns
+        -------
+        Dict[str, Union[str, int]]
+            _description_
+        '''
+        
+        response = requests.search_section_detail(section_id=subject_id,
+                                                  access_token=self.__access_token)
+        
+        response = self.valid_response(response)
+        
+        return response.get('sectionDetail', {})
 
     def get(self, attr: Enum) -> Any:
         '''Get any value from MyKU client. (login response and schedule response)
@@ -684,3 +686,28 @@ class Client(ClientType):
                 grades[year][subject[key]] = subject['grade']
 
         return grades
+
+    def get_enrolled_subjects(self,
+                              academic_year: Optional[Union[str, int]] = None,
+                              semester: Optional[Union[str, int]] = None) -> List[dict]:
+        '''Get enrolled subjects in a specific semester.
+
+        Parameters
+        ----------
+        academic_year : Optional[Union[str, int]], optional
+            Academic year, if not provided, will use the current academic year.
+            Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
+        semester : Optional[Union[str, int]], optional
+            Semester, if not provided, will use the current semester.
+            Represented by :class:`pymyku.attribute.Schedule.SEMESTER`
+
+        Returns
+        -------
+        List[dict]
+            List of enrolled subjects.
+        '''
+        response = self.fetch_enroll(academic_year, semester)
+
+        subjects = [subj for subj in response["enrollSubjects"]]
+
+        return subjects
