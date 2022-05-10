@@ -26,7 +26,8 @@ author = 'Phusit Somboonyingsuk'
 
 release = ''
 with open('../pymyku/__init__.py') as f:
-    release = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE).group(1)
+    release = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(),
+                        re.MULTILINE).group(1)
 
 version = release
 
@@ -56,12 +57,11 @@ autodoc_member_order = 'bysource'
 autodoc_typehints = 'none'
 
 intersphinx_mapping = {
-  'py': ('https://docs.python.org/3', None),
-  'req': ('https://docs.python-requests.org/en/latest/', None)
+    'py': ('https://docs.python.org/3', None),
+    'req': ('https://docs.python-requests.org/en/latest/', None)
 }
 
 gettext_compact = False
-
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -71,7 +71,6 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-
 source_suffix = ['.rst', '.md']
 
 pygments_style = 'vim'
@@ -79,17 +78,14 @@ pygments_style = 'vim'
 # Ignore warnings about inconsistent order and/or count of references in translated messages.
 # This makes no sense, different languages can have different word order...
 def _i18n_warning_filter(record: logging.LogRecord) -> bool:
-  return not record.msg.startswith(
-    (
-      'inconsistent references in translated message',
-      'inconsistent term references in translated message',
-    )
-  )
+    return not record.msg.startswith((
+        'inconsistent references in translated message',
+        'inconsistent term references in translated message',
+    ))
 
 
 _i18n_logger = logging.getLogger('sphinx')
 _i18n_logger.addFilter(_i18n_warning_filter)
-
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -195,13 +191,7 @@ html_static_path = ['_static']
 html_search_scorer = '_static/scorer.js'
 # html_search_scorer = './docs/_static/scorer.js'
 
-
-html_js_files = [
-  'custom.js',
-  'settings.js',
-  'copy.js',
-  'sidebar.js'
-]
+html_js_files = ['custom.js', 'settings.js', 'copy.js', 'sidebar.js']
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'pymykudoc'
@@ -209,25 +199,24 @@ htmlhelp_basename = 'pymykudoc'
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
+    # The paper size ('letterpaper' or 'a4paper').
+    #'papersize': 'letterpaper',
 
-# The font size ('10pt', '11pt' or '12pt').
-#'pointsize': '10pt',
+    # The font size ('10pt', '11pt' or '12pt').
+    #'pointsize': '10pt',
 
-# Additional stuff for the LaTeX preamble.
-#'preamble': '',
+    # Additional stuff for the LaTeX preamble.
+    #'preamble': '',
 
-# Latex figure (float) alignment
-#'figure_align': 'htbp',
+    # Latex figure (float) alignment
+    #'figure_align': 'htbp',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'pymyku.tex', 'pymyku Documentation',
-   'phusitsom', 'manual'),
+    ('index', 'pymyku.tex', 'pymyku Documentation', 'phusitsom', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -250,19 +239,14 @@ latex_documents = [
 # If false, no module index is generated.
 #latex_domain_indices = True
 
-
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    ('index', 'pymyku', 'pymyku Documentation',
-     ['phusitsom'], 1)
-]
+man_pages = [('index', 'pymyku', 'pymyku Documentation', ['phusitsom'], 1)]
 
 # If true, show URL addresses after external links.
 #man_show_urls = False
-
 
 # -- Options for Texinfo output -------------------------------------------
 
@@ -270,9 +254,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'pymyku', 'pymyku Documentation',
-   'phusitsom', 'pymyku', 'One line description of project.',
-   'Miscellaneous'),
+    ('index', 'pymyku', 'pymyku Documentation', 'phusitsom', 'pymyku',
+     'One line description of project.', 'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.

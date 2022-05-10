@@ -82,7 +82,7 @@ Historically however, thanks to:
     --error-text: var(--white);
     --helpful-background: #00c8d7;
     --helpful-text: var(--black);
-    --codeblock-background: var(--grey-2);
+    --codeblock-background: var(--black);
     --codeblock-border: var(--grey-4);
     --codeblock-text: var(--grey-6);
     --inline-code-background: var(--grey-3);
@@ -130,10 +130,10 @@ Historically however, thanks to:
     --footer-link: var(--grey-1);
     --hr-border: var(--grey-1);
     --main-big-headers-text: var(--grey-1);
-    --main-big-headers-border: var(--grey-1);
+    --main-big-headers-border: #a5a5bc2e;
     --main-h5-header-text: var(--grey-4);
     --main-h6-header-text: var(--grey-5);
-    --main-h4-header-border: var(--grey-2);
+    --main-h4-header-border: #a5a5bc10;
     --header-link: var(--grey-2);
     --header-link-hover-text: var(--grey-6);
     --admonition-background: var(--grey-8);
