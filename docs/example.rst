@@ -7,7 +7,7 @@ Examples
 
 This page is a collection of examples that demonstrate the use of pymyku.
 
-Using Client
+Using client
 ------------
 
 Import :class:`Client` from pymyku and initializing it with your credentials:
@@ -23,8 +23,9 @@ Import :class:`Client` from pymyku and initializing it with your credentials:
 
 The initialization method of the :class:`Client` will automatically call :meth:`Client.initialize` methods to get the data required to work with the API.
 
-Fetch
-^^^^^
+Fetching
+^^^^^^^^
+
 The word :code:`fetch` for this class means getting a response from the API by sending a GET or POST request to the API.
 
 The following examples show all methods of pymyku that fetch data from the APIs using the functions from :class:`requests`.
@@ -49,8 +50,8 @@ Output: (the response from :ref:`:attr:`url.schedule``)
         }]
     }
 
-Get
-^^^
+Geting
+^^^^^^
 
 The word :code:`get` for this class means getting a attribute from  the client or the result from the API (not response).
 
@@ -104,8 +105,9 @@ For example:
 
 This will return a :class:`list` of subjects that you enrolled in the summer term of 2565.
 
-Search
-^^^^^^
+Searching
+^^^^^^^^^
+
 Methods that starts with :code:`search` will return the result from the API that is related to searching.
 
 For example:
@@ -127,12 +129,15 @@ Import the :mod:`requests` module from pymyku and login.
 
     login_res = requests.login('USERNAME', 'PASSWORD')
 
+Using the functions
+^^^^^^^^^^^^^^^^^^^
+
 You can use the predefined functions in :mod:`requests` to send requests to the MyKU API straightly.
 
 Most functions have parameters that are required to send the request. e.g. `access_token`, `std_id`, etc.
 
-But it :mod:`pymyku.requests`, you can pass the `login_response` to the function.
-The function will extract required parameters from the `login_response` automatically.
+But with :mod:`pymyku.requests`, you can pass the `login response` to the function.
+The function will extract required parameters from the `login response` automatically.
 
 .. code-block:: python
 
@@ -150,7 +155,10 @@ Otherwise, you pass the required parameters directly.
 
     requests.get_group_course(access_token = 'ACCESS_TOKEN', std_id = 'STD_CODE')
 
-You can also use the :mod:`requests` module to send GET or POST request to the API.
+Doing it directly
+^^^^^^^^^^^^^^^^^
+
+You can also use the :mod:`requests` module to send :func:`GET <requests.get>` or :func:`POST <requests.post>` request to the API you want.
 
 .. code-block:: python
 
@@ -167,3 +175,4 @@ To get the request headers easily, you can use the :func:`utils.gen_request_head
     #headers = utils.gen_request_headers(login_res)
 
     requests.get(url = 'URL', headers = headers params = {'THE_REQUIRED_PARAMETERS': 'THE_REQUIRED_PARAMETERS'})
+

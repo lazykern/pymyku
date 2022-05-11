@@ -45,6 +45,8 @@ Types
 URLs
 ----
 
+See also: :ref:`api responses`
+
 .. automodule:: pymyku.url
     :members:
 
