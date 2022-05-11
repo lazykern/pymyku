@@ -10,7 +10,17 @@ Welcome to pymyku
    .. image:: ./assets/pymyku_logo.png
       :alt: pymyku
       :width: 250px
-      :align: center
+      :align: left
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
 
 .. container:: description
 
