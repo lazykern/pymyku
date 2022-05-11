@@ -19,7 +19,7 @@ Import :class:`Client` from pymyku and initializing it with your credentials:
 
     from pymyku import Client
     
-    client = Client("USERNAME", "PASSWORD")
+    client = Client('USERNAME', 'PASSWORD')
 
 The initialization method of the :class:`Client` will automatically call :meth:`Client.initialize` methods to get the data required to work with the API.
 
@@ -112,7 +112,7 @@ For example:
 
 .. code-block:: python
 
-    client.search_subject_id("013")
+    client.search_subject_id('013')
 
 This will return a :class:`list` of subjects that start with the code "013".
 
@@ -123,4 +123,47 @@ Import the :mod:`requests` module from pymyku and login.
 
 .. code-block:: python
 
-    from pymyku import requests
+    from pymyku import requests, APP_KEY
+
+    login_res = requests.login('USERNAME', 'PASSWORD')
+
+You can use the predefined functions in :mod:`requests` to send requests to the MyKU API straightly.
+
+Most functions have parameters that are required to send the request. e.g. `access_token`, `std_id`, etc.
+
+But it :mod:`pymyku.requests`, you can pass the `login_response` to the function.
+The function will extract required parameters from the `login_response` automatically.
+
+.. code-block:: python
+
+    requests.get_group_course(login_response = login_res)
+
+You can also pass the :class:`Client` object to the function.
+
+.. code-block:: python
+
+    requests.get_group_course(client = client)
+
+Otherwise, you pass the required parameters directly.
+
+.. code-block:: python
+
+    requests.get_group_course(access_token = 'ACCESS_TOKEN', std_id = 'STD_CODE')
+
+You can also use the :mod:`requests` module to send GET or POST request to the API.
+
+.. code-block:: python
+
+    requests.get(url = 'URL', headers = {'app-key':APP_KEY, 'x-access-token':'ACCESS_TOKEN'} params = {'THE_REQUIRED_PARAMETERS': 'THE_REQUIRED_PARAMETERS'})
+
+To get the request headers easily, you can use the :func:`utils.gen_request_headers` function to generate the headers from the `login response` or your `access token`.
+
+.. code-block:: python
+
+    from pymyku import utils
+
+    headers = utils.gen_request_headers('ACCESS_TOKEN')
+    
+    #headers = utils.gen_request_headers(login_res)
+
+    requests.get(url = 'URL', headers = headers params = {'THE_REQUIRED_PARAMETERS': 'THE_REQUIRED_PARAMETERS'})
