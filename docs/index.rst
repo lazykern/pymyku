@@ -9,9 +9,12 @@ Welcome to pymyku
 
    .. image:: ./assets/pymyku_logo.png
       :alt: pymyku
-      :width: 250px
+      :width: 300px
       :align: left
 
+|
+|
+|
 |
 |
 |
