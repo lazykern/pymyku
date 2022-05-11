@@ -706,7 +706,7 @@ class Client(ClientType):
         List[dict]
             List of enrolled subjects.
         '''
-        response = self.fetch_enroll(academic_year, semester)
+        response = self.fetch_enroll(academic_year, semester, True)
         
         response = self.valid_response(response)
 
