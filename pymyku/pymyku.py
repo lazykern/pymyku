@@ -450,15 +450,15 @@ class Client(ClientType):
 
         return response.json()
 
-    def search_subject_id(self, subject_id: str) -> List[Dict[str, str]]:
+    def search_subject(self, query: str) -> List[Dict[str, str]]:
         '''Query subject with subject id by sending GET request to MyKU enroll/searchSubjectOpenEnr API.
         
         API: https://myapi.ku.th/enroll/searchSubjectOpenEnr
 
         Parameters
         ----------
-        subject_id : str
-            Subject id to query. (At least 3 characters), e.g. '013' or '01355119'
+        query : str
+            Subject id to query. (At least 3 characters), e.g. '013', '01355119', 'eng' or 'english'
 
         Returns
         -------
@@ -467,18 +467,18 @@ class Client(ClientType):
 
         Raises
         ------
-        exception.InvalidSubjectID
-            The subject_id is less than 3 characters long.
+        ValueError
+            The query is less than 3 characters long.
         
         exception.HTTPError
             The request is not successful.
         '''
 
-        if len(subject_id) < 3:
-            raise exception.InvalidSubjectID(
+        if len(query) < 3:
+            raise ValueError(
                 "Subject ID must be at least 3 characters long.")
 
-        response = requests.search_subject(query=subject_id,
+        response = requests.search_subject(query=query,
                                            login_response=self.__login_response)
 
         response = self.valid_response(response)
@@ -507,7 +507,7 @@ class Client(ClientType):
 
         Raises
         ------
-        exception.InvalidSubjectID
+        Value
             The subject_id is less than 3 characters long.
         exception.HTTPError
             The request is not successful.

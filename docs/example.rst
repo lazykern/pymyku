@@ -114,7 +114,7 @@ For example:
 
 .. code-block:: python
 
-    client.search_subject_id('013')
+    client.search_subject('013')
 
 This will return a :class:`list` of subjects that start with the code "013".
 
