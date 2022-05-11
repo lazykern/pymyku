@@ -458,7 +458,7 @@ class Client(ClientType):
         Parameters
         ----------
         query : str
-            Subject id to query. (At least 3 characters), e.g. '013', '01355119', 'eng' or 'english'
+            Subject id or name to query. (At least 3 characters), e.g. '013', '01355119', 'eng' or 'english'
 
         Returns
         -------
