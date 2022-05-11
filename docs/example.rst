@@ -174,5 +174,70 @@ To get the request headers easily, you can use the :func:`utils.gen_request_head
     
     #headers = utils.gen_request_headers(login_res)
 
-    requests.get(url = 'URL', headers = headers params = {'THE_REQUIRED_PARAMETERS': 'THE_REQUIRED_PARAMETERS'})
+    requests.get(url = 'URL', headers = headers, params = {'THE_REQUIRED_PARAMETERS': 'THE_REQUIRED_PARAMETERS'})
 
+Using the utilities
+-------------------
+
+Extracting the attributes
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can use :func:`utils.extract` to extract the attributes from the response using enums from :mod:`.attribute`.
+
+Supported responses are:
+
+- Login response
+- Schedule response
+
+Examples:
+
+.. code-block:: python3
+
+    from pymyku import requests, utils
+    from pymyku.attribute import User, Schedule
+
+    login_res = requests.login('USERNAME', 'PASSWORD')
+    schedule_res = requests.get_schedule(login_response = login_res)
+    
+    first_name = utils.extract(login_res, User.FIRST_NAME_EN)
+    last_name = utils.extract(login_res, User.LAST_NAME_EN)
+
+    academic_year = utils.extract(schedule_res, Schedule.ACADEMIC_YEAR)
+    semester = utils.extract(schedule_res, Schedule.SEMESTER)
+
+Generating arguments for request
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+With the :func:`utils.gen_request_args_f` function, 
+you can generate the arguments for :func:`requests.get` or :func:`requests.post` directly
+by passing the function from :mod:`pymyku.requests` and the required parameters.
+
+e.g. for :func:`requests.get_schedule`:
+
+.. code-block:: python
+
+    from pymyku import utils, requests
+
+    login_res = requests.login('USERNAME', 'PASSWORD')
+
+    args = utils.gen_request_args_f(requests.get_schedule, login_response=login_res)
+    
+    #: You can also use client object by passing `client = your_client` instead of using the login response.
+    # args = utils.gen_request_args_f(requests.get_schedule, client=client)
+
+    schedule_res = requests.get(**args)
+
+or if you want to pass the required parameters directly:
+
+.. code-block:: python
+
+    from pymyku import utils, requests
+
+    args = utils.gen_request_args_f(requests.get_schedule, 
+                                    access_token='ACCESS_TOKEN', 
+                                    user_type='USER_TYPE',
+                                    campus_code='CAMPUS_CODE',
+                                    faculty_code='FACULTY_CODE',
+                                    major_code='MAJOR_CODE',
+                                    student_status_code='STUDENT_STATUS_CODE')
+    
+    schedule_res = requests.get(**args)
