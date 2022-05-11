@@ -3,7 +3,7 @@ from .type import Enum
 
 class User(Enum):
     '''Enum representation for user data in login response.
-    Login response can be obtained by calling :meth:`pymyku.requests.request_login` 
+    Login response can be obtained by calling :meth:`pymyku.requests.login` 
     or getting from client property :attr:`pymyku.Client.login_response`
     '''
     #: A representation for loginName from user data in login response.
@@ -36,7 +36,7 @@ class User(Enum):
 
 class Student(Enum):
     '''Enum representation for student data in login response.
-    Login response can be obtained by calling :meth:`pymyku.requests.request_login` 
+    Login response can be obtained by calling :meth:`pymyku.requests.login` 
     or getting from client property :attr:`pymyku.Client.login_response`
     '''
     #: A representation for stdId from student data in login response.
@@ -115,7 +115,7 @@ class Student(Enum):
 
 class Token(Enum):
     '''Enum representation for tokens in login response.
-    Login response can be obtained by calling :meth:`pymyku.requests.request_login`
+    Login response can be obtained by calling :meth:`pymyku.requests.login`
     or getting from client property :attr:`pymyku.Client.login_response`
     '''
     #: A representation for accessToken from login response.

@@ -10,7 +10,7 @@ This page is a collection of examples that demonstrate the use of pymyku.
 Using Client
 ------------
 
-Importing :class:`Client` from pymyku and initializing it with your credentials:
+Import :class:`Client` from pymyku and initializing it with your credentials:
 
 - :code:`USERNAME` -- Your nontri account username.
 - :code:`PASSWORD` -- Your nontri account password.
@@ -51,6 +51,7 @@ Output: (the response from :ref:`:attr:`url.schedule``)
 
 Get
 ^^^
+
 The word :code:`get` for this class means getting a attribute from  the client or the result from the API (not response).
 
 Arrtibutes
@@ -101,13 +102,11 @@ For example:
 
     client.get_enrolled_subjects(2565, 0)
 
-will return a :class:`list` of subjects that you enrolled in the summer term of 2565.
-
+This will return a :class:`list` of subjects that you enrolled in the summer term of 2565.
 
 Search
 ^^^^^^
-
-Just like get. Methods that starts with :code:`search` will return the result from the API that is related to searching.
+Methods that starts with :code:`search` will return the result from the API that is related to searching.
 
 For example:
 
@@ -115,9 +114,13 @@ For example:
 
     client.search_subject_id("013")
 
-will return a :class:`list` of subjects that start with the code "013".
+This will return a :class:`list` of subjects that start with the code "013".
 
 Using requests
 --------------
 
-WIP
+Import the :mod:`requests` module from pymyku and login.
+
+.. code-block:: python
+
+    from pymyku import requests

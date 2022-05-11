@@ -91,7 +91,7 @@ print(response)
 from pymyku import requests, TokenAttr
 from pymyku.utils import extract
 
-login_res = requests.request_login('USERNAME', 'PASSWORD')
+login_res = requests.login('USERNAME', 'PASSWORD')
 
 access_token = extract(login_res, TokenAttr.ACCESS_TOKEN)
 

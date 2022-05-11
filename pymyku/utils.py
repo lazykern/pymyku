@@ -430,7 +430,7 @@ def gen_request_args_f(function: callable,
 
     headers = gen_request_headers(kwargs.get('access_token'))
 
-    if name == 'request_logout':
+    if name == 'logout':
 
         return {
             'url': url.LOGOUT,

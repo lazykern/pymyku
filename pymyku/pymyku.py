@@ -193,7 +193,7 @@ class Client(ClientType):
             Response object from the login request. Represented by :class:`pymyku.attribute.FetchedResponses.LOGIN_RESPONSE`
         '''
 
-        login_response = requests.request_login(self.__username, self.__password)
+        login_response = requests.login(self.__username, self.__password)
 
         login_response.raise_for_status()
 
