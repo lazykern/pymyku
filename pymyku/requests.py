@@ -474,7 +474,7 @@ def search_subject(query: str,
     Parameters
     ----------
     query : str
-        Subject id, e.g. '013' or '01355119'
+        Subject id or name to query. (At least 3 characters), e.g. '013', '01355119', 'eng' or 'english'
     access_token : Optional[str]
         'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     login_response : Optional[Union[Response, dict]]
@@ -523,8 +523,9 @@ def search_subject_open(query: str,
     access_token : Optional[str]
         'accesstoken' from login response, Represented by :class:`pymyku.attribute.Token.ACCESS_TOKEN`
     campus_code : Optional[str]
-        'campusCode' attribute from login response, Represented by :class:`pymyku.attribute.Student.CAMPUS_CODE`, e.g. 'B'
-        , e.g. 'B'
+        'campusCode' attribute from login response, Represented by :class:`pymyku.attribute.Student.CAMPUS_CODE`,
+        e.g. Campus code, 'B' for Bang Khen, 'C' for Sakolkorn, 'I' for affiliated institute, 
+        'K' for Kamphaeng Saen, 'P' for Suphanburi.
     academic_year : Optional[str]
         'academicYr' attribute from schedule response, Represented by :class:`pymyku.attribute.Schedule.ACADEMIC_YEAR`
         , e.g. '2565'

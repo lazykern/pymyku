@@ -488,7 +488,8 @@ class Client(ClientType):
     def search_subject_open(
             self,
             subject_id: str,
-            section: Optional[str] = '') -> List[Dict[str, Union[str, int]]]:
+            section: Optional[str] = '',
+            campus_code: Optional[str] = '') -> List[Dict[str, Union[str, int]]]:
         '''Query subject enrollment info (All section) of current semester by sending GET request to MyKU enroll/openSubjectForEnroll API.
 
         API: https://myapi.ku.th/enroll/openSubjectForEnroll
@@ -499,7 +500,10 @@ class Client(ClientType):
             Subject id to query, e.g. '01355119' or '01355119-64'
         section : Optional[str]
             Section of the subject, e.g. '1'
-
+        campus_code : Optional[str]
+            Campus code, 'B' for Bang Khen, 'C' for Sakolkorn, 'I' for affiliated institute, 
+            'K' for Kamphaeng Saen, 'P' for Suphanburi.
+        
         Returns
         -------
         List[Dict[str, Union[str, int]]]
