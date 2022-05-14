@@ -11,7 +11,7 @@ Instead of the actual response, the following representations are used:
 
 :code:`String` : "x"
 
-:code:`Numeric` : -1, -1.0
+:code:`Numeric` : -1, -1.-1
 
 :code:`others` : *Actual*
 
@@ -117,15 +117,15 @@ URL -- :code:`https://myapi.ku.th/enroll/searchEnrollResult`
         "semester": "x",
         "semesterTh": "x",
         "semesterEn": "x",
-        "enrollCredit": 0,
+        "enrollCredit": -1,
         "enrollSubjects": [{
-                "enrollId": 0,
-                "sectionId": 0,
+                "enrollId": -1,
+                "sectionId": -1,
                 "subjectCode": "x",
                 "subjectShow": "x",
                 "subjectNameTh": "x",
                 "subjectNameEn": "x",
-                "credit": 0,
+                "credit": -1,
                 "creditShow": "x",
                 "sectionCode": "x",
                 "sectionType": "x",
@@ -150,11 +150,11 @@ URL -- :code:`https://myapi.ku.th/enroll/searchEnrollResult`
             }
 
         ],
-        "waitApproveCredit": 0,
+        "waitApproveCredit": -1,
         "waitApproveSubjects": [],
-        "rejectCredit": 0,
+        "rejectCredit": -1,
         "rejectSubjects": [],
-        "patternCredit": 0,
+        "patternCredit": -1,
         "patternSubjects": [],
         "patternFlag": "x"
     }
@@ -251,7 +251,7 @@ URL -- :code:`https://myapi.ku.th/std-profile/checkGrades`
         "code": "success",
         "results": [{
                 "academicYear": "x",
-                "gpa": -1.0,
+                "gpa": -1.-1,
                 "cr": -1,
                 "grade": [{
                         "std_code": "x",
@@ -265,7 +265,7 @@ URL -- :code:`https://myapi.ku.th/std-profile/checkGrades`
                         "registration_semester": -1,
                         "rownum": "x",
                         "grouping_data": "x",
-                        "gpa": -1.0,
+                        "gpa": -1.-1,
                         "cr": -1
                     },
                     { "...": "..." }
@@ -539,7 +539,7 @@ URL -- :code:`https://myapi.ku.th/stddashboard/gpax`
         "results": [{
             "std_id": -1,
             "std_code": "x",
-            "gpax": -1.0,
+            "gpax": -1.-1,
             "total_credit": -1
         }]
     }
