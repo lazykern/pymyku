@@ -8,4 +8,4 @@ from .exception import TokenExpired
 from .pymyku import Client
 from .type import ClientType, Response
 
-__version__ = "0.2.3"
+__version__ = "0.3.0"
