@@ -2,14 +2,12 @@ from . import constant, url
 from .attribute import FetchedResponses, Schedule, Student, Token, User
 from .type import (
     Any,
-    ClientType,
     Dict,
     Enum,
     EnumMeta,
     Optional,
     Response,
     Union,
-    Tuple,
 )
 
 from Crypto.Cipher import PKCS1_OAEP
