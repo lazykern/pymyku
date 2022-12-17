@@ -34,7 +34,7 @@ setup(
     license_file="LICENSE.md",
     extras_require=extra_requires,
     url="https://github.com/phusitsom/pymyku",
-    install_requires=["requests"],
+    install_requires=["requests", "PyCryptodome"],
     python_requires=">=3.6",
     classifiers=[
         "Natural Language :: English",
