@@ -31,7 +31,7 @@ An unofficial [MyKU](https://my.ku.th/) API wrapper and utilities for python.
 
 ## Notices
 
-This project was developed by KU students and is not affiliated with the university.
+This project was developed by a KU student and is not affiliated with the university.
 Please **respect** the API when using this project.
 
 ## Documentation
