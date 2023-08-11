@@ -1,5 +1,5 @@
 <a href="">
-    <img src="https://raw.githubusercontent.com/pulllazy/pymyku/main/docs/assets/pymyku_logo.png" alt="pymyku" title="pymyku" align="left" height="157" />
+    <img src="https://raw.githubusercontent.com/pullinglazy/pymyku/main/docs/assets/pymyku_logo.png" alt="pymyku" title="pymyku" align="left" height="157" />
 </a>
 
 # PyMyKU
@@ -59,7 +59,7 @@ python -m pip install pymyku
 ### From source
 
 ```bash
-git clone https://github.com/pulllazy/pymyku.git
+git clone https://github.com/pullinglazy/pymyku.git
 cd pymyku
 python -m pip install -r requirements.txt
 python -m pip install -e .

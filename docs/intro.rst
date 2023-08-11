@@ -29,7 +29,7 @@ If you desire to install from a local source, you can do so:
 
 .. code-block:: bash
 
-    git clone https://github.com/pulllazy/pymyku.git
+    git clone https://github.com/pullinglazy/pymyku.git
     cd pymyku
     python -m pip install -r requirements.txt
     python -m pip install -e .
