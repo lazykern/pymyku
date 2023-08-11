@@ -28,12 +28,12 @@ setup(
     project_urls={
         "Documentation": "https://pymyku.readthedocs.io",
     },
-    author="phusitsom",
-    author_email="phusitsom@gmail.com",
+    author="pulllazy",
+    author_email="pulllazy@gmail.com",
     packages=["pymyku"],
     license_file="LICENSE.md",
     extras_require=extra_requires,
-    url="https://github.com/phusitsom/pymyku",
+    url="https://github.com/pulllazy/pymyku",
     install_requires=["requests", "PyCryptodome"],
     python_requires=">=3.6",
     classifiers=[
