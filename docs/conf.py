@@ -220,7 +220,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    ("index", "pymyku.tex", "pymyku Documentation", "pullinglazy", "manual"),
+    ("index", "pymyku.tex", "pymyku Documentation", "lazykern", "manual"),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -247,7 +247,7 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [("index", "pymyku", "pymyku Documentation", ["pullinglazy"], 1)]
+man_pages = [("index", "pymyku", "pymyku Documentation", ["lazykern"], 1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -262,7 +262,7 @@ texinfo_documents = [
         "index",
         "pymyku",
         "pymyku Documentation",
-        "pullinglazy",
+        "lazykern",
         "pymyku",
         "One line description of project.",
         "Miscellaneous",
