@@ -3,14 +3,6 @@ from pathlib import Path
 
 from setuptools import setup
 
-extra_requires = {
-    "docs": [
-        "sphinx==4.4.0",
-        "sphinxcontrib_trio==1.1.2",
-        "sphinxcontrib-websupport",
-        "typing-extensions",
-    ],
-}
 version = ""
 with Path("pymyku/__init__.py").open() as f:
     version = re.search(
@@ -36,7 +28,6 @@ setup(
     author_email="lazykern@gmail.com",
     packages=["pymyku"],
     license_file="LICENSE.md",
-    extras_require=extra_requires,
     url="https://github.com/lazykern/pymyku",
     install_requires=["requests", "PyCryptodome"],
     python_requires=">=3.8",
