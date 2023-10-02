@@ -1,5 +1,7 @@
-from setuptools import setup
 import re
+from pathlib import Path
+
+from setuptools import setup
 
 extra_requires = {
     "docs": [
@@ -10,24 +12,26 @@ extra_requires = {
     ],
 }
 version = ""
-with open("./pymyku/__init__.py") as f:
+with Path("pymyku/__init__.py").open() as f:
     version = re.search(
-        r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE
+        r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), re.MULTILINE,
     )
     if version:
         version = version.group(1)
     else:
-        raise RuntimeError("Unable to find version string.")
+        msg = "Unable to find version string."
+        raise RuntimeError(msg)
 
 setup(
     name="pymyku",
     version=version,
     description="Python MyKU API Wrapper",
-    long_description=open("README.md").read(),
+    long_description=Path("README.md").open().read(),
     long_description_content_type="text/markdown",
     project_urls={
         "Documentation": "https://pymyku.readthedocs.io",
     },
+
     author="lazykern",
     author_email="lazykern@gmail.com",
     packages=["pymyku"],
@@ -35,16 +39,15 @@ setup(
     extras_require=extra_requires,
     url="https://github.com/lazykern/pymyku",
     install_requires=["requests", "PyCryptodome"],
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     classifiers=[
         "Natural Language :: English",
         "Intended Audience :: Developers",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
 )
