@@ -21,15 +21,14 @@ def check_grades(session: Session) -> CheckGradesResponse:
 
 
 def get_group_course(
-    session: Session, std_id: int, academic_year: int, semester: int
+    session: Session,
+    std_id: int,
+    academic_year: int | None = None,
+    semester: int | None = None,
 ) -> GetGroupCourseResponse:
     res = session.get(
         "https://myapi.ku.th/std-profile/getGroupCourse",
-        params={
-            "stdId": std_id,
-            "academicYear": academic_year,
-            "semester": semester,
-        },
+        params=amend_locals(locals()),
     )
 
     raise_for_status_with_response(res)
