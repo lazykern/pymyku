@@ -20,16 +20,16 @@ setup(
     description="Python MyKU API Wrapper",
     long_description=Path("README.md").open().read(),
     long_description_content_type="text/markdown",
-    project_urls={
-        "Documentation": "https://pymyku.readthedocs.io",
-    },
+    # project_urls={
+    #     "Documentation": "https://pymyku.readthedocs.io",
+    # },
 
     author="lazykern",
     author_email="lazykern@gmail.com",
     packages=["pymyku"],
     license_file="LICENSE.md",
     url="https://github.com/lazykern/pymyku",
-    install_requires=["requests", "PyCryptodome"],
+    install_requires=["requests", "dataclass-wizard", "pycryptodome"],
     python_requires=">=3.8",
     classifiers=[
         "Natural Language :: English",

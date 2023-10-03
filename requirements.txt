@@ -1,2 +1,3 @@
-requests
-PyCryptodome
+requests~=2.31.0
+dataclass-wizard~=0.22.2
+pycryptodome~=3.19.0
