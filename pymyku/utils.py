@@ -52,16 +52,18 @@ def raise_for_status_with_response(response: Response) -> None:
 
     if client_error_range[0] <= response.status_code < client_error_range[1]:
         http_error_msg = (
-            f"{response.status_code} Client Error: {reason} for url {response.url}"
+            f"{response.status_code} Client Error: {reason}"
+            "for url {response.url}"
         )
 
     elif server_error_range[0] <= response.status_code < server_error_range[1]:
         http_error_msg = (
-            f"{response.status_code} Server Error: {reason} for url {response.url}"
+            f"{response.status_code} Server Error: {reason}"
+            "for url {response.url}"
         )
 
     if http_error_msg:
         if response.text:
-            http_error_msg += f"with response: {response.text}"
+            http_error_msg += f" with response: {response.text}"
 
         raise HTTPError(http_error_msg, response=response)
