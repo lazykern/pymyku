@@ -5,6 +5,7 @@ from typing import Any
 
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
+import jwt
 from requests import Response
 from requests.models import HTTPError
 
@@ -31,6 +32,12 @@ def amend_locals(locals_: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def decode_access_token(access_token: str) -> dict[str, Any]:
+    return jwt.decode(
+        access_token, options={"verify_signature": False}, algorithms=["HS256"]
+    )
+
+
 def raise_for_status_with_response(response: Response) -> None:
     """Raises :class:`HTTPError`, if one occurred."""
 
@@ -53,13 +60,13 @@ def raise_for_status_with_response(response: Response) -> None:
     if client_error_range[0] <= response.status_code < client_error_range[1]:
         http_error_msg = (
             f"{response.status_code} Client Error: {reason}"
-            "for url {response.url}"
+            " for url {response.url}"
         )
 
     elif server_error_range[0] <= response.status_code < server_error_range[1]:
         http_error_msg = (
             f"{response.status_code} Server Error: {reason}"
-            "for url {response.url}"
+            " for url {response.url}"
         )
 
     if http_error_msg:
