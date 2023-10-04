@@ -1,9 +1,15 @@
 {
     "cSpell.words": [
+        "accesstoken",
         "consts",
         "Getschedule",
+        "idcode",
+        "OAEP",
+        "PKCS",
         "pymyku",
-        "stddashboard"
+        "stddashboard",
+        "stdid",
+        "usertype"
     ],
     "python.analysis.typeCheckingMode": "basic"
 }
