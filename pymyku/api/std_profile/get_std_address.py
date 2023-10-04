@@ -53,4 +53,3 @@ class GetStdAddressResponse(JSONWizard):
     code: str
     message: str
     std_address: StdAddress
-    cache: bool

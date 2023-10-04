@@ -34,4 +34,3 @@ class Result:
 class CheckGradesResponse(JSONWizard):
     code: str
     results: list[Result]
-    cache: bool
