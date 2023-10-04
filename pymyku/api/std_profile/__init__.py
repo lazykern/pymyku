@@ -23,8 +23,8 @@ def check_grades(session: Session) -> CheckGradesResponse:
 def get_group_course(
     session: Session,
     std_id: int,
-    academic_year: int | None = None,
-    semester: int | None = None,
+    academic_year: int,
+    semester: int,
 ) -> GetGroupCourseResponse:
     res = session.get(
         "https://myapi.ku.th/std-profile/getGroupCourse",
