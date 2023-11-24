@@ -42,6 +42,8 @@ class PyMyKU:
 
         self.set_access_token(self.__login_res.accesstoken)
 
+        self.__schedule = self.get_schedule().results[0]
+
     def set_access_token(self, access_token: str) -> None:
         self.__access_token_payload = Payload.from_dict(
             utils.decode_access_token(access_token)
@@ -85,4 +87,36 @@ class PyMyKU:
             user_type = self.__login_res.user.user_type
 
         return api.common.getschedule(self.session, std_status_code, campus_code, faculty_code, major_code, user_type)
+
+    def get_annoucement(self, academic_year: str = '', semester: str = '') -> list[api.advisor.Announcement]:
+        if academic_year == '':
+            academic_year = str(self.__schedule.academicYr)
+
+        if semester == '':
+            semester = str(self.__schedule.semester)
+
+        return api.advisor.get_announce_std(self.session, academic_year, semester).results
     
+    def get_gpax(self) -> list[api.stddashboard.GPAXResult]:
+        return api.stddashboard.gpax(self.session, self.student.std_id).results
+    
+    def check_grades(self) -> list[api.std_profile.CheckGradesResult]:
+        return api.std_profile.check_grades(self.session).results
+
+    def get_group_course(self, academic_year: str = '', semester: str = '') -> list[api.std_profile.GetGroupCourseResult]:
+        if academic_year == '':
+            academic_year = str(self.__schedule.academicYr)
+
+        if semester == '':
+            semester = str(self.__schedule.semester)
+
+        return api.std_profile.get_group_course(self.session, self.student.std_id, academic_year, semester).results
+    
+    def get_std_address(self) -> api.std_profile.StdAddress:
+        return api.std_profile.get_std_address(self.session, self.student.std_id).std_address
+    
+    def get_std_education(self) -> api.std_profile.GetStdEducationResult:
+        return api.std_profile.get_std_education(self.session, self.student.std_id).results
+    
+    def get_std_personal(self) -> api.std_profile.GetStdPersonalResult:
+        return api.std_profile.get_std_personal(self.session, self.student.std_id).results
