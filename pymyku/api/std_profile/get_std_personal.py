@@ -53,7 +53,7 @@ class StdPersonalModel:
 
 
 @dataclass
-class Results:
+class GetStdPersonalResult:
     std_personal_model: StdPersonalModel
 
 
@@ -61,4 +61,4 @@ class Results:
 class GetStdPersonalResponse(JSONWizard):
     code: str
     message: str
-    results: Results
+    results: GetStdPersonalResult

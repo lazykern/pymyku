@@ -6,7 +6,7 @@ from dataclass_wizard import JSONWizard
 
 
 @dataclass
-class Result:
+class GPAXResult:
     std_id: int
     std_code: str
     gpax: float
@@ -16,4 +16,4 @@ class Result:
 @dataclass
 class GPAXResponse(JSONWizard):
     code: str
-    results: list[Result]
+    results: list[GPAXResult]

@@ -2,11 +2,11 @@ from __future__ import annotations
 
 from requests import Session
 
-from pymyku.api.std_profile.check_grades import CheckGradesResponse
-from pymyku.api.std_profile.get_group_course import GetGroupCourseResponse
-from pymyku.api.std_profile.get_std_address import GetStdAddressResponse
-from pymyku.api.std_profile.get_std_education import GetStdEducationResponse
-from pymyku.api.std_profile.get_std_personal import GetStdPersonalResponse
+from pymyku.api.std_profile.check_grades import *
+from pymyku.api.std_profile.get_group_course import *
+from pymyku.api.std_profile.get_std_address import *
+from pymyku.api.std_profile.get_std_education import *
+from pymyku.api.std_profile.get_std_personal import *
 from pymyku.utils import amend_locals, raise_for_status_with_response
 
 
@@ -22,9 +22,9 @@ def check_grades(session: Session) -> CheckGradesResponse:
 
 def get_group_course(
     session: Session,
-    std_id: int,
-    academic_year: int,
-    semester: int,
+    std_id: str,
+    academic_year: str,
+    semester: str,
 ) -> GetGroupCourseResponse:
     res = session.get(
         "https://myapi.ku.th/std-profile/getGroupCourse",
@@ -37,7 +37,7 @@ def get_group_course(
 
 
 def get_std_address(
-    session: Session, std_id: int | None = None
+    session: Session, std_id: str = ''
 ) -> GetStdAddressResponse:
     res = session.get(
         "https://myapi.ku.th/std-profile/getStdAddress",
@@ -50,7 +50,7 @@ def get_std_address(
 
 
 def get_std_personal(
-    session: Session, std_id: int | None = None
+    session: Session, std_id: str = '' 
 ) -> GetStdPersonalResponse:
     res = session.get(
         "https://myapi.ku.th/std-profile/getStdPersonal",
@@ -63,7 +63,7 @@ def get_std_personal(
 
 
 def get_std_education(
-    session: Session, std_id: int | None = None
+    session: Session, std_id: str = ''
 ) -> GetStdEducationResponse:
     res = session.get(
         "https://myapi.ku.th/std-profile/getStdEducation",

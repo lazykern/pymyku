@@ -1,11 +1,11 @@
 from requests import Session
 
-from pymyku.api.advisor.get_announce_std import GetAnnounceStdResponse
+from pymyku.api.advisor.get_announce_std import GetAnnounceStdResponse, Announcement
 from pymyku.utils import amend_locals, raise_for_status_with_response
 
 
 def get_announce_std(
-    session: Session, academic_year: int, semester: int,
+    session: Session, academic_year: str, semester: str,
 ) -> GetAnnounceStdResponse:
 
     url = "https://myapi.ku.th/advisor/getAnnounceStd"

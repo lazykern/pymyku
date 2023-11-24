@@ -36,7 +36,7 @@ class Course:
 
 
 @dataclass
-class Result:
+class GetGroupCourseResult:
     peroid_date: str
     course: List[Course]
 
@@ -44,4 +44,4 @@ class Result:
 @dataclass
 class GetGroupCourseResponse(JSONWizard):
     code: str
-    results: List[Result]
+    results: List[GetGroupCourseResult]

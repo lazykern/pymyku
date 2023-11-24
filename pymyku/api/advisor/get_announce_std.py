@@ -8,7 +8,7 @@ from dataclass_wizard import JSONWizard
 
 
 @dataclass
-class Result:
+class Announcement:
     announce_id: int
     announce_code: str
     announce_subject_th: str
@@ -52,8 +52,7 @@ class Result:
     teachername_en: str
     link_ext: Any
 
-
 @dataclass
 class GetAnnounceStdResponse(JSONWizard):
     code: str
-    results: list[Result]
+    results: list[Announcement]

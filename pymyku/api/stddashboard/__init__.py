@@ -1,6 +1,6 @@
 from requests import Session
 
-from pymyku.api.stddashboard.gpax import GPAXResponse
+from pymyku.api.stddashboard.gpax import GPAXResponse, GPAXResult
 from pymyku.utils import raise_for_status_with_response
 
 

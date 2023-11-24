@@ -6,7 +6,6 @@ from typing import Any
 
 from dataclass_wizard import JSONWizard
 
-
 @dataclass
 class Education:
     std_id: int
@@ -86,7 +85,7 @@ class StatusHistory:
 
 
 @dataclass
-class Results:
+class GetStdEducationResult:
     education: list[Education]
     statushis: list[StatusHistory]
     majorchange: list[Any]
@@ -95,4 +94,4 @@ class Results:
 @dataclass
 class GetStdEducationResponse(JSONWizard):
     code: str
-    results: Results
+    results: GetStdEducationResult
