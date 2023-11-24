@@ -28,7 +28,7 @@ def amend_locals(locals_: dict[str, Any]) -> dict[str, Any]:
     return {
         snake_to_camel(k): v
         for k, v in locals_.items()
-        if k != "self" and k != "session" and v is not None
+        if k != "self" and k != "session" and v is not None or v == ""
     }
 
 
@@ -56,13 +56,13 @@ def raise_for_status_with_response(response: Response) -> None:
     if client_error_range[0] <= response.status_code < client_error_range[1]:
         http_error_msg = (
             f"{response.status_code} Client Error: {reason}"
-            " for url {response.url}"
+            f" for url {response.url}"
         )
 
     elif server_error_range[0] <= response.status_code < server_error_range[1]:
         http_error_msg = (
             f"{response.status_code} Server Error: {reason}"
-            " for url {response.url}"
+            f" for url {response.url}"
         )
 
     if http_error_msg:
