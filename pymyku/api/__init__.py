@@ -1,1 +1,1 @@
-from . import advisor, auth, enroll, std_profile, stddashboard # noqa
+from . import advisor, auth, enroll, common, std_profile, stddashboard # noqa
