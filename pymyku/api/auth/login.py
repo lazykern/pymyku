@@ -8,7 +8,7 @@ from dataclass_wizard import JSONWizard
 @dataclass
 class Student:
     login_name: str
-    std_id: int
+    std_id: str
     std_code: str
     title_th: str
     title_en: str
@@ -18,7 +18,7 @@ class Student:
     first_name_en: str
     middle_name_en: str
     last_name_en: str
-    copen_id: int
+    copen_id: str
     copen_name_th: str
     copen_name_en: str
     campus_code: str
@@ -36,13 +36,13 @@ class Student:
     nation_code: str
     nationality_name_th: str
     nationality_name_en: str
-    student_status_code: int
+    student_status_code: str
     student_status_name_th: str
     student_status_name_en: str
-    student_type_code: int
+    student_type_code: str
     student_type_name_th: str
     student_type_name_en: str
-    edulevel_code: int
+    edulevel_code: str
     edulevel_name_th: str
     edulevel_name_en: str
     student_year: int
@@ -57,7 +57,7 @@ class Student:
 @dataclass
 class User:
     login_name: str
-    user_type: int
+    user_type: str
     id_code: str
     title_th: str
     title_en: str
@@ -68,7 +68,7 @@ class User:
     last_name_th: str
     last_name_en: str
     avatar: str
-    gender: int
+    gender: str
     student: Student
 
 
