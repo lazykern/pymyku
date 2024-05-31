@@ -2,6 +2,8 @@
     <img src="https://raw.githubusercontent.com/lazykern/pymyku/main/docs/assets/pymyku_logo.png" alt="pymyku" title="pymyku" align="left" height="157" />
 </a>
 
+# THIS REPOSITORY IS **UNMAINTAINED**
+
 # PyMyKU
 
 [![Language: Python](https://img.shields.io/badge/python-3.6+-white?style=flat-square&logo=python&logoColor=white&labelColor=376F9E&color=FDD043)](https://www.python.org/)
